@@ -64,17 +64,17 @@ public enum SurveyStatusEnums {
     LOGOUT("10", "Logout", "注销");
 
     /**
-     * 
+     * code
      */
     private String code;
     
     /**
-     * 
+     * name
      */
     private String name;
     
     /**
-     * 
+     * description
      */
     private String description;
 
