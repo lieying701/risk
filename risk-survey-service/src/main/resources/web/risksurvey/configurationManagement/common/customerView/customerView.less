@@ -1,0 +1,75 @@
+.customerView i.collapse-btn:before{
+  top: -4px !important;
+}
+.ui.panel > .header > .content > .caption{
+  padding-left: 14px;
+}
+.ui.panel .content{
+  padding: 14px 0;
+}
+//-增加表格序号
+.ui.items-view.widget-table table>tbody {
+  list-style-type:none;
+  counter-reset:sectioncounter;
+}
+.ui.items-view.widget-table table>tbody>tr .row-index:before {
+  content:counter(sectioncounter);
+  counter-increment:sectioncounter;
+}
+//把表格的序号变成透明色
+#import .ui.widget-table table thead th:nth-child(1)>div{
+  color: transparent;
+}
+//把表格里的只读变成透明色
+#import .table .ui.input.readonly > input{
+	background-color: transparent !important;
+	border: none;
+}
+.customerType i{
+  display: none !important;
+}
+
+c-table{
+  .ui.input>input:read-only{
+    background: none !important;
+  }
+}
+
+//.insureIdContent c-table colgroup col:nth-child(1){width: 25px;}
+//.insureIdContent c-table colgroup col:nth-child(2){width: 156px;}
+////.insureIdContent c-table colgroup col:nth-child(3){width: 15%;}
+////.insureIdContent c-table colgroup col:nth-child(4){width: 20%;}
+//.insureIdContent c-table colgroup col:nth-child(5){width: 44px;}
+//.insureIdContent c-table colgroup col:nth-child(6){width: 44px;}
+////.insureIdContent c-table colgroup col:nth-child(7){width: 44%;}
+//.insureIdContent c-table colgroup col:nth-child(8){width: 50px;}
+//.insureIdContent c-table colgroup col:nth-child(9){width: 80px;}
+//.insureIdContent c-table colgroup col:nth-child(10){width: 80px;}
+//.insureIdContent c-table colgroup col:nth-child(11){width: 53px;}
+
+.camsi .changeInput .ui.input>input,.camsi .changeInput .ui.input>.button,.camsi .changeInput .ui.input>.ui.label{
+  padding: 6px 0;
+  border:none;
+}
+  .camsi .ui.widget-table.changeInput table tbody td{
+  padding:8px 3px ;
+}
+
+//.claimsContent c-table colgroup col:nth-child(1){width: 25px;}
+//.claimsContent c-table colgroup col:nth-child(2){width: 125px;}
+//.claimsContent c-table colgroup col:nth-child(3){width: 153px;}
+//.claimsContent c-table colgroup col:nth-child(4){width: 154px;}
+//.claimsContent c-table colgroup col:nth-child(5){width: 85px;}
+//.claimsContent c-table colgroup col:nth-child(6){width: 85px;}
+//.claimsContent c-table colgroup col:nth-child(7){width: 55px;}
+//.claimsContent c-table colgroup col:nth-child(8){width: 85px;}
+//.claimsContent c-table colgroup col:nth-child(9){width: 70px;}
+
+
+
+//.camsi .ui.widget-table table tbody td>div input{
+//  text-align: center;
+//}
+
+//.camsi .ui.widget-table{position:relative;overflow:scroll;}
+//.ui.widget-table>.table-wrapper{overflow-x:scroll;}

@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: risk-survey
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: configserverapp
+      name: ${spring.application.name}, okhttp
+      profile: application
+  service:
+    rbac-web: rbac
+    basecode-web: basecode
+server:
+  port: ${listenServerPort}
+eureka:
+  client:
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: ${registryCenterUrl}
+  instance:
+    prefer-ip-address: true
+    hostname: ${spring.cloud.client.ipAddress}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}:${spring.application.name}
+management:
+  health:
+    defaults:
+      enabled: false
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 900000
+security:
+  basic:
+    enabled: false
+ribbon:
+  ConnectTimeout: 900000

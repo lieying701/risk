@@ -1,0 +1,50 @@
+extends /_page
+append head
+    title 转派风勘任务
+    link(rel="stylesheet", type="text/css", href="risksurvey/risksurvey/css/riskSurvey.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/basic.less")
+
+block body
+    .commonProductInfo.reassignTask()
+        .title
+            span=ll.l("转派风勘任务")
+        .topmessage
+            .topleftline
+            span=ll.l("当前任务执行人")
+        .ui.panel
+            .content
+                c-form.transparent.reassignForm
+                    fields.cols-2
+                        field
+                            label=ll.l("当前任务执行人")
+                            c-input(c-bind="assigneeName")
+        .topmessage
+            .topleftline
+            span=ll.l("选择新任务执行人")
+        .ui.panel
+            .content
+                c-form.transparent.reassignForm
+                    fields.cols-2
+                        field
+                            label=ll.l("风勘员所属机构")
+                            c-dropdown(c-items="levelList")
+                            c-dropdown(c-items="levelList")
+                            c-dropdown(c-items="levelList")
+                    fields.cols-2
+                        field
+                            label=ll.l("风险查勘员")
+                            c-dropdown(c-items="risksurveyer" c-bind="userlogin" assignment="userlogin=key;userloginName=value;")
+                    fields.cols-2
+                        field
+                            hr()
+                    fields.cols-2
+                        field
+                            c-button(caption=ll.l("确认转派") class="confirmAssignBtn" c-onclick="confirmReAssign(userlogin)")
+                            c-button(caption=ll.l("取消") class="cancelAssignBtn" c-onclick="cancelReassign()")
+prepend scripts
+    script(src="./risksurvey/product/contractEntity.js")
+append scripts
+    script(src="risksurvey/risksurvey/js/riskSurveyReAssign.js")
+    script(src="risksurvey/base/js/custom.js")
+

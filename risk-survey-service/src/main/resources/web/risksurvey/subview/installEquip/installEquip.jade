@@ -1,0 +1,66 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleEquip in surveyInstallequip")
+                .blockHeader
+                    label(c-bind="$index=='1'?'主要设备生产线情况':'主要设备生产线情况'+$index")
+                    span.delButton.deleteBlue(c-onclick="delInstallEquip(singleEquip,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleEquip.mainEquipName")
+                                label 主要设备名称
+                                c-input
+                            field(property="singleEquip.equipModel")
+                                label 设备型号
+                                c-input
+                        fields.cols-2
+                            field(property="singleEquip.mainEquipParam")
+                                label 主要设备参数
+                                c-input
+                            field(property="singleEquip.singleItemAmount")
+                                label 单项造价
+                                c-input
+                        fields.cols-2
+                            field(property="singleEquip.manufacturer")
+                                label 制造商名称
+                                c-input
+                            field(property="singleEquip.produceTime")
+                                label 生产日期
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleEquip.equipValue")
+                                label 设备价值
+                                c-input()
+                            field(property="singleEquip.equipNum")
+                                label 设备数量
+                                c-input()
+                        fields.cols-2
+                            field(property="singleEquip.newDesignEquipFlag")
+                                label 是否属新设计设备
+                                c-input()
+                            field(property="singleEquip.inGuaranteePeriodFlag")
+                                label 是否在质量保证期内
+                                c-input
+                        fields.cols-2
+                            field(property="singleEquip.eliminateEquipFlag")
+                                label 是否淘汰设备
+                                c-input
+                            field(property="singleEquip.createUserID")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleEquip.updateUserID")
+                                label 修改员代码
+                                c-input()
+                            field(property="singleEquip.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleEquip.updateDate")
+                                label 修改时间
+                                c-datepicker
+
+        .Xaddpolicy(c-onclick="addInstallEquip('singleEquip')")
+            span.add_Block
+            span.addApplicant=ll.l("添加主要设备生产线情况") 

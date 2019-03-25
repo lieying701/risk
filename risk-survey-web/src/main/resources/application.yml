@@ -1,0 +1,357 @@
+spring:
+  application:
+    name: risk-survey
+  boot:
+    admin:
+      url: http://localhost:6666
+server:
+  port: 8080
+boot:
+  config:
+    summaryTaskHost: 
+actual:
+  roleKey: risk-survey
+camsi:
+  dataSource: dynamicDataSource
+  sessionFactory: dynamicSessionFactory
+  transactionManager: dynamicTransactionManager
+  schemaName:
+    mod: 12
+    time: 100000000
+  defaultCache: cacheBsh
+  defaultExecutor:
+    pool-size: 20-100
+    queue-capacity: 10
+  security:
+    service: currentRbacUserService
+  jndi:
+    name: java:comp/env/jdbc/camsi-postgres
+hibernate:
+  dialect: org.hibernate.dialect.Oracle12cDialect
+  show_sql: true
+  format_sql: false
+  use_sql_comments: true
+  max_fetch_depth: 1
+  generate_statistics: false
+  current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  jdbc:
+    batch_size: 300
+  cache:
+    use_second_level_cache: false
+    provider_class: net.sf.ehcache.hibernate.EhCacheProvider
+    region:
+      factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+  hbm2ddl:
+    auto: none
+  search:
+    indexBase: c:/index
+    directory_provider: filesystem
+    batch_size: 1000
+    analyzer: org.apache.lucene.analysis.cjk.CJKAnalyzer #org.wltea.analyzer.lucene.IKAnalyzer
+    indexing_strategy: manual
+redis:
+  host: localhost
+  port: 6379
+  password: 
+  usePool: true
+  database: 4
+  maxTotal: 1500  
+  maxIdle: 1000   
+  maxWaitMillis: 3000 
+  testOnBorrow: true
+  maxInactiveIntervalInSeconds: 1800
+  defaultExpiration: 0
+  master: 
+  sentinelHostAndPorts: 
+  clusterNodes:
+  session: 
+    host: localhost
+    port: 6379
+    password: 
+    usePool: true
+    database: 4
+    maxTotal: 1500  
+    maxIdle: 1000   
+    maxWaitMillis: 3000 
+    testOnBorrow: true
+    maxInactiveIntervalInSeconds: 1800
+    defaultExpiration: 36000
+    clusterNodes:
+    master: 
+    sentinelHostAndPorts: 
+  corePoolSize: 2
+  maxPoolSize: 3
+  keepAliveSeconds: 10
+  queueCapacity: 1
+elasticsearch:
+  cluster-nodes: localhost:9200
+crypto: 
+  cipher: 
+    rootCAIssuer: C=CN,ST=SH,L=SH,O=CAMSI,OU=BC,CN=JASON
+    defaultCASubject: C=CN,ST=SH,L=SH,O=CAMSI,OU=BC,CN=
+    signatureAlgorithm: SHA512WITHECDSA
+solr-client:
+  url: http://locahost:8983/solr
+mongo:
+  host: localhost
+  port: 27017
+  connectionsPerHost: 8
+  threadsAllowedToBlockForConnectionMultiplier: 4
+  connectTimeout: 1000
+  maxWaitTime: 1500
+  autoConnectRetry: true
+  socketKeepAlive: true
+  socketTimeout: 1500
+  slaveOk: true
+  writeNumber: 1
+  writeTimeout: 0
+  writeFsync: true
+  database: local
+#mq:
+  #host: 9.23.28.35
+  #username: test
+  #password: test
+  #port: 5672
+  #vhost: /
+mq:
+  rabbit:
+    host: 9.23.28.35
+    username: test
+    password: test
+    port: 5672
+    vhost: /
+    channel-cache-size: 50
+    channelCacheSize: 50
+    directExchangeName: DEX_CollaborationMessage
+    topicExchangeName: TEX_CollaborationMessage
+    fanoutExchangeName: FEX_CollaborationMessage
+    queueName: Q_CollaborationMessage
+    routingKey: RK_CollaborationMessage
+    corePoolSize: 2
+    maxPoolSize: 3
+    keepAliveSeconds: 10
+    queueCapacity: 1
+    x-message-ttl: 0
+    x-dead-letter-exchange: Dead_EX_CollaborationMessage
+    x-dead-letter-routing-key: Dead_PX_CollaborationMessage
+    backOffPolicy:
+      initialInterval: 500
+      maxInterval: 10000
+      multiplier: 10.0
+kafka:
+  producer:
+    bootstrap:
+      servers: localhost:9092
+    retries: 10
+    batch:
+      size: 16384
+    linger:
+      ms: 1
+    buffer:
+      memory: 33554432
+    key:
+      serializer: org.apache.kafka.common.serialization.StringSerializer
+    value:
+      serializer: org.apache.kafka.common.serialization.StringSerializer
+  consumer:
+    bootstrap:
+      servers: localhost:9092
+    group:
+      id: 0
+    enable:
+      auto:
+        commit: true
+    auto:
+      commit:
+        interval:
+          ms: 1000
+    session:
+      timeout:
+        ms: 15000
+    key:
+      deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value:
+      deserializer: org.apache.kafka.common.serialization.StringDeserializer
+content:
+  path: /ncwebapps_fujian/policy
+  uploadContent:
+    workDir:
+rbac:
+  sysname: pc
+collaboration:
+  setPasswordUrl:
+  mail:
+    host: smtp.163.com
+    username: 13609619603@163.com
+    password: stp123
+    fromMail: 13609619603@163.com
+    fromName: hujs
+    debug: true
+    isSSL: true
+    smtpPort: 25
+    sslSmtpPort: 465
+    contentType: text/html;charset=utf-8
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+    readTimeout: 600
+    connectTimeout: 60
+    writeTimeout: 120
+  hystrix:
+    enabled: false
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+restTemplate:
+  connect-timeout: -1
+  read-timeout: -1
+blockchain:
+  executor:
+    pool-siz: 20-100
+    queue-capacity: 10
+  discovery:
+    address:
+  shim:
+    address:
+activiti:
+  dataSource: dataSource
+  transactionManager: transactionManager
+  databaseSchema: risksurvey_d01
+  databaseSchemaUpdate: true
+  jobExecutorActivate: false
+  mailServerHost: mail.163.com
+  mailServerPort: 5025
+  closeGlobalListener: true
+  defaultBusinessTaskService: false
+security:
+  filterProcessesUrl: /security_check_ #本地form登录链接
+  usernameParameter: username_ #form的用户字段名称
+  passwordParameter: password_ #form的密码字段名称
+  captchaName: kaptcha_
+  access: 
+    voteType:  User
+  loginFormUrl: /policycenter/workbench/login/login.html #本地form登录的链接
+  #defaultTargetUrl:  http://9.23.28.24:8082/workbench/workbench/index.html #/controller/rbac/login/success#登录成功后缺省的转发页面
+  defaultTargetUrl: /controller/rbac/login/success
+  targetUrlParameter: redUrl  #假如登录成功，request中有此参数则转发到此参数的页面
+  defaultFailureUrl: /controller/rbac/login/getFailureInfo #登录失败的转发链接
+  defaultLogoutUrl: /login.html #登出的缺省链接
+  #defaultSuccessPage: http://9.23.28.24:8082/workbench/workbench/index.html #假如缺省的defaultTargetUrl是success的话，则success的缺省转发页面
+  defaultSuccessPage: /risksurvey/index.html
+  defaultFailurePage: /policycenter/workbench/login/login.html #缺省登录失败的链接
+  logoutProcessUrl: /logout #本地登出链接
+  accessDeniedUrl: /access-denied.html
+  loginExceptionUrl: /controller/rbac/login/getFailureInfo #登录异常链接
+  invalidSessionUrl: /risksurvey/login.html
+  expiredUrl: http://9.23.28.24:8082/workbench/workbench/login/login.html
+  JCaptchaImage.charScope: 1234567890
+  JCaptchaImage.maxFontSize: 20
+  JCaptchaImage.height: 30
+  JCaptchaImage.width: 140
+  JCaptchaImage.minFontSize: 15
+  JCaptchaImage.charNumber: 4
+  method:
+    validateConfigAttributes: false
+  provider: repositoryAuthenticationProvider
+  cas:
+    #CAS的客户回调地址
+    service: http://9.23.29.9:7001/UAMService/ssoURLService.jsp
+    serverUrlPrefix: http://9.23.29.9:7001/UAMService
+    #SSO CAS过滤器的触发链接，SSO服务器用这个链接回调
+    filterProcessesUrl: /cas/login
+    #SSO登录链接，用于重定向到SSO服务器
+    loginUrl: /controller/rbac/cls/clsLogin/auth
+    key: an_id_for_this_auth_provider_only
+    logoutProcessUrl: /cas/logout #SSO登出的链接，登出过滤器的处理地址
+    logoutUrl: http://9.23.29.9:7001/UAMService/distoryURLService.jsp #SSO服务器的登出链接
+    loginExceptionUrl: /controller/rbac/login/getFailureInfo
+  cls:
+    service: http://9.23.29.9:7001/UAMService/ssoURLService.jsp #验证异常后的链接
+    serverUrlPrefix: http://9.23.29.9:7001/UAMService #CAS服务器的前缀
+    filterProcessesUrl: /cas/login  #SSO CAS过滤器的处理链接
+    loginUrl: /controller/rbac/cls/clsLogin/auth  #SSO登录链接，用于重定向到SSO服务器
+    key: an_id_for_this_auth_provider_only
+    logoutProcessUrl: /cas/logout #CAS的登出链接
+    logoutUrl: http://9.23.29.9:7001/UAMService/distoryURLService.jsp #SSO服务器的登出链接
+    loginExceptionUrl: /controller/rbac/login/getFailureInfo #登录异常链接
+#    appJKSPath: C:\\eclipse4.7\\workspace1\\rbac\\src\\main\\resources\\UAM_hx.jks
+#    uamCertPath: C:\\eclipse4.7\\workspace1\\rbac\\src\\main\\resources\\UAM.cer
+    appJKSPath: D:\\workspace\\guoshoucai\\policy-web\\证书\\UAM_hx.jks
+    uamCertPath: D:\\workspace\\guoshoucai\\policy-web\\证书\\UAM.cer
+    appKeyStoreAlias: newhx
+    appKeyStoreAliasPwd: 123456
+    keyStoreType: JKS
+    appid: b3e76576-71cd-4ae0-844a-bdb07300a022
+    authMethod: 1
+    loginReturnUrl: /cas/login #SSO验证后的回调登录地址
+    logoutReturnUrl: /workbench/workbench/login/login.html  #SSO登出后的缺省地址
+    #sso用户名密码验证路径
+    ssoAuthUrl: http://9.23.29.9:7001/UAMService/Authentication
+    #sso身份认证路径
+    ssoLoginUrl: http://9.23.29.9:7001/UAMService/eaiLoginURLService.jsp
+  key: CAMSI
+  rememberMe:
+    parameter: remember_me
+  anonymous:
+    userAttribute: anonymous,R_anonymous,Anonymous,R_Anonymous
+  exception:
+    errorPage: /policy.general.view.AccessDenied.d
+  repository:
+    passwordEncoder: bcryptPasswordEncoder
+  userDetail:
+    rolePrefix: R_
+  maximumSessions: 1
+  basic:
+    realmName: AquariusRealm
+  switch:
+    switchUserUrl: /security_switch_user_
+    exitUserUrl: /security_exit_user_
+    targetUrl: /main.view.MainWorkspace.d
+    username: switch_username_
+    loginOut:
+        redirectUrl:
+            key: logout-redirect-url
+ui:
+  cache: false
+  cacheLimit: 0
+  expire: 0
+  jadeTemplateLoader: jadeTemplateLoader
+  jsThymeleafTemplateResolver: jsResourceTemplateResolver
+  htmlThymeleafTemplateResolver: htmlResourceTemplateResolver
+  resourceRoot: |
+    file:C:\\ChinaLife\\IdeaProjects\\policycenter\\policy-service\\src\\main\\resources\;
+    file:C:\\ChinaLife\\IdeaProjects\\contract-service\\src\\main\\resources\;
+    classpath:/
+
+system:
+  code: workbench
+  id: B102
+hessia:
+    link:
+      url: http://9.23.28.25:8080/quotationcenter/controller/quotationcenter/returnToInsurance/cloneQuoteNo
+baseInfo:
+    solution:
+      url: http://9.23.28.25:8080/quotationcenter/controller/quotationcenter/returnToInsurance/findBusinessEntityByActualId
+      path: http://9.23.28.25:8080/quotationcenter/controller/solution/solutionBaseInfo/findSolutionInfo
+plcEngage:
+  len: 1
+  length: 2
+knowledge:
+  ip: 9.20.136.6
+  categoryids: 696 694 695
+groupPolicy:
+  url: http://9.23.28.46:8080/policy-web/controller/policy/group/lumpSumInsurance
+  path: /home/groupPolicy
+  #url: http://localhost:8080/policy-web/controller/policy/group/lumpSumInsurance
+  #path: D://groupPolicy//tempFile//
+print:
+    commPrintType: 02 03 P1 P2 P3 P4 P5 P7 P8 Pc Pf Pg Ph Pi Pk Pl Pn 
+    personalityPrintType: 01 Pd Pm Pj Pq
+    otherPrintType: P2 P3
+    cancelNoType: 01 02 03 99

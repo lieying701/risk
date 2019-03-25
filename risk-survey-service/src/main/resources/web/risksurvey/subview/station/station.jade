@@ -1,0 +1,153 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleStation in surveyStation")
+                .blockHeader
+                    label(c-bind="$index=='1'?'车站施工风险':'车站施工风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delStation(singleStation,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleStation.buildAllConCostRate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singleStation.buildCoverConCostRate")
+                                label 工程造价占计划投保金额
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.stationName")
+                                label 车站工程地址和名称
+                                c-input
+                            field(property="singleStation.basePitDepth")
+                                label 基坑深度
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.basePitArea")
+                                label 基坑面积
+                                c-input
+                            field(property="singleStation.groundWaterLevel")
+                                label 地下水水位
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.buildConstructCost")
+                                label 工程造价
+                                c-input
+                            field(property="singleStation.stationConstructRmk")
+                                label 车站施工
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.openSupportStructCode")
+                                label 明挖支护结构代码
+                                c-input
+                            field(property="singleStation.openSupportStruct")
+                                label 明挖支护结构
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.openStationLayer")
+                                label 明挖车站层数
+                                c-input
+                            field(property="singleStation.openStationSpin")
+                                label 明挖车站跨数
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.closeSupportStructCode")
+                                label 暗挖支护结构代码
+                                c-input
+                            field(property="singleStation.closeSupportStruct")
+                                label 暗挖支护结构
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.closeStationLayer")
+                                label 暗挖车站层数
+                                c-input
+                            field(property="singleStation.closeStationSpin")
+                                label 暗挖车站跨数
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.closeStationName")
+                                label 暗挖车站名称
+                                c-input
+                            field(property="singleStation.stepSupportStructCode")
+                                label 分步暗挖支护结构代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.stepSupportStruct")
+                                label 分步暗挖支护结构
+                                c-input
+                            field(property="singleStation.stepStationLayer")
+                                label 分步暗挖车站层数
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.stepStationSpin")
+                                label 分步暗挖车站跨数
+                                c-input
+                            field(property="singleStation.stepStationName")
+                                label 分步暗挖车站名称
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.pbaStationLayer")
+                                label 暗挖PBA法车站层数
+                                c-input
+                            field(property="singleStation.pbaStationSpin")
+                                label 暗挖PBA法车站跨数
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.pbaStationName")
+                                label 暗挖PBA法车站名称
+                                c-input
+                            field(property="singleStation.ugConHoldLength")
+                                label 地下施工小导洞长
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.ugConHoldWidth")
+                                label 地下施工小导洞宽
+                                c-input
+                            field(property="singleStation.ugConHoldHigh")
+                                label 地下施工小导洞高
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.pbaBasePitDepth")
+                                label 暗挖PBA法基坑深度
+                                c-input
+                            field(property="singleStation.pbaSupportNum")
+                                label 支撑数
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.firstUgPressureDepth")
+                                label 第一层地下承压水深度
+                                c-input
+                            field(property="singleStation.secUgPressureDepth")
+                                label 第二层地下承压水深度
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.pbaConMethod")
+                                label 施工方法
+                                c-input
+                            field(property="singleStation.surroundBuildType")
+                                label 周围建筑物类型
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.surroundAndConDistance")
+                                label 周边建筑与工程所在地距离
+                                c-input
+                            field(property="singleStation.stationRmk")
+                                label 车站施工风险备注
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.createUserID")
+                                label 创建员代码
+                                c-input
+                            field(property="singleStation.updateUserID")
+                                label 修改员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleStation.createDate")
+                                label 创建时间
+                                c-datepicker
+                            field(property="singleStation.updateDate")
+                                label 修改时间
+                                c-datepicker
+        
+        .Xaddpolicy(c-onclick="addStation('singleStation')")
+            span.add_Block
+            span.addApplicant=ll.l("添加车站施工风险") 

@@ -1,0 +1,18 @@
+cola(function(model){
+    model.set("riskTypes",[
+        {"name":"地震风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"洪水暴雨风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"地质灾害风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"台暴风风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"火灾爆炸风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"安装吊装风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"船舶碰撞风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"试车风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"设计/制造和原材料缺陷风险等自身缺陷风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"安全管理风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"盗窃抢劫风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"道德风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"其他自然灾害风险","frequency":"1","intensity":"2","level":"1"},
+        {"name":"其他外出事故风险","frequency":"1","intensity":"2","level":"1"}
+    ])
+})

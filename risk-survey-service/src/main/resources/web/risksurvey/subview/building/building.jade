@@ -1,0 +1,96 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleBuilding in surveyBuildconstruct")
+                .blockHeader
+                    label(c-bind="$index=='1'?'楼宇工程风险':'楼宇工程风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delBuilding(singleBuilding,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleBuilding.buildAllConCostRate")
+                                label 工程造价占比（相对整体工程造价）
+                                c-input
+                            field(property="singleBuilding.buildCoverConCostRate")
+                                label 工程造价占比2（相对计划投保金额）
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.buildConstructName")
+                                label 楼宇工程名称
+                                c-input
+                            field(property="singleBuilding.buildConstructCost")
+                                label 工程造价
+                                c-input
+                        fields.cols-2
+                            field
+                                label 楼宇结构类型
+                                c-dropdown(c-bind="singleBuilding.buildConType" assignment="buildConTypeCode=key;buildConType=value;")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            field(property="singleBuilding.overHighBuildFlag")
+                                label 是否属于超高层建筑
+                                c-dropDown
+                        fields.cols-2
+                            field(property="singleBuilding.floorOverground")
+                                label 地上层数
+                                c-input
+                            field(property="singleBuilding.heightOverground")
+                                label 地上高度
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.floorUnderground")
+                                label 地下层数
+                                c-input
+                            field(property="singleBuilding.depthUnderground")
+                                label 地下深度
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.conMeasOverground")
+                                label 地上结构施工方案
+                                c-input
+                            field(property="singleBuilding.conMeasUnderground")
+                                label 地下结构施工方案
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.basePitDepth")
+                                label 基坑深度
+                                c-input
+                            field(property="singleBuilding.basePitSupportType")
+                                label 基坑支护类型
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.basePitRainMeas")
+                                label 基坑降水方法
+                                c-input
+                            field(property="singleBuilding.monitorSettlleMeas")
+                                label 周边沉降监测方法
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.concludeDecorateFlag")
+                                label 是否包含装修装饰工程
+                                c-dropDown
+                            field(property="singleBuilding.attachEquipTestPeriod")
+                                label 附属设备试车期
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.buildConRmk")
+                                label 备注
+                                c-textarea
+                            field(property="singleBuilding.createUserID")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleBuilding.updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="singleBuilding.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleBuilding.updateDate")
+                                label 修改时间
+                                c-datepicker
+        .Xaddpolicy(c-onclick="addBuilding('singleBuilding')")
+            span.add_Block
+            span.addApplicant=ll.l("添加楼宇工程风险") 
+

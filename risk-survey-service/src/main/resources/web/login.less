@@ -1,0 +1,82 @@
+@import "/_style.less";
+
+@formWidth: 30em;
+@formHeight: 32em;
+body {
+	background: @lightBackgroundColor;
+}
+
+#loginDialog {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -@formWidth / 2;
+	margin-top: -@formHeight / 2;
+	width: @formWidth;
+	height: @formHeight;
+	background: white;
+	border-top: 1px solid @lightBorderColor;
+	//.box-shadow(0 1px 11px rgba(0, 0, 0, 0.27));
+}
+
+#formLogin {
+	padding: 1.5em 3em;
+	> .field {
+		margin-bottom: 1.2em;
+	}
+	#imgCaptcha {
+		height: 2.8em;
+		float: right;
+	}
+}
+
+#subject {
+	padding: 2em 2em 1em;
+	color: @darkPrimaryColor;
+	font-size: 140%;
+}
+
+#checkboxMemberMe {
+	zoom: 0.8;
+	margin: 0.5em 0 2em 0.5em;
+	> label {
+		line-height: 1.2em;
+		color: @descriptionFontColor !important;
+	}
+}
+
+#message {
+	display: block;
+	opacity: 0;
+	.transition(all);
+	.transition-duration(300ms);
+	li {
+		margin: 0 !important;
+		&:before {
+			display: none !important;
+		}
+	}
+}
+
+.ui.form.error {
+	#message:not(:empty) {
+		opacity: 1;
+	}
+}
+
+#captchaEditor {
+	width: 160px;
+}
+
+#captchaImage {
+	display: inline-block;
+	float: right;
+	> img {
+		height: 34px;
+	}
+}
+
+#captchaContainer {
+	display: none;
+}

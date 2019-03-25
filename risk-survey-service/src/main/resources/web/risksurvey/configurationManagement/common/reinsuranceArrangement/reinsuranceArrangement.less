@@ -1,0 +1,161 @@
+.ui.panel .content{
+  padding: 20px;
+}
+.ui.panel>.header{
+  height: 54px;
+}
+.camsi .ui.dialog>.content{
+  padding: 0 !important;
+}
+.camsi .ui.dialog>.content .panel>.content{
+  box-sizing: border-box;
+  height: 396px;
+  overflow-y: auto;
+}
+.camsi .ui.dialog>.content .panel .content .box{
+  overflow: auto;
+}
+c-dialog{
+  position: relative;
+}
+.btnsGroup{
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  box-sizing: border-box;
+  height: 70px;
+}
+.reinsuranceArrangementSub .dialog .close-btn{
+  display: none;
+  c-dialog{
+    tools{
+      display: none;
+    }
+  }
+}
+
+.space{
+  height: 40px;
+}
+#add{
+  float: right;
+}
+.penel{
+  width: 100%;
+}
+.panels .ui.panel>.header>.content>.tools>i:before{
+  top: -4px;
+}
+.panels .ui.panel > .header > .content > .caption{
+  padding-left: 16px;
+}
+.panels .penel{
+  margin-bottom: 20px !important;
+}
+.br{
+  width: 300px;
+  line-height: 28px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.btn_size{
+  width: 74px;
+}
+//复选框禁用样式
+.pointer{
+  pointer-events: none;
+}
+
+
+#riskTable {
+  //table thead tr th div{
+  //  text-align: center !important;
+  //}
+
+  .ui.input>input:read-only{
+    background: none;
+    border: none;
+  }
+}
+#commitInquiry{
+  c-form{
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  .resetFormStyle{
+    padding: 10px 0 0 0;
+    border: none;
+    background: none;
+  }
+  .topmessage{
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    font-size: 14px;
+    .topleftline{
+      margin-top: 12px;
+    }
+  }
+}
+#setReadonly{
+  .ui.input>input:read-only{
+    background: none !important;
+  }
+}
+
+#penelId1 .content .caption{
+  line-height: 25px;
+}
+//意外险再保标的与风险信息地址栏隐藏
+.camsi .ui.widget-table.bordered.objectAddress  table thead tr:first-child th:nth-child(6){display:none;}
+.camsi .ui.widget-table.bordered.objectAddress  table tbody tr td:nth-child(6){display:none;}
+
+.textareaInquiry{
+  width: 57%;
+}
+//原始标的信息
+.protect c-table colgroup col:nth-child(1){width: 15%;}
+.protect c-table colgroup col:nth-child(2){width: 15%;}
+.protect c-table colgroup col:nth-child(3){width: 30%;}
+.protect c-table colgroup col:nth-child(4){width: 15%;}
+.protect c-table colgroup col:nth-child(5){width: 15%;}
+.protect c-table colgroup col:nth-child(6){width: 20%;}
+.protect c-table colgroup col:nth-child(7){width: 20%;}
+.protect c-table colgroup col:nth-child(8){width: 20%;}
+.protect c-table colgroup col:nth-child(9){width: 20%;}
+.protect c-table colgroup col:nth-child(10){width: 15%;}
+
+//标的投保单历史信息
+#historyId c-table colgroup col:nth-child(1){width: 15%;}
+#historyId c-table colgroup col:nth-child(2){width: 20%;}
+#historyId c-table colgroup col:nth-child(3){width: 20%;}
+#historyId c-table colgroup col:nth-child(4){width: 20%;}
+#historyId c-table colgroup col:nth-child(5){width: 20%;}
+//沟通历史
+#chId c-table colgroup col:nth-child(1){width: 15%;}
+#chId c-table colgroup col:nth-child(2){width: 25%;}
+#chId c-table colgroup col:nth-child(3){width: 25%;}
+#chId c-table colgroup col:nth-child(4){width: 25%;}
+
+.ui.widget-table table thead th:nth-child(1)>div{
+  color:#4b4e4e;
+}
+.productAddress>label{
+  width:17% !important;
+}
+@media all and (min-width: 1380px) and (max-width: 1440px){
+  .productAddress>label{
+    width:16% !important;
+  }
+}
+
+.camsi #riskTable .ui.input.right:not(.drop) input{
+  width: 100%;
+}
+.camsi .ui.widget-table.bordered table thead tr:first-child .checkbox{display: none;}//隐藏table中全选框
+c-table.ui.items-view.widget-table.a c-input{width: 100%}
+c-table c-input{width: 100%}
+c-table c-dropdown{width: 100%}
+#riskTableSubview{width: 100%}

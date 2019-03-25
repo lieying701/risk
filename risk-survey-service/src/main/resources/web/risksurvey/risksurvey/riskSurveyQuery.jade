@@ -1,0 +1,108 @@
+extends /_page
+append head
+    title 风勘综合查询
+    link(rel="stylesheet", type="text/css", href="risksurvey/risksurvey/css/riskSurvey.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/basic.less")
+
+block body
+    OBJECT(ID="CVR_IDCard"
+        CLSID="{EC4A65E3-8D49-4593-9B4C-4BD91361298B}"
+        TYPE="application/x-itst-activex" width="0px" height="0px" hspace="0" vspace="0")
+    .x-wrap
+        .wrapcontent
+            .leftcontent(id="navMain")
+                .topenter
+                    .entercontent
+                        .entertxt
+                            span=ll.l("风勘综合查询")
+                .commonProductInfo
+                    .content
+                        c-form.show-on-ready(bind="queryCondition")
+                            fields.cols-3
+                                field
+                                    label=ll.l("风勘任务编号")
+                                    c-input(bind="queryCondition.surveyId" )
+                                field
+                                    label=ll.l("风勘任务类型")
+                                    c-dropdown()
+                                field
+                                    label=ll.l("产品")
+                                    c-dropdown()
+                            fields.cols-3
+                                field
+                                    label=ll.l("可售产品")
+                                    c-dropdown
+                                field
+                                    label=ll.l("风险查勘员")
+                                    c-input(bind="queryCondition.surveyer" )
+                                field
+                                    label=ll.l("状态")
+                                    c-dropdown()
+                            fields.cols-3
+                                field
+                                    label=ll.l("风险查勘部门")
+                                    c-dropdown
+                                field
+                                    label=ll.l("业务号")
+                                    c-input(bind="queryCondition.businessNo" )
+                                field
+                                    label=ll.l("车牌号")
+                                    c-input(bind="queryCondition.plateNo" )
+                            fields.cols-3
+                                field
+                                    label=ll.l("投保人")
+                                    c-input(bind="queryCondition.customerName" )
+                                field
+                                    label=ll.l("风险查勘日期")
+                                    div
+                                        c-datepicker(bind='queryCondition.surveyerStartDate' class="datepickerField queryDate")
+                                        span.paddingLine - 
+                                        c-datepicker(bind='queryCondition.surveyerEndDate' class="queryDate")
+                                field
+                                    label=ll.l("报告生成日期")
+                                    div
+                                        c-datepicker(bind='queryCondition.reportProduceStartDate' class="datepickerField queryDate")
+                                        span.paddingLine - 
+                                        c-datepicker(bind='queryCondition.reportProduceEndDate' class="queryDate")
+                            fields.cols-3
+                                field
+                                    label=ll.l("被保险人")
+                                    c-input(bind="queryCondition.customerName" )
+                                field
+                                    label=ll.l("任务发起时间")
+                                    div
+                                        c-datepicker(bind='queryCondition.taskStartDate' class="datepickerField queryDate")
+                                        span.paddingLine - 
+                                        c-datepicker(bind='queryCondition.taskEndDate' class="queryDate")
+                            fields
+                                field
+                                    c-button(caption=ll.l("查询") c-onclick="queryTask()" style="margin-left:5%;width:100px;background-color:#009966;color:white;")
+                                    c-button(caption=ll.l("重置") c-onclick="reset()" style="margin-left:1%;width:100px;")
+                    .contentDetail
+                        c-table(bind="policyCode" class="taskTable")
+                            //column(property="")
+                                template
+                                    c-checkbox()
+                            column(align="center" caption=ll.l("no") sortable="true" width="50")
+                                template
+                                    .row-index
+                            column(property="surveyId" align="center" caption=ll.l("任务编号"))
+                            column(property="surveyerDivision" align="center" caption=ll.l("风险查勘部"))
+                            column(property="surveyerDate" align="center" caption=ll.l("任务发起时间"))
+                                //template
+                                    c-datepicker(showClearButton="false" displayFormat="yyyy-MM-dd HH:mm:ss" disabled="true" c-bind="displayFormateDate(item.surveyerDate)" readOnly="true" )                            
+                            column(property="status" align="center" caption=ll.l("状态") width="50")
+                            column(property="customerName" align="center" caption=ll.l("投保人"))
+                            column(property="productName" align="center" caption=ll.l("可售产品"))
+                            column(property="businessNo" align="center" caption="业务号")
+                            column(caption=ll.l("操作") align="center")
+                                template
+                                    .record
+                                        span(class="actionspan")=ll.l("撤回")
+                        c-pager(c-bind="policyCode")
+append scripts
+    //script(src="risksurvey/risksurvey/js/com.js")
+    script(src="risksurvey/risksurvey/js/riskSurveyQuery.js")
+   
+                    

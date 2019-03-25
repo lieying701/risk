@@ -1,0 +1,30 @@
+contents.tabContent
+    content.active(name='differentiationConfig' )
+        .riskPrompt
+            .topmessage
+                .topleftline
+                span=ll.l("准入校验")
+.accessCheck
+    c-form
+        fields.cols-3
+            field
+                label 第三方来源
+                c-dropdown(bind="businessLineSelected" valueProperty="name" textProperty="name" c-items="businessLine")
+            field
+                label 第三方类型
+                c-dropdown(bind="typeCooperationSelected" valueProperty="name" textProperty="name" c-items="typeCooperation")
+        fields.cols-3
+            field
+                label 事由分类
+                c-dropdown(bind="businessLineSelected" valueProperty="name" textProperty="name" c-items="businessLine")
+            field
+                label 事由
+                c-dropdown(bind="typeCooperationSelected" valueProperty="name" textProperty="name" c-items="typeCooperation")
+            field
+                c-button.primary( c-onclick="check()" )=ll.l("校验")
+
+
+
+
+
+

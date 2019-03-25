@@ -1,0 +1,104 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                .contentInfo
+                    c-form.transparent(bind="surveyWorksite")
+                        .form-title
+                            label 人员营地情况
+                        fields.cols-2.riskFields
+                            field(property="numCampsiteWorker")
+                                label 营地施工人员数量
+                                c-input
+                            field(property="barrackType")
+                                label 营地结构类型
+                                .groupBtns(c-repeat = "o in types")
+                                    c-checkbox(onValue="1" offValue="0" c-label="o.value")
+                        fields.cols-2.riskFields
+                            field(property="barrackAddressInfo")
+                                label 营地选址周边环境地形地貌和地质情况
+                                c-input
+                            field(property="barrackGeologicHazard")
+                                label 营房周边是否存在潜在地质灾害
+                                c-dropDown
+
+                        .form-line
+                        .form-title
+                            label 物料存储状况
+                        fields.cols-2.riskFields
+                            field(property="materialType")
+                                label 物料类型
+                                c-input
+                            field()
+                                label 存储方式
+                                c-dropDown(c-bind="storeType" assignment="storeTypeCode=key;storeType=value;")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                        fields.cols-2.riskFields
+                            field(property="materialStoreNum")
+                                label 物料数量
+                                c-input
+                            field(property="materialAmnt")
+                                label 物料价值
+                                c-input
+                        fields.cols-2.riskFields
+                            field(property="materialHighFloodFlag")
+                                label 物料存储地址是否高于10年一遇洪水位置
+                                c-input
+                            field(property="materialWindbreakFlag")
+                                label 物料仓库地点是否采取防风防漏措施
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field(property="materialAddressInfo")
+                                label 物料存储地点周边地形地貌和地质情况
+                                c-input
+                            field(property="materialGeologicHazard")
+                                label 物料存储地点周边是否存在潜在地质灾害
+                                c-dropDown
+                        
+                        .form-line
+                        .form-title
+                            label 工地消防及安全生产状况
+                        fields.cols-2.riskFields
+                            field(property="fullFireFightEquipFlag")
+                                label 工地上是否配备足够的消防灭火设备
+                                c-dropDown
+                            field(property="useFireFightEquipFlag")
+                                label 施工人员是否受过消防使用培训
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field(property="fullFireFightDistFlag")
+                                label 仓储物之间是否有足够的防火间距
+                                c-dropDown
+                            field(property="validManageFlag")
+                                label 各种易燃物品周围进行焊接或用明火作业是否进行有效管理
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field(property="threeSafetyToolFlag")
+                                label 安全三宝（安全帽、安全网、安全带）是否齐全
+                                c-dropDown
+                            field(property="worksiteNeatFlag")
+                                label 工地现场中脚手板、跳板、斜道板和交通运输道路是否整洁，畅通无障碍
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field(property="goodWiringFlag")
+                                label 工地用线接线情况是否良好
+                                c-dropDown
+                            field(property="reformEngineerFlag")
+                                label 是否为旧路改造工程
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field(property="rawStockRiskDegree")
+                                label 工程原材料的性能及其危险程度
+                                c-input
+                            field(property="mostRiskRawStock")
+                                label 最危险的原材料（溶剂/油漆/炸药等）
+                                c-input
+                        fields.cols-2.riskFields
+                            field(property="frozenProtectMeasure")
+                                label 遇冬季冰冻或夏季暴雨停止施工时，工地采取何种保护措施
+                                c-input
+                        fields.cols-2.riskFields
+                            field(property="worksiteRmk")
+                                label 备注
+                                c-textarea

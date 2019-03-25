@@ -1,0 +1,143 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleRailway in surveyRailway")
+                .blockHeader
+                    label(c-bind="$index=='1'?'公路铁路工程风险':'公路铁路工程风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delRailway(singleRailway,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleRailway.buildAllConCostRate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singleRailway.buildCoverConCostRate")
+                                label 工程造价占计划投保金额
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.railwayName")
+                                label 公路铁路标段名称
+                                c-input
+                            field(property="singleRailway.roadStartNum")
+                                label 路段桩号起号
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.roadEndNum")
+                                label 路段桩号止号
+                                c-input
+                            field(property="singleRailway.coverBidsLength")
+                                label 拟承保标段全长
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.bridgeLen")
+                                label 桥梁全长
+                                c-input
+                            field(property="singleRailway.bigBridgeLen")
+                                label 特大桥(总长)
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.bigBridge")
+                                label 特大桥
+                                c-input
+                            field(property="singleRailway.bigBridgeType")
+                                label 特大桥桥梁类型
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.middleBridgeLen")
+                                label 中桥(总长)
+                                c-input
+                            field(property="singleRailway.middleBridge")
+                                label 中桥
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.middleBridgeType")
+                                label 中桥桥梁类型
+                                c-input
+                            field(property="singleRailway.samllBridgeLen")
+                                label 小桥(总长)
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.samllBridge")
+                                label 小桥
+                                c-input
+                            field(property="singleRailway.tunnelLen")
+                                label 隧道(总长)
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.tunnel")
+                                label 隧道
+                                c-input
+                            field(property="singleRailway.overpass")
+                                label 立交桥
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.interchange")
+                                label 互通立交桥
+                                c-input
+                            field(property="singleRailway.highwayCrossBridge")
+                                label 公路交叉桥
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.pedestrianOverpass")
+                                label 人行立交桥
+                                c-input
+                            field(property="singleRailway.stationNum")
+                                label 车站总数
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.undergroundConLen")
+                                label 地下工程总长
+                                c-input
+                            field(property="singleRailway.undergroundStationNum")
+                                label 地下车站数
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.singleTunnelLen")
+                                label 单洞隧道长
+                                c-input
+                            field(property="singleRailway.twoTunnelLen")
+                                label 双洞隧道长
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.viaductConLen")
+                                label 高架工程总长
+                                c-input
+                            field(property="singleRailway.viaductStationNum")
+                                label 高架车站数
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.opencutConLen")
+                                label 明挖施工总长
+                                c-input
+                            field(property="singleRailway.opencutStationNum")
+                                label 明挖车站数
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.crossRiverName")
+                                label 穿过江河名称
+                                c-input
+                            field(property="singleRailway.crossRiverWidth")
+                                label 穿过江河宽度
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.railwayRmk")
+                                label 公路铁路备注
+                                c-input
+                            field(property="singleRailway.createUserID")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleRailway.updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="singleRailway.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleRailway.updateDate")
+                                label 修改时间
+                                c-datepicker
+
+        .Xaddpolicy(c-onclick="addRailway('singleRailway')")
+            span.add_Block
+            span.addApplicant=ll.l("添加公路铁路工程风险") 

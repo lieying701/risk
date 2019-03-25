@@ -1,0 +1,18 @@
+#navRight.XrightNav
+    ul#reinsuranceUl
+        li.currentNav(c-onclick="selectBlock('arrangeId',$dom)" class="arrangeId")
+            a.activeL.fontWeight 再保安排
+        li(c-onclick="selectBlock('penelId'+$index,$dom)" c-class="'penelId'+$index" c-repeat="riskUnit in riskUnits")
+            a(c-bind="'危险单位'+$index")
+        li(c-onclick="selectBlock('viewId',$dom)" class="viewId")
+            a.fontWeight 再保视图
+        li(c-onclick="selectBlock('historyId',$dom)" class="historyId")
+            a 标的投保单历史信息
+        li(c-onclick="selectBlock('communicationId',$dom)" class="communicationId")
+            a.fontWeight 再保沟通
+        li(c-onclick="selectBlock('chId',$dom)" class="chId")
+            a 沟通历史
+        //li(c-onclick="selectBlock('suggestId',$dom)" class="suggestId")
+            a 再保建议
+
+

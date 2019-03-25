@@ -1,0 +1,53 @@
+.content.contentDetail
+    .commonProductInfo
+        .topLeft
+            .riskcircle
+                .contentInfo
+                    c-form.transparent.formBlock(bind="surveyMain")
+                        fields.cols-2
+                            field(property="surveyId")
+                                label 任务编号
+                                c-input
+                            field(property="taskStarterDate")
+                                label 任务发起时间
+                                c-datepicker(displayFormat="yyyy-MM-dd")
+                        fields.cols-2
+                            field
+                                label 任务申请机构
+                                c-dropdown(c-bind="applyDept" assignment="applyDept=key;applyDeptName=value;")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            field(property="businessNo")
+                                label 业务号
+                                c-input
+                        fields.cols-2
+                            field(property="taskStarter")
+                                label 任务发起人
+                                c-input
+                            field(property="surveyerType")
+                                label 风险查勘类型
+                                c-input
+                        fields.cols-2
+                            field(property="surveyerDivision")
+                                label 风险查勘部门
+                                c-input
+                            field(property="surveyTimes")
+                                label 查勘次数
+                                c-input
+                        fields.cols-2
+                            field(property="surveyer")
+                                label 风险查勘员
+                                c-input
+                            field(property="surveyerDate")
+                                label 风险查勘日期
+                                c-datepicker(displayFormat="yyyy-MM-dd")
+                        fields.cols-2
+                            field(property="reportProducer")
+                                label 报告制作人
+                                c-input
+                            field(property="reportProduceDate")
+                                label 报告制作日期
+                                c-datepicker(displayFormat="yyyy-MM-dd")  
+                            field(property="pkId").display-none
+                                label pkId
+                                c-input                    

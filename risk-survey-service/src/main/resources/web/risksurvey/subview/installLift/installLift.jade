@@ -1,0 +1,48 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleLift in surveyInstalllift")
+                .blockHeader
+                    label(c-bind="$index=='1'?'吊装工程情况':'吊装工程情况'+$index")
+                    span.delButton.deleteBlue(c-onclick="delInstallLift(singleLift,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleLift.mainEquipWeight")
+                                label 主要设备重量
+                                c-input
+                            field(property="singleLift.mainEquipSize")
+                                label 主要设备尺寸
+                                c-input
+                        fields.cols-2
+                            field(property="singleLift.liftEquipParam")
+                                label 吊装设备参数
+                                c-input
+                            field(property="singleLift.overturnCheckFlag")
+                                label 是否有吊装倾覆验算
+                                c-input
+                        fields.cols-2
+                            field(property="singleLift.personQualifiedFlag")
+                                label 人员是否具备资质
+                                c-input
+                            field(property="singleLift.liftOperPlan")
+                                label 吊装操作预案
+                                c-input
+                        fields.cols-2
+                            field(property="singleLift.createUserID")
+                                label 创建员代码
+                                c-input()
+                            field(property="singleLift.updateUserID")
+                                label 修改员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleLift.createDate")
+                                label 创建时间
+                                c-datepicker
+                            field(property="singleLift.updateDate")
+                                label 修改时间
+                                c-datepicker
+
+        .Xaddpolicy(c-onclick="addInstallLift('singleLift')")
+            span.add_Block
+            span.addApplicant=ll.l("添加吊装工程情况") 

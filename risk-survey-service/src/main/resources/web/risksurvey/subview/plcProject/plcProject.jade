@@ -1,0 +1,95 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form.transparent.formBlock(bind="surveyConstructparty")
+                    fields.cols-2
+                        field(property="constructPeople")
+                            label 工程所有人
+                            c-input()
+                        field(property="samePrjExper")
+                            label 业务同类项目经验
+                            c-input()
+                    fields.cols-2
+                        field(property="addressSurveyCo")
+                            label 地址勘查单位
+                            c-input()
+                        field
+                            label 勘查资质
+                            c-dropdown(c-items="riskSurveyItems" c-bind="surveyAptitude" assignment="surveyAptitudeCode=key;surveyAptitude=value;")
+                                template(name="item-content")
+                                    li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                    fields.cols-2
+                        field(property="sameEngSuveyExperFlag")
+                            label 勘查同类工程经验
+                            c-radio-group.radiobox(c-items="surveyExper")
+                        field(property="sameEngSuveyExper")
+                            label 若有,请举例
+                            c-input()
+                    fields.cols-2
+                        field(property="designCo")
+                            label(class="required") 设计单位
+                            c-input
+                        field
+                            label 设计资质
+                            c-dropdown(c-items="designItems" c-bind="designAptitude" assignment="designAptitudeCode=key;designAptitude=value;")
+                                template(name="item-content")
+                                    li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                    fields.cols-2
+                        field(property="sameEngDesignExperFlag")
+                            label 勘查同类工程经验
+                            c-radio-group.radiobox(c-items="designExper")
+                        field(property="sameEngDesignExper")
+                            label 如有,请举例
+                            c-input()
+                    fields.cols-2
+                        field(property="superviseCo")
+                            label 监理单位
+                            c-input()
+                        field
+                            label 监理资质
+                            c-dropdown(c-items="supervision" c-bind="supAptitude" assignment="supAptitudeCode=key;supAptitude=value;")
+                                template(name="item-content")
+                                    li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                    fields.cols-2 
+                        field(property="sameEngSupExperFlag")
+                            label 监理同类工程经验
+                            c-radio-group.radiobox(c-items="supervisionExper")
+                        field(property="sameEngSupExper")
+                            label 若有,请举例
+                            c-input()
+                    fields.cols-2
+                        field(property="contractor")
+                            label 工程总承包商
+                            c-input()
+                        field(property="contractorAptitude")
+                            label 总承包商资质
+                            c-input()
+                    fields.cols-2
+                        field(property="branchContractor")
+                            label 工程分承包商
+                            c-input()
+                        field(property="branchContractorAptitude")
+                            label 分承包商资质
+                            c-input()
+                    fields.cols-2
+                        field(property="elseConstructCo")
+                            label 其他施工单位
+                            c-input()
+                    fields.cols-2
+                        field(property="sameEngConExperFlag")
+                            label 施工同类工程经验
+                            c-radio-group.radiobox(c-items="supervisionExper")
+                        field(property="sameEngConExper")
+                            label 若有,请举例
+                            c-input(placeholder="输入内容")
+                    fields
+                        field(class="rangeField required" property="insuranceRange")
+                            label() 投保方案中被保险人范围
+                        field(class="insurerRange" c-repeat="i in InsurerRangeList")
+                            c-checkbox()
+                            label(class="labelNormal" c-bind="i.value") 
+                    fields
+                        field(property="relatePartyRmk")
+                            label 备注
+                            c-textarea()

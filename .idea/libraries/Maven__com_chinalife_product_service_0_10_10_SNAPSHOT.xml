@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.chinalife:product-service:0.10.10-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/product-service/0.10.10-SNAPSHOT/product-service-0.10.10-20181228.065114-62.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/product-service/0.10.10-SNAPSHOT/product-service-0.10.10-20181228.065114-62-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/product-service/0.10.10-SNAPSHOT/product-service-0.10.10-20181228.065114-62-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

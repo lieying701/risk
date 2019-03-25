@@ -1,0 +1,155 @@
+.underlyingView
+    .topmessage
+        .topleftline
+        span 标的1
+    .subheading
+        i(class="chevron circle down icon")
+        span 标的基本信息
+    .policycontent.fieldsWrapUp
+        c-form
+            fields.cols-3
+                field
+                    label 标的类型
+                    c-input(placeholder="房屋" readonly="true" bind="objectType")
+                field
+                    label 标的物名称
+                    c-input(placeholder="厂房" readonly="true" bind="objectName")
+                field
+                    label 标的编号
+                    c-input(placeholder="00090209" readonly="true" bind="objectNumber")
+    .subheading
+        i(class="chevron circle down icon")
+        span 标的风险基本信息
+    .policycontent.fieldsWrapUp
+        c-form
+            fields.cols-3
+                field
+                    label 风险等级
+                    c-input(placeholder="房屋" readonly="true" bind="grade")
+                field
+                    label 累积风险总额
+                    c-input(placeholder="厂房" readonly="true" bind="countRisk")
+                field
+                    label 历史赔付次数
+                    c-input(placeholder="00090209" readonly="true" bind="historyCompensateTime")
+            fields.cols-3
+                field
+                    label 历史赔付总额
+                    c-input(placeholder="房屋" readonly="true" bind="totalCompensate")
+                field
+                    label 欺诈标识
+                    c-input(placeholder="厂房" readonly="true" bind="cheatSign")
+                field
+                    label 黑名单信息
+                    c-input(placeholder="00090209" readonly="true" bind="blacklist")
+            fields.cols-3
+                field
+                    label 灰名单信息
+                    c-input(placeholder="房屋" readonly="true" bind="graylist")
+                field
+                field
+    .subheading
+        i(class="chevron circle down icon")
+        span 风险累计明细信息
+    .policycontent.protect
+        c-table.protectTable(bind="findUWRiskAccumulationByObjectNo")
+            column(property="" caption="序号")
+                template
+                    .row-index
+            column(property="riskType" caption="风险类型")
+            column(property="riskItem" caption="风险项目")
+            column(property="amountInsured" caption="累计保险额")
+    .subheading
+        i(class="chevron circle down icon")
+        span 标的风勘信息
+        .reinsuranceArrangement
+            fields
+                field
+                    label
+                    c-button.greenBtn.subheadingBtn(c-onclick='search()') 风勘任务查询
+    .policycontent.fieldsWrapUp
+        c-form
+            fields.cols-3
+                field
+                    label 风勘次数
+                    c-input(placeholder="2" readonly="true" bind="lookRiskTime")
+                field
+                    label 最近一次查询日期
+                    c-input(placeholder="厂房" readonly="true" bind="queryDate")
+                field
+                    label 历史赔付次数
+                    c-input(placeholder="4" readonly="true" bind="historyCompensateTime")
+            fields.cols-3
+                field
+                    label 最近一次查询意见
+                    c-input(placeholder="" readonly="true" bind="surveyOpinion")
+                field
+                field
+    .subheading
+        i(class="chevron circle down icon")
+        span 投保历史明细信息
+    .policycontent.protect
+        c-table.protectTable(bind="riskPrompt")
+            column(property="" caption="序号")
+                template
+                    .row-index
+            column(property="productId" caption="保单号")
+            column(property="description" caption="险类")
+            column(property="direction" caption="险种")
+            column(property="direction" caption="投保人")
+            column(property="direction" caption="被保人")
+            column(property="direction" caption="保额")
+            column(property="direction" caption="保费")
+            column(property="direction" caption="起保日期")
+            column(property="direction" caption="终保日期")
+            column(property="direction" caption="保单备注")
+    .subheading
+        i(class="chevron circle down icon")
+        span 理赔历史明细信息
+    .policycontent.protect
+        c-table.protectTable(bind="riskPrompt")
+            column(property="" caption="序号")
+                template
+                    .row-index
+            column(property="productId" caption="出险时间")
+            column(property="description" caption="结案时间")
+            column(property="direction" caption="保单号")
+            column(property="direction" caption="事故号")
+            column(property="direction" caption="赔付金额")
+            column(property="direction" caption="出险类型")
+            column(property="direction" caption="按键状态")
+    .subheading.subheadingLine
+        i(class="chevron circle down icon")
+        span 区间段内风险统计信息
+    .policycontent.theWindCanNumber
+        c-form
+            fields.cols-3
+                field
+                    label 风勘次数
+                    c-input.theBe(placeholder="2017-08-09" readonly="true")
+                    c-input(placeholder="2017-08-09" readonly="true")
+                field
+                        label 最低风险保额
+                        c-input(placeholder="2323232" readonly="true")
+                field
+                    label 最高风险保额
+                    c-input(placeholder="22322" readonly="true")
+    .policycontent.protect.riskStatistics
+        c-table.protectTable(bind="riskPrompt")
+            column(property="" caption="序号")
+                template
+                    .row-index
+            column(property="productId" caption="出险时间")
+            column(property="description" caption="结案时间")
+            column(property="direction" caption="保单号")
+            column(property="direction" caption="事故号")
+            column(property="direction" caption="赔付金额")
+            column(property="direction" caption="出险类型")
+            column(property="direction" caption="按键状态")
+
+
+
+
+
+
+

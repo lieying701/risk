@@ -1,0 +1,102 @@
+extends /_page
+append head
+    title 风勘信息录入
+    link(rel="stylesheet", type="text/css", href="risksurvey/risksurvey/css/riskSurvey.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/basic.less")
+    link(rel="stylesheet", type="text/css", href="https://cache.amap.com/lbs/static/main1119.css")
+    //for baiduMap
+    //鼠标绘制工具css
+    link(rel="stylesheet", type="text/css", href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css")
+    //加载检索信息窗口
+    link(rel="stylesheet", type="text/css", href="http://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.css")
+
+
+block body
+    OBJECT(ID="CVR_IDCard"
+        CLSID="{EC4A65E3-8D49-4593-9B4C-4BD91361298B}"
+        TYPE="application/x-itst-activex" width="0px" height="0px" hspace="0" vspace="0")
+    .x-wrap
+        .wrapcontent
+            .leftcontent(id="navMain")
+                .topenter
+                    .entercontent
+                        .entertxt
+                            span=ll.l("风险查勘信息录入")
+                        .desctxt
+                            span(c-bind="'任务编号：' + taskNum")
+                        .buttonlist
+                            ul      
+                                li.currentbtn
+                                    button#btSubBtn(c-onclick="submitReport()")=ll.l("提交报告")
+                                li
+                                    button#btSaveBtn(c-onclick="temporarySave()")=ll.l("暂存")
+                                li
+                                    button(c-onclick="uploadImage()")=ll.l("影像上传")
+
+                .commonProductInfo
+                    //- c-panel.topRelative.inline(caption=ll.l("工程基本信息"))
+                    //-     c-subview(url="risksurvey/subview/baseInfo/baseInfo.html" loadMode="auto" jsUrl="$")
+                    c-panel.topRelative.inline(caption=ll.l("风险查勘基本信息"))
+                        c-subview(url="risksurvey/subview/riskBaseInfo/riskBaseInfo.html" loadMode="auto" jsUrl="$" modelName="surveyMain" id="surveyMain") 
+                    c-panel.topRelative.inline(caption=ll.l("投保信息"))
+                        c-subview(url="risksurvey/subview/riskPolicy/riskPolicy.html" loadMode="auto" jsUrl="$" modelName="riskPolicy" id="riskPolicy") 
+                    c-panel.topRelative.inline(caption=ll.l("客户信息"))
+                        c-subview(url="risksurvey/subview/plcApplicant/plcApplicant.html" loadMode="auto" jsUrl="$" modelName="plcApplicant" id="plcApplicant")
+                        c-subview(url="risksurvey/subview/plcInsurant/plcInsurant.html" loadMode="auto" jsUrl="$" modelName="plcInsurant" id="plcInsurant")
+                    c-panel.topRelative.inline(caption=ll.l("工程基本信息"))
+                        c-subview(url="risksurvey/subview/baseInfoMap/baseInfoMap.html" loadMode="auto" jsUrl="$" modelName="surveyConstructbasic" id="surveyConstructbasic")
+                    c-panel.topRelative.inline(caption=ll.l("工程相关方"))
+                        c-subview(url="risksurvey/subview/plcProject/plcProject.html" loadMode="auto" jsUrl="$" modelName="surveyConstructparty" id="surveyConstructparty")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("地质地貌"))
+                        c-subview.display-none(url="risksurvey/subview/plcGeology/plcGeology.html" loadMode="auto" jsUrl="$" modelName="surveyGeology" id="surveyGeology")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("工地概况"))
+                        c-subview.display-none(url="risksurvey/subview/condition/condition.html" loadMode="auto" jsUrl="$" modelName="surveyWorksite" id="surveyWorksite")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("楼宇工程风险"))
+                        c-subview.display-none(url="risksurvey/subview/building/building.html" loadMode="auto" jsUrl="$" modelName="surveyBuildconstruct" id="surveyBuildconstruct")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("第三者责任风险"))
+                        c-subview.display-none(url="risksurvey/subview/plcThirdliabilityRisk/plcThirdliabilityRisk.html" loadMode="auto" jsUrl="$" modelName="surveyThirdduty" id="surveyThirdduty")
+                    c-panel.topRelative.inline(caption=ll.l("风险评价"))
+                        c-subview(url="risksurvey/subview/plcRiskEvaluate/plcRiskEvaluate.html" loadMode="auto" jsUrl="$" modelName="plcRiskEvaluate" id="plcRiskEvaluate")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("桥梁施工风险"))
+                        c-subview.display-none(url="risksurvey/subview/bridge/bridge.html" loadMode="auto" jsUrl="$" modelName="surveyBridge" id="surveyBridge")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("气候水文"))
+                        c-subview.display-none(url="risksurvey/subview/climate/climate.html" loadMode="auto" jsUrl="$" modelName="surveyClimate" id="surveyClimate")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("安装试车风险"))
+                        c-subview.display-none(url="risksurvey/subview/install/install.html" loadMode="auto" jsUrl="$" modelName="surveyInstall" id="surveyInstall")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("主要设备生产线情况"))
+                        c-subview.display-none(url="risksurvey/subview/installEquip/installEquip.html" loadMode="auto" jsUrl="$" modelName="surveyInstallequip" id="surveyInstallequip")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("吊装工程情况"))
+                        c-subview.display-none(url="risksurvey/subview/installLift/installLift.html" loadMode="auto" jsUrl="$" modelName="surveyInstalllift" id="surveyInstalllift")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("工艺流程"))
+                        c-subview.display-none(url="risksurvey/subview/installTech/installTech.html" loadMode="auto" jsUrl="$" modelName="surveyInstalltech" id="surveyInstalltech")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("管道施工风险"))
+                        c-subview.display-none(url="risksurvey/subview/piping/piping.html" loadMode="auto" jsUrl="$" modelName="surveyPiping" id="surveyPiping")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("公路铁路工程风险"))
+                        c-subview.display-none(url="risksurvey/subview/railway/railway.html" loadMode="auto" jsUrl="$" modelName="surveyRailway" id="surveyRailway")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("道路施工风险"))
+                        c-subview.display-none(url="risksurvey/subview/road/road.html" loadMode="auto" jsUrl="$" modelName="surveyRoad" id="surveyRoad")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("保安状况"))
+                        c-subview.display-none(url="risksurvey/subview/security/security.html" loadMode="auto" jsUrl="$" modelName="surveySecurity" id="surveySecurity")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("车站施工风险"))
+                        c-subview.display-none(url="risksurvey/subview/station/station.html" loadMode="auto" jsUrl="$" modelName="surveyStation" id="surveyStation")
+                    c-panel.display-none.topRelative.inline(caption=ll.l("隧道施工风险"))
+                        c-subview.display-none(url="risksurvey/subview/tunnel/tunnel.html" loadMode="auto" jsUrl="$" modelName="surveyTunnel" id="surveyTunnel")
+prepend scripts
+    script(src="./risksurvey/product/contractEntity.js")
+    script(src="controller/basecode/codeDetail/findCodeDetails?baseCodeIds=IsNo,AgreementBizStatus,SchoolCode,SchoolType,SchoolYearCode,travelDestination,AddressProvince,InsureMode,DUMMYFLAG,EndorseCategory,UnderwritingWay,UnderwritingResult,IdentityType,escapUwFlag,CurrencyCode,ShareholderType,PolicyType,GetWay,FundProjectBusinessFlag,CoinsCode,CoinsLinkCode,AgriType,JudicalCode,ArgueSolution,CustomerType,AccountType,Sex,Native,Nationality,Marriage,IndustryCategory,CompanyNature,OccupationCode,OccupationType,OccupationGrade,RiskLevel,Degree,LicenseType,InsuredIdentity,InsuredSort,BenefitType,ClauseType,ItemNumberUnit,ValueCode,LimitType,deductGrade,DeductType,PayType,FeePayObjectType,BusinessNature,PossessNature,OccupationCode,BuildType,ChannelType,BusinessFlag,PayMode,ShortRateWay,AmountDetermineWay,CostType,EmployeeType,ReprintReasonCode,BankCode,EndorseType,BusinessType,BusinessStatus,Language,ClassCode,ProductCode,RenewalType,CompanyCode,BranchCompany,TerminationReason,BusinessOwner,CustomerFlag,CustomerGrade,DisabilityDegree,OrganizationType,NationalEconomyType,OwnshipNature,DeductDecisionCode,PolicyCode,InsurerCompany,PayStatus,AgentCostTypeCode,HouseProptype,UseCode,CountryCode,IndustryBigClass,ScenicSpotType,TravelType,MainCustomerGrade,PolicySort,InsuranceGrade,travelWay,DistrictCode,isWithinForeign,StructureCode,OwnerKind,OwnerType,KeyInsurantBusinessType,AbnormalBehaviourCate,AbnormalBehaviourCode,NationalEconomyType,DisabilityClassify,DisabilityGrade,CarUseNature,CoinsIdentity,CoinsIncludeWay,DrivingVehicle,OriginalRegisteredCurrencyRate,coinsIdentity,CurrentPlcNoSelect,paymentReason,proportionFlag,AbatementWay,RenewalFlag,nature,AgreementType,ArbitraryBoard,OccupationCode1,policyDeclareTypeCode,OrgnizationType(FXQ),EnterpriseNature")
+    script(src="https://webapi.amap.com/maps?v=1.4.10&key=398d7513e6512748235a91b8cebd5c08&plugin=AMap.MouseTool,AMap.ToolBar,AMap.AdvancedInfoWindow")
+    script(src="http://api.map.baidu.com/api?v=2.0&ak=gKgN0XQIG35zbMW6CGBbD5a8DEOdgHYM")
+    //for baiduMap
+    //鼠标绘制工具
+    script(src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js")
+    //加载检索信息窗口
+    script(src="http://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.js")
+
+append scripts
+    script(src="risksurvey/risksurvey/js/riskSurvey.js")
+    script(src="risksurvey/base/js/custom.js")
+
+
+
+

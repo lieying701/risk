@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" http://code.alibabatech.com/schema/dubbo 
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<context:component-scan base-package="com.chinalife" />
+
+	<aop:aspectj-autoproxy />
+
+	<bean id="contractCenterIdGenerator"
+		class="com.chinalife.type.config.service.impl.BatchIdentifierGeneratorServiceImpl">
+		<property name="sequenceName">
+			<value>SEQ_TYPE</value>
+		</property>
+		<property name="increment">
+			<value>500</value>
+		</property>
+	</bean>
+
+	<bean id="policyCenterIdGenerator"
+		class="com.chinalife.type.config.service.impl.BatchIdentifierGeneratorServiceImpl">
+		<property name="sequenceName">
+			<value>SEQ_TYPE</value>
+		</property>
+		<property name="increment">
+			<value>500</value>
+		</property>
+	</bean>
+	
+	
+	    <bean id="sequenceGeneratorService"
+        class="com.chinalife.type.config.service.impl.SequenceGeneratorServiceImpl">
+        <property name="sequenceName">
+            <value>SEQ_TYPE</value>
+        </property>
+        <property name="increment">
+            <value>500</value>
+        </property>
+    </bean>
+
+
+    <bean id="otherNoSerialNumberIdGenerator"
+        class="com.chinalife.type.config.service.impl.BatchIdentifierGeneratorServiceImpl">
+        <property name="sequenceName">
+            <value>SEQ_BUSINESSNO_SERIALNO</value>
+        </property>
+        <property name="increment">
+            <value>500</value>
+        </property>
+    </bean>
+	<bean id="batchImportIdGeneratorService"
+          class="com.chinalife.type.config.service.impl.BatchIdentifierGeneratorServiceImpl">
+        <property name="sequenceName">
+            <value>SEQ_BATCHPROCESS</value>
+        </property>
+        <property name="increment">
+            <value>500</value>
+        </property>
+    </bean>
+
+	<bean id="actualRediscacheComponent"
+		class="com.chinalife.cache.component.impl.RediscacheComponentImpl">
+		<property name="cacheManagerComponent">
+			<ref bean="rediscacheManagerComponent" />
+		</property>
+		<property name="cacheName">
+			<value>actualCache</value>
+		</property>
+	</bean>
+	<bean id="actualRediscacheService" class="com.chinalife.cache.service.impl.RediscacheServiceImpl">
+		<property name="cacheComponent">
+			<ref bean="actualRediscacheComponent" />
+		</property>
+		<property name="cacheManagerService">
+			<ref bean="rediscacheManagerService" />
+		</property>
+	</bean>
+
+	<!--工作流业务 start -->
+	<bean id="surveyTaskRepository"
+		class="com.chinalife.risksurvey.task.repository.impl.SurveyTaskRepositoryImpl"
+		parent="baseRepository">
+	</bean>
+	<bean id="surveyTaskComponent"
+		class="com.chinalife.risksurvey.task.component.impl.SurveyTaskComponentImpl"
+		parent="baseComponent">
+		<property name="baseRepository">
+			<ref bean="surveyTaskRepository" />
+		</property>
+		<property name="baseIdGenerator">
+			<ref bean="contractCenterIdGenerator" />
+		</property>
+	</bean>
+	<bean id="surveyTaskService"
+		class="com.chinalife.risksurvey.task.service.impl.SurveyTaskServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyTaskComponent" />
+		</property>
+	</bean>
+	<!--工作流业务 end -->
+	
+	<!-- 审批意见业务start -->
+	<bean id="uwSuggestionRepository"
+		class="com.chinalife.risksurvey.task.repository.impl.UWSuggestionRepositoryImpl"
+		parent="baseRepository">
+	</bean>
+	<bean id="uwSuggestionComponent"
+		class="com.chinalife.risksurvey.task.component.impl.UWSuggestionComponentImpl"
+		parent="baseComponent">
+		<property name="baseRepository">
+			<ref bean="uwSuggestionRepository" />
+		</property>
+		<property name="baseIdGenerator">
+			<ref bean="contractCenterIdGenerator" />
+		</property>
+	</bean>
+	<bean id="uwSuggestionService"
+		class="com.chinalife.risksurvey.task.service.impl.UWSuggestionServiceImpl">
+		<property name="baseComponent">
+			<ref bean="uwSuggestionComponent" />
+		</property>
+	</bean>
+	<!-- 审批意见业务end -->
+
+	<!-- 风勘主表服务 start -->
+	<bean id="surveyMainRepository"
+		  class="com.chinalife.risksurvey.repository.impl.SurveyMainRepositoryImpl"
+		  parent="baseRepository">
+	</bean>
+	<bean id="surveyMainComponent"
+		  class="com.chinalife.risksurvey.component.impl.SurveyMainComponentImpl"
+		  parent="baseComponent">
+		<property name="baseRepository">
+			<ref bean="surveyMainRepository"></ref>
+		</property>
+		<property name="baseIdGenerator">
+			<ref bean="contractCenterIdGenerator" />
+		</property>
+	</bean>
+	<bean id="surveyMainService"
+		  class="com.chinalife.risksurvey.service.impl.SurveyMainServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyMainComponent"></ref>
+		</property>
+	</bean>
+	<!-- 风勘主表服务 end -->
+
+	<!-- 客户信息表服务 start -->
+	<bean id="surveyCustomerRepository"
+		  class="com.chinalife.risksurvey.repository.impl.SurveyCustomerRepositoryImpl"
+		  parent="baseRepository">
+	</bean>
+	<bean id="surveyCustomerComponent"
+		  class="com.chinalife.risksurvey.component.impl.SurveyCustomerComponentImpl"
+		  parent="baseComponent">
+		<property name="baseRepository">
+			<ref bean="surveyCustomerRepository"></ref>
+		</property>
+		<property name="baseIdGenerator">
+			<ref bean="contractCenterIdGenerator" />
+		</property>
+	</bean>
+	<bean id="surveyCustomerService"
+		  class="com.chinalife.risksurvey.service.impl.SurveyCustomerServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyCustomerComponent"></ref>
+		</property>
+	</bean>
+	<!-- 客户信息表服务 end -->
+
+	<!-- 关联业务表服务 start -->
+	<bean id="surveyRelBusinessRepository"
+		  class="com.chinalife.risksurvey.repository.impl.SurveyRelBusinessRepositoryImpl"
+		  parent="baseRepository">
+	</bean>
+	<bean id="surveyRelBusinessComponent"
+		  class="com.chinalife.risksurvey.component.impl.SurveyRelBusinessComponentImpl"
+		  parent="baseComponent">
+		<property name="baseRepository">
+			<ref bean="surveyRelBusinessRepository"></ref>
+		</property>
+		<property name="baseIdGenerator">
+			<ref bean="contractCenterIdGenerator" />
+		</property>
+	</bean>
+	<bean id="surveyRelBusinessService"
+		  class="com.chinalife.risksurvey.service.impl.SurveyRelBusinessServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyRelBusinessComponent"></ref>
+		</property>
+	</bean>
+	<!-- 客户信息表服务 end -->
+
+	<bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+     <property name="messageConverters">
+	<list>
+	    <ref bean="mappingJacksonHttpMessageConverter" />
+	</list>
+    </property>
+    </bean>
+    <bean id="mappingJacksonHttpMessageConverter"    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+      <property name="supportedMediaTypes">
+           <list>
+               <value>application/json;charset=UTF-8</value>
+               <value>text/html;charset=UTF-8</value>
+           </list>
+       </property>
+     </bean>	
+	<!-- 风勘录入 -->
+	<bean id="surveyBasicRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyBasicRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyBuildconstructRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyBuildconstructRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyConstructbasicRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyConstructbasicRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyConstructpartyRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyConstructpartyRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyGeologyRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyGeologyRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyThirddutyRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyThirddutyRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyWorksiteRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyWorksiteRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyItemlistRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyItemlistRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyBridgeRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyBridgeRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyClimateRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyClimateRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyInstallequipRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyInstallequipRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyInstallliftRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyInstallliftRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyInstallRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyInstallRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyInstalltechRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyInstalltechRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyPipingRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyPipingRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyRailwayRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyRailwayRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyRoadRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyRoadRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveySecurityRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveySecurityRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyStationRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyStationRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+    <bean id="surveyTunnelRepository"
+        class="com.chinalife.risksurvey.repository.impl.SurveyTunnelRepositoryImpl"
+        parent="baseRepository">
+    </bean>
+	<!-- 风勘录入 -->
+	<!-- 待办任务查询 -->
+	<bean id="surveyTaskQueryRepository"
+		  class="com.chinalife.risksurvey.repository.impl.SurveyTaskQueryRepositoryImpl"
+		   parent="baseRepository"></bean>
+		  
+	<bean id="surveyTaskQueryComponent"
+		  class="com.chinalife.risksurvey.component.impl.SurveyTaskQueryComponentImpl">
+		<property name="baseRepository">
+			<ref bean="surveyTaskQueryRepository"></ref>
+		</property>
+	</bean> 
+	
+ 	<bean id="surveyTaskQueryService"
+		  class="com.chinalife.risksurvey.service.impl.SurveyTaskQueryServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyTaskQueryComponent"></ref>
+		</property>
+	</bean>
+		<bean id="surveyTaskQueryController"
+		  class="com.chinalife.risksurvey.controller.impl.SurveyTaskQueryControllerImpl">
+		<property name="baseService">
+			<ref bean="surveyTaskQueryService"></ref>
+		</property>
+	</bean>
+	<!-- 风堪派工 -->
+	<bean id="surveyDispatchRepository"
+		  class="com.chinalife.risksurvey.repository.impl.SurveyDispatchRepositoryImpl"
+		   parent="baseRepository"></bean>
+		  
+	<bean id="surveyDispatchComponent"
+		  class="com.chinalife.risksurvey.component.impl.SurveyDispatchComponentImpl">
+		<property name="baseRepository">
+			<ref bean="surveyDispatchRepository"></ref>
+		</property>
+	</bean> 
+	
+ 	<bean id="surveyDispatchService"
+		  class="com.chinalife.risksurvey.service.impl.SurveyDispatchServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyDispatchComponent"></ref>
+		</property>
+	</bean>
+		<bean id="surveyDispatchController"
+		  class="com.chinalife.risksurvey.controller.impl.SurveyDispatchControllerImpl">
+		<property name="baseService">
+			<ref bean="surveyDispatchService"></ref>
+		</property>
+	</bean> 
+	<!-- 综合查询开始 -->
+	<bean id="surveyComprehensiveQueryRepository"
+		  class="com.chinalife.risksurvey.repository.impl.SurveyComprehensiveQueryRepositoryImpl"
+		   parent="baseRepository"></bean>
+	<bean id="surveyComprehensiveQueryComponent"
+		  class="com.chinalife.risksurvey.component.impl.SurveyComprehensiveQueryComponentImpl">
+		<property name="baseRepository">
+			<ref bean="surveyComprehensiveQueryRepository"></ref>
+		</property>
+	</bean> 
+ 	<bean id="surveyComprehensiveQueryService"
+		  class="com.chinalife.risksurvey.service.impl.SurveyComprehensiveQueryServiceImpl">
+		<property name="baseComponent">
+			<ref bean="surveyComprehensiveQueryComponent"></ref>
+		</property>
+	</bean>
+		<bean id="surveyComprehensiveQueryController"
+		  class="com.chinalife.risksurvey.controller.impl.SurveyComprehensiveQueryControllerImpl">
+		<property name="baseService">
+			<ref bean="surveyComprehensiveQueryService"></ref>
+		</property>
+	</bean>
+	 <!-- 综合查询结束 -->
+</beans>

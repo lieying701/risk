@@ -1,0 +1,49 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleTech in surveyInstalltech")
+                .blockHeader
+                    label(c-bind="$index=='1'?'工艺流程':'工艺流程'+$index")
+                    span.delButton.deleteBlue(c-onclick="delInstallTech(singleTech,$index)")
+                .contentInfo(style="")
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleTech.techFlowRmk")
+                                label 工艺流程简介
+                                c-input
+                            field(property="singleTech.highTempEquipFlag")
+                                label 有无高温高压设备
+                                c-input
+                        fields.cols-2
+                            field(property="singleTech.equipmentName")
+                                label 设备名称
+                                c-input
+                            field(property="singleTech.pressure")
+                                label 压力
+                                c-input()
+                        fields.cols-2
+                            field(property="singleTech.temperature")
+                                label 温度
+                                c-input()
+                            field(property="singleTech.easyDamagePart")
+                                label 易损部位
+                                c-input()
+                        fields.cols-2
+                            field(property="singleTech.createUserID")
+                                label 创建员代码
+                                c-input()
+                            field(property="singleTech.updateUserID")
+                                label 修改员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleTech.createDate")
+                                label 创建时间
+                                c-datepicker
+                            field(property="singleTech.updateDate")
+                                label 修改时间
+                                c-datepicker
+        .Xaddpolicy(c-onclick="addInstallTech('singleTech')")
+            span.add_Block
+            span.addApplicant=ll.l("添加工艺流程 ") 
+
+   

@@ -1,0 +1,300 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            c-dialog#dialog1(style="width:80%;height:80%;" c-tag="dialog1")
+                .header
+                    span=ll.l("customerInfoQueryResult")
+                .content.detailInfoTab
+                    c-table(c-bind="customerDetailArr")
+                        column(caption=ll.l("choice"))
+                            template
+                                input(type="radio" name="chooseResult")
+                        column(property="partyTypeCode" caption=ll.l("applicantType"))
+                            template
+                                c-dropdown(c-items="dictionary('CustomerType')"  bind="$default" c-readonly="true" tag="uwTaskTag")
+                        column(caption=ll.l("customerID") property="partyId")
+                        column(caption=ll.l("customerName") property="idname")
+                        column(property="idtypeCode" caption=ll.l("identifyType"))
+                            template
+                                c-dropdown(c-items="dictionary('IdentityType')"  bind="$default" readonly="true" tag="uwTaskTag" assignment="identifyType=key;identifyName=value;")
+                        column(caption=ll.l("identifyNumber") property="idno")
+                        column(property="customerGender" caption=ll.l("sex"))
+                            template
+                                c-dropdown(c-items="dictionary('Sex')"  bind="$default" readonly="true" tag="uwTaskTag")
+                        column(caption=ll.l("customerStatus") property="customerStatus")
+                .actions
+                    c-button.primary(caption=ll.l("confirm") c-onclick="applicantDetailInfo(applicant)")
+                    c-button.base(c-onclick='hide()' caption=ll.l("cancel"))
+            .riskcircle(c-repeat="applicant in plcApplicant")
+                .blockHeader
+                    label(c-bind="$index=='1'?'投保人':'投保人'+$index")
+                    img.card(src="resources/images/gold_card.png")
+                    span.delButton.deleteBlue(c-onclick="delApplicant(applicant,$index)" style="cursor:pointer;margin-top:10px")
+                .contentInfo
+                    c-form.transparent
+                        fields.cols-2(class="productFields")
+                            field(class="required")
+                                label 投保人类型
+                                c-radio-group.radiobox(items="{{applicantTypeItems}}" c-bind="applicant.customerType" c-change="applicantchangecustypes" c-post="changeidentifyType(applicant)")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            field(class="required" property="customerName")
+                                label 投保人
+                                c-input(class="productInput" c-bind="applicant.customerName")
+                        fields.cols-2(class="productFields")
+                            field(class="required")
+                                label 投保人证件类型
+                                c-dropdown(class="productDropdown" c-items="filter(dictionary('IdentityType'),applicant.customerType)" c-bind="applicant.identifyType" assignment="identifyType=key;identifyName=value;")
+                                    template(name="value-content")
+                                        li(c-bind="applicant.identifyType?(applicant.identifyName):''")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            field(class="required")
+                                label 投保人证件号码
+                                c-input(class="productInput" c-bind="applicant.identifyNumber")
+                        fields(class="queryInfoFields")
+                            field()
+                                c-button(caption=ll.l("客户信息查询") class="queryInfoBtn" c-onclick="applicantInfoDialog(applicant,$index,1)")
+                    #selfCustomer.selfCustomerApplicant.display-none
+                        c-form.transparent(bind="applicant")
+                            fields
+                                hr()
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 投保人代码
+                                    c-input(class="productInput" readonly="true" c-bind="applicant.customerCode")
+                                field(class="required")
+                                    label 投保人证件有效期限
+                                    c-datepicker(c-bind="applicant.identityEffetiveEndDate")
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 投保人年龄
+                                    c-input(class="productInput" inputType="number" c-bind="applicant.age")
+                                field
+                                    label 投保人性别
+                                    c-dropdown(items="{{SexType}}" c-bind="applicant.sex" assignment="sex=key;sexName=value;")
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 投保人出生日期
+                                    c-datepicker(c-bind="applicant.birthdate")
+                                field
+                                    label 投保人国籍
+                                    c-dropdown(c-items="dictionary('CountryCode')" c-bind="applicant.registeredPlace" assignment="registeredPlaceCode=key;registeredPlace=value;")
+                            fields(class="productFields")
+                                field()
+                                    label 投保人地址
+                                    c-input(c-bind="applicant.address")
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 投保人联系电话
+                                    c-input(c-bind="applicant.phoneNumber")
+                                field
+                                    label 投保人联系手机
+                                    c-input(c-bind="applicant.mobile")
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 投保人联系邮箱
+                                    c-input(c-bind="applicant.email")
+                                field
+                                    label 投保人邮政编码
+                                    c-input(c-bind="applicant.post")
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 投保人境内境外标志
+                                    c-radio-group.radiobox(items="{{isWithinForeign}}" c-bind="applicant.isWithinForeign")
+                                field
+                                    label 开户银行名称
+                                    c-input(c-bind="applicant.despositBankName")
+                            fields.cols-2(class="productFields")
+                                field()
+                                    label 银行账户名称
+                                    c-input(c-bind="applicant.accountName")
+                                field
+                                    label 银行账号
+                                    c-input(c-bind="applicant.accountNo")
+                    #PlcApplicant.grpCustomerApplicant.display-none
+                        c-form.transparent(bind="applicant.plcGrpCustomer")
+                            fields
+                                hr()
+                            fields.cols-2(class="productFields")
+                                field(c-bind="applicant.organizationName" )
+                                    label=ll.l('organizationType')
+                                    c-dropdown(c-items="dictionary('OrgnizationType(FXQ)')" style="width:20%" c-bind="applicant.organizationName" assignment="organizationType=key;organizationName=value;" showClearButton="false")
+                                        template(name="item-content")
+                                            li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                                    c-dropdown(c-items="dictionary('EnterpriseNature')" style="width:20%;margin-left:-25px"  c-display="applicant.organizationType=='3'"  c-bind="applicant.organizationSecondType" assignment="organizationSecondType=key;organizationSecondTypeName=value;" showClearButton="false")
+                                        template(name="value-content")
+                                            li(c-bind="applicant.organizationSecondTypeName")
+                                        template(name="item-content")
+                                            li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.customerEName" )
+                                    label=ll.l('customerEnglishName')
+                                    c-input()
+                                field(c-bind="applicant.customerCode")
+                                    label= ll.l('applicantCode')
+                                    c-input()
+                                field
+                                    label=ll.l('validityOfDocuments')
+                                    div(style="width:58%;")
+                                        c-datepicker(c-bind='applicant.identifyEffectiveStartDate'  displayFormat="yyyy-MM-dd" style="width:49%" tag="uwTaskTag" class="filedCompareDom")
+                                        span(class="time-space") -
+                                        c-datepicker(c-bind='applicant.identifyEffectiveEndDate'  displayFormat="yyyy-MM-dd" style="width:49%" tag="uwTaskTag" class="filedCompareDom")
+                            fields(class="productFields")
+                                field(c-bind="applicant.industryCategoryName" style="width: 66%;")
+                                    label= ll.l('industry')
+                                    c-dropdown(c-items="dictionary('IndustryBigClass')" style="margin-right:2px" c-bind="applicant.industryCategoryName" assignment="industryCategory=key;industryCategoryName=value;" c-change="changeOne(applicant)" showClearButton="false")
+                                        template(name="value-content")
+                                            li(c-bind="applicant.industryCategoryName?(applicant.industryCategory+'-'+applicant.industryCategoryName):''" )
+                                        template(name="item-content")
+                                            li(c-bind="item.value?(item.key+'-'+item.value):item.key")
+                                    c-dropdown(c-items="applicant.$industrySCategoryList" style="margin-right:2px" c-bind="applicant.industrySCategoryName" dropdownHeight="360px" assignment="industrySCategory=key;industrySCategoryName=value;" c-open="getTwo(applicant)" c-change="changeTwo(applicant)" showClearButton="false")
+                                        template(name="value-content")
+                                            li(c-bind="applicant.industrySCategoryName?(applicant.industrySCategory+'-'+applicant.industrySCategoryName):''")
+                                        template(name="item-content")
+                                            li(c-bind="item.value?(item.key+'-'+item.value):item.key")
+                                    c-dropdown(c-items="applicant.$industryTCategoryList" style="margin-right:2px" c-bind="applicant.industryTCategoryName" dropdownHeight="360px" assignment="industryTCategory=key;industryTCategoryName=value;"  c-open="getThree(applicant)" showClearButton="false")
+                                        template(name="value-content")
+                                            li(c-bind="applicant.industryTCategoryName?(applicant.industryTCategory+'-'+applicant.industryTCategoryName):''")
+                                        template(name="item-content")
+                                            li(c-bind="item.value?(item.key+'-'+item.value):item.key")
+                                    label= ll.l('rangeFlag')
+                                    c-input()
+                                field(c-bind="applicant.isLink" )
+                                    label=ll.l('isNorelatedParty')
+                                    c-radio-group.radiobox(items="{{dictionary('DUMMYFLAG')}}" tag="uwTaskTag" class="itemsCompareDom")
+                                //field(c-bind="")
+                                //    label 境内外标识
+                                //    c-radio-group.radiobox(c-items="dictionary('isWithinForeign')" )
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.registeredPlace")
+                                    label=ll.l('siteCustomerRegistration')
+                                    c-dropdown(c-items="dictionary('CountryCode')"  c-bind="applicant.registeredPlace" assignment="registeredPlaceCode=key;registeredPlace=value;" showClearButton="false")
+                                field(style="width:66%;" c-bind="applicant.registyAddress")
+                                    label= ll.l('registryAddress')
+                                    c-input()
+                                field(c-bind="applicant.businessAddress")
+                                    label= ll.l('businessAddress')
+                                    c-input()
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.busiLicense")
+                                    label=ll.l('businessLicense')
+                                    c-input(tag="uwTaskTag")
+                                field
+                                    label=ll.l('termValidityBusinessLicense')
+                                    div(style="width:58%;")
+                                        c-datepicker(c-bind='applicant.busiLicenseStartDate' displayFormat="yyyy-MM-dd" style="width:49%" class="filedCompareDom")
+                                        span(class="time-space") -
+                                        c-datepicker(c-bind='applicant.busiLicenseEndDate' displayFormat="yyyy-MM-dd" style="width:49%" class="filedCompareDom")
+                                field(c-bind="applicant.taxRegistrationNo")
+                                    label=ll.l('taxRegistrationNumber')
+                                    c-input( tag="uwTaskTag")
+                                field(c-bind="applicant.customerRiskGradeName")
+                                    label=ll.l('customerRiskGradeName')
+                                    c-dropdown(c-bind="applicant.customerRiskGradeName")
+                                        template(name="value-content")
+                                            li(c-bind="applicant.customerRiskGradeName?(applicant.customerRiskGrade+'-'+applicant.customerRiskGradeName):''")
+                                        template(name="item-content")
+                                            li(c-bind="item.value?(item.key+'-'+item.value):item.key")
+                            fields(class="productFields")
+                                field
+                                    label(style="font-weight:900;font-size:13px;")=ll.l('contactInformation')
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.linkerName")
+                                    label= ll.l('linkerName')
+                                    c-input()
+                                field(c-bind="applicant.linkerPhoneNo")
+                                    label= ll.l('linkerPhoneNo')
+                                    c-input(c-post="matchlinkerMobile(applicant)")
+                                field(c-bind="applicant.linkerMobile")
+                                    label= ll.l('mobileNumber')
+                                    c-input(c-post="matchPhoneNo(applicant)")
+                            fields.cols-2(class="productFields")
+                                field(c-bind="applicant.mailAddress" class="mailAddress")
+                                    label=ll.l('mailingAddress')
+                                    c-input()
+                                field(c-bind="applicant.mailAddressPost" class="mailAddPost")
+                                    label= ll.l('postcode')
+                                    c-input(tag="uwTaskTag" maxLength="6")
+                            fields.cols-2(class="productFields")
+                                field(c-bind="applicant.facsimile")
+                                    label=ll.l('fax')
+                                    c-input()
+                                field(c-bind="applicant.email")
+                                    label=ll.l('mailbox')
+                                    c-input()
+                            fields(class="productFields")
+                                field
+                                    label(style="font-weight:900;font-size:13px;")=ll.l('enterpriseLegalPersonInformation')
+                            fields.cols-3(class="productFields")
+                                field(c-bind="" )
+                                    label
+                                    label(style="max-width:12em;width:150px;font-weight:900")=ll.l('controllingShareholder/actualControllerInformation')
+                                field(c-bind="")
+                                    label
+                                    label(style="font-weight:900")=ll.l('informationLegalRepresentative')
+                                field(c-bind="" )
+                                    label
+                                    label(style="font-weight:900")=ll.l('personChargeInformation')
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.shareholdersName")
+                                    label=ll.l('customerName')
+                                    c-input()
+                                field(c-bind="applicant.applialeaderName")
+                                    label=ll.l('customerName')
+                                    c-input()
+                                field(c-bind="applicant.responsibleName")
+                                    label=ll.l('customerName')
+                                    c-input()
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.shareholdersCerTypeName" )
+                                    label=ll.l('identifyType')
+                                    c-dropdown(dropdownHeight="360px" c-items="filter(dictionary('IdentityType'),1)" c-post="cleanShareholdersCerNo(applicant.plcGrpCustomer)"  c-bind="applicant.shareholdersCerTypeName" assignment="shareholdersCerType=key;shareholdersCerTypeName=value;" showClearButton="false")
+                                field(c-bind="applicant.applialeaderTypeName" )
+                                    label=ll.l('identifyType')
+                                    c-dropdown(dropdownHeight="360px" c-items="filter(dictionary('IdentityType'),1)" c-post="cleanApplialeaderId(applicant.plcGrpCustomer)" c-bind="applicant.applialeaderTypeName" assignment="applialeaderType=key;applialeaderTypeName=value;" showClearButton="false")
+                                field(c-bind="applicant.responsibleCerTypeName" )
+                                    label=ll.l('identifyType')
+                                    c-dropdown(dropdownHeight="360px" c-items="filter(dictionary('IdentityType'),1)" c-post="cleanResponsibleCerNo(applicant.plcGrpCustomer)" c-bind="applicant.responsibleCerTypeName" assignment="responsibleCerType=key;responsibleCerTypeName=value;" showClearButton="false")
+                            fields.cols-3(class="productFields")
+                                field(c-bind="applicant.shareholdersCerNo")
+                                    label=ll.l('identifyNumber')
+                                    c-input()
+                                field(c-bind="applicant.applialeaderId")
+                                    label=ll.l('identifyNumber')
+                                    c-input()
+                                field(c-bind="applicant.responsibleCerNo")
+                                    label=ll.l('identifyNumber')
+                                    c-input()
+                            fields.cols-3(class="productFields")
+                                field
+                                    label=ll.l('validDateDocument')
+                                    div(style="padding-right: 28px;")
+                                        c-datepicker(c-bind='applicant.shareholdersCerStartDate' displayFormat="yyyy-MM-dd" style="width:48%" class="filedCompareDom")
+                                        span(class="time-space") -
+                                        c-datepicker(c-bind='applicant.shareholdersCerEndDate' displayFormat="yyyy-MM-dd" style="width:48%" class="filedCompareDom")
+                                field
+                                    label=ll.l('validDateDocument')
+                                    div(style="padding-right: 28px;")
+                                        c-datepicker(c-bind='applicant.applialeaderCerStartDate' displayFormat="yyyy-MM-dd" style="width:48%" class="filedCompareDom")
+                                        span(class="time-space") -
+                                        c-datepicker(c-bind='applicant.applialeaderCerEndDate' displayFormat="yyyy-MM-dd" style="width:48%" class="filedCompareDom")
+                                field
+                                    label=ll.l('validDateDocument')
+                                    div(style="padding-right: 28px;")
+                                        c-datepicker(c-bind='applicant.responsibleCerStartDate' displayFormat="yyyy-MM-dd" style="width:48%" class="filedCompareDom")
+                                        span(class="time-space") -
+                                        c-datepicker(c-bind='applicant.responsibleCerEndDate' displayFormat="yyyy-MM-dd" style="width:48%" class="filedCompareDom")
+                                field(c-bind="applicant.businessSphere")
+                                    label= ll.l('businessSphere')
+                                    c-dropdown(dropdownHeight="360px" assignment="businessSphereCode=key;businessSphere=value;" c-items="businessSphereCodeList" textProperty="value" valueProperty="key")
+                                        template(name="item-content")
+                                            li(c-bind="item.value?(item.key+'-'+item.value):item.key")
+                                field(c-bind="applicant.pkId").display-none
+                                    label pkId
+                                    c-input()
+
+
+        .Xaddpolicy(c-onclick="addApplicant('plcApplicant')")
+            span.add_Block
+            span.addApplicant=ll.l("添加投保人")  

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.chinalife:collaboration-service:0.10.10-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/collaboration-service/0.10.10-SNAPSHOT/collaboration-service-0.10.10-20180829.070449-15.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/collaboration-service/0.10.10-SNAPSHOT/collaboration-service-0.10.10-20180829.070449-15-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/collaboration-service/0.10.10-SNAPSHOT/collaboration-service-0.10.10-20180829.070449-15-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

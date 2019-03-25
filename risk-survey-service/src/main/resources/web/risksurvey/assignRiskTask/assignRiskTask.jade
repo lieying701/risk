@@ -1,0 +1,33 @@
+extends _frame
+append head
+    title 分派风勘任务
+    link(rel="stylesheet", type="text/css", href="./risksurvey/risksurvey/risksurvey.less")
+    link(rel="stylesheet", type="text/css", href="./risksurvey/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="./risksurvey/base/css/basic.less")
+
+block content
+    .commonProductInfo()
+        .title
+            span=ll.l("分派风勘任务")
+        .topmessage
+            .topleftline
+            span=ll.l("选择任务执行人")
+        .ui.panel
+            .content.assignTask
+                c-form.transparent() 
+                    fields.cols-2
+                        field
+                            label 风堪员所属机构
+                            c-dropdown(c-items="institutionItems")
+                            c-dropdown(c-items="institutionItems")
+                            c-dropdown(c-items="institutionItems")
+                    fields.cols-2
+                        field
+                            label 风险查勘员
+                            c-dropdown(c-items="surveyMembers")
+                    fields.cols-2
+                        field
+                            c-button(caption=ll.l("确认指派") class="confirmBtn" c-onclick="confirmAssign()")
+                            c-button(caption=ll.l("取消") class="cancelBtn" c-onclick="cancelAssign()")           
+append scripts
+    script(src="./risksurvey/assignRiskTask/assignRiskTask.js")

@@ -1,0 +1,89 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form.transparent.formBlock(bind="surveyClimate")
+                    fields.cols-2
+                        field(property="averageAnnualTemp")
+                            label 年平均气温
+                            c-input()
+                        field(property="highestAnnualTemp")
+                            label 年最高气温
+                            c-input()
+                    fields.cols-2
+                        field(property="lowestAnnualTemp")
+                            label 年最低气温
+                            c-input()
+                        field(property="tenBiggestRainfallhour")
+                            label  近10年最大降雨量mm每小时
+                            c-input()
+                    fields.cols-2
+                        field(property="tenBiggestRainfallDay")
+                            label  近10年最大降雨量mm每天
+                            c-input()
+                        field(property="fiftyBiggestRainfallDay")
+                            label 近50年最大降雨量mm每天
+                            c-input()
+                    fields.cols-2
+                        field(property="fiftyBiggestRainfallHour")
+                            label 近50年最大降雨量mm每小时
+                            c-input()
+                        field(property="rainsmonthConstructSite")
+                            label 工程所在地雨季月
+                            c-input()
+                    fields.cols-2
+                        field(property="rainfallRateInRainsea")
+                            label 雨季降雨量占全年百分比
+                            c-input()
+                        field(property="annualRainsDistribute")
+                            label 每年暴雨分布在几月
+                            c-input()
+                    fields.cols-2
+                        field(property="daysAnnualSixLevWind")
+                            label 全年6级以上大风日数
+                            c-input()
+                        field(property="mostBigWindDaySeason")
+                            label 大风日数最多的两个季节
+                            c-input()
+                    fields.cols-2
+                        field(property="typhoonRate")
+                            label 台风频率
+                            c-input()
+                        field(property="fiftyBiggestWind")
+                            label 近五年最大风力
+                            c-input()
+                    fields.cols-2
+                        field(property="tornadoFlag")
+                            label 有无龙卷风
+                            c-input()
+                        field(property="tornadoRate")
+                            label 龙卷风频率
+                            c-input()
+                    fields.cols-2
+                        field(property="nearestRiver")
+                            label 距离最近的江河名称
+                            c-input
+                        field(property="tenHighestWater")
+                            label 10年内最高水位
+                            c-input
+                    fields.cols-2
+                        field(property="fiftyYearLowestWater")
+                            label 50年来最低水位
+                            c-input
+                        field(property="climateRmk")
+                            label 气候水文备注
+                            c-input
+                    fields.cols-2
+                        field(property="createUserID")
+                            label 创建员代码
+                            c-input()
+                        field(property="updateUserID")
+                            label 修改员代码
+                            c-input()
+                    fields.cols-2
+                        field(property="createDate")
+                            label 创建时间
+                            c-datepicker()
+                        field(property="updateDate")
+                            label 修改时间
+                            c-datepicker()

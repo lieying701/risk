@@ -1,0 +1,133 @@
+#**********dev**********
+
+#收付系统 (servlet)
+Payment:
+  uri: http://9.1.120.78:7001
+  usrId: NewPrpall
+  tokenId: 123456
+  
+#单证地址 (servlet)
+Document:
+  uri: http://9.1.120.180:7001
+  usrId: NewPrpall
+  tokenId: 123456  
+  
+#理赔地址 (servlet)   
+Claim:
+  uri: http://9.1.120.182:7021
+  usrId: NewPrpall
+  tokenId: 123456  
+  
+#再保 (servlet)
+Reins:
+  uri: http://9.1.120.78:7001
+  usrId: PrpallNew
+  tokenId: 1C47D3D7BF1394A1738B4FE4877EA3B2
+  
+#销管 (servlet)    
+Sales:
+  uri: http://100.250.160.14:7001
+  usrId: saletest
+  tokenId: saletest   
+
+#无线pos机 (socket)
+wirelesspos:
+  host: 9.1.120.77
+  port: 7051
+  
+#江苏中介 (servlet) 
+agencyjs:
+  url: http://9.40.24.111:90/sinoiallService/interfaceServer  
+  userCode: GPICJS
+  passWord: 123456
+  
+#平台管理系统  (servlet)
+Organ:
+  uri: http://9.1.120.180:7001
+  usrId: NewPrpall
+  tokenId: 123456
+  
+#平台管理系统:机构接口调用ESB       
+ESBOrgan:
+  uri: http://9.0.8.58:16602
+  usrId: NewPrpall
+  tokenId: 123456
+  
+#IT运维管理系统  (webservice， jdk自带的jws实现)
+ITSM: 
+  url: http://9.1.3.40:8080/arsys/WSDL/public/itsm-appnew01/CL_RTX_Request_WS   
+
+#SAP财务系统   (webservice， axis1实现)
+SAP: 
+  url: http://100.250.160.7:8000/sap/bc/srt/rfc/sap/zfi_basecode/300/zfi_basecode/zfi_basecode
+  username: wangwei
+  password: 12345678   
+
+#统一用户管理 -人员管理 (servlet)
+UIM:
+  uri: http://9.23.29.9:7001
+  usrId: admin1
+  tokenId: 
+
+#资金管理系统 (webservice，CXF实现)
+ITMS:
+  uri: http://9.1.120.21:7001/iTMS_FUND/WebService/CNAPSQuery?WSDL 
+
+#IT运维管理系统 (webservice，CXF实现)
+ITSMCLPC:  
+  requestUrl: http://9.1.12.12:8080/arsys/services/ARService?server=zzx-itsmapp&webService=CL_WX_Request_Core
+  knowledgeUrl: http://9.1.12.12:8080/arsys/services/ARService?server=zzx-itsmapp&webService=CL_WX_Knowledge_Core
+  username: OAcreate
+  password: OAcreate  
+  
+#客户管理系统 (webservice，CXF实现)
+ECIF:
+  uri: http://9.1.120.123:7021/CLPCECIF/services/ECIFServicesPort?wsdl
+  user:
+    policyCenter: 57
+    quotationCenter: 59
+    workBench: 60
+  passWord: QAZWSXEDC
+     
+#北京意外险 (webservice， axis1实现)
+Accident:
+  person:
+    url: http://9.1.57.146:7702/acc/webservice/AccidentWebService?wsdl
+    user: clpc_test
+    password: 111111
+    pageSize: 100 
+  group:
+    url: http://9.1.57.146:7703/acc/webservice/AccidentWebService?wsdl
+    user:
+    password:     
+#北京健康险平台  (webservice， axis1实现)
+BJhealthPlatform:
+  url: http://9.1.57.145:7701/circauto/webservice/InsuranceWebService?wsdl
+  userName: clpc_test
+  password: 111111
+  pageSize: 100   
+  
+#键值对数据库mongoDB配置
+mongodb:
+  serverHost: 9.23.28.75
+  serverPort: 27000
+  database: nhxruletestlogdb
+  userName: ruletestloguser
+  password: p0o9i8u7y6
+  
+  multiServerHosts:     
+  connectionsPerHost: 20
+  threadsAllowedToBlockForConnectionMultiplier: 50
+  maxWaitTime: 120000
+  connectTimeout: 120000
+  socketKeepAlive: true
+  socketTimeout: 0  
+  
+      
+#大屏显示接口 (webservice， axis2实现)
+rtpmmessage:
+  url: http://9.23.23.71:8080/rtpmtest/services/rtpmmessage
+  
+#ODS,统计数据查询服务  (webservice， axis1实现)
+ODS:
+  url: http://9.1.9.144:7001/StatisticalQueryServer/services/StatisticalWebService  

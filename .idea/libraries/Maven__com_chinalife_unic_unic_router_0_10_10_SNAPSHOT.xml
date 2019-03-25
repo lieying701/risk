@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.chinalife.unic:unic-router:0.10.10-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/unic/unic-router/0.10.10-SNAPSHOT/unic-router-0.10.10-20190108.030643-13.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/unic/unic-router/0.10.10-SNAPSHOT/unic-router-0.10.10-20190108.030643-13-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/unic/unic-router/0.10.10-SNAPSHOT/unic-router-0.10.10-20190108.030643-13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

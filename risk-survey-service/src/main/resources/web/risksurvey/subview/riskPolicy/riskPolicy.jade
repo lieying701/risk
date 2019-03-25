@@ -1,0 +1,37 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form.transparent(bind="riskPolicy")
+                    fields.cols-2(class="productFields")
+                        field(property="surveyId")
+                            label 任务号
+                            c-input
+                        field(property="machine")
+                            label 机器设备
+                            c-input
+                    fields.cols-2(class="productFields")
+                        field(property="deposit")
+                            label 存款
+                            c-input
+                            span 万元
+                        field(property="fullCoverFlag")
+                            label 是否足够投保
+                            c-dropdown
+                    fields.cols-2(class="productFields")
+                        field(property="overallDesc")
+                            label 总体风险描述及综合评价
+                            c-input
+                        field(property="disasterPrevSug")
+                            label 防灾防损建议
+                            c-input
+                    fields.cols-2(class="productFields")
+                        field(property="bizInterruptFlag")
+                            label 是否承保营业中断险
+                            c-radio-group(c-items="flagTypes" c-bind="bizInterruptFlag")
+                        field
+                            label 营业中断保险额
+                            c-input(c-bind="bizInterruptCoverAmnt" style="width:90px;")
+                            span(style="margin-left:-21px;") 万元，赔偿期限
+                            c-input(c-bind="claimPeriod" style="width:90px;")
+                            span(style="margin-left:-21px;") 个月

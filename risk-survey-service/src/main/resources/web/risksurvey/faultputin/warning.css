@@ -1,0 +1,8 @@
+body{
+    background-color: rgb(237,244,245);
+ }
+.warning_wrap{
+    width:90%;
+    margin:auto;
+    overflow:hidden;
+}

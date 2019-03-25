@@ -1,0 +1,55 @@
+extends /_page
+append head
+    title 发起风勘任务
+    link(rel="stylesheet", type="text/css", href="./risksurvey/risksurvey/css/riskSurvey.less")
+    link(rel="stylesheet", type="text/css", href="./risksurvey/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="./risksurvey/base/css/basic.less")
+
+block body
+    OBJECT(ID="CVR_IDCard"
+        CLSID="{EC4A65E3-8D49-4593-9B4C-4BD91361298B}"
+        TYPE="application/x-itst-activex" width="0px" height="0px" hspace="0" vspace="0")
+    .x-wrap
+        .wrapcontent
+            .leftcontent(id="navMain")
+                .topenter
+                    .entercontent
+                        .entertxt
+                            span=ll.l("发起风勘任务")
+                        .buttonlist
+                            ul      
+                                li.currentbtn
+                                    button#btSubBtn(c-onclick="submitTask()")=ll.l("提交")
+                                li.currentBtn
+                                    button#saveSubBtn(c-onclick="saveTask()")=ll.l("暂存")
+                .commonProductInfo
+                    c-panel.topRelative.inline(caption=ll.l("投保信息"))
+                        c-subview(url="risksurvey/subview/plcProduct/plcProduct.html" loadMode="auto" jsUrl="$" modelName="productModel") 
+                    c-panel.topRelative.inline(caption=ll.l("客户信息"))
+                        c-subview(url="risksurvey/subview/plcApplicant/plcApplicant.html" loadMode="auto" jsUrl="$" modelName="applicantModel")
+                        c-subview(url="risksurvey/subview/plcInsurant/plcInsurant.html" loadMode="auto" jsUrl="$" modelName="insurantModel")
+                    c-panel.topRelative.inline(caption=ll.l("风险查勘基本信息"))
+                        c-subview(url="risksurvey/subview/plcRiskSurveyInfo/plcRiskSurveyInfo.html" loadMode="auto" jsUrl="$" modelName="surveyInfoModel")
+                .commonProductInfo(style="margin-top:1%;")
+                    .topmessage
+                        .topleftline
+                        span=ll.l("风险查勘内容")
+                    .ui.panel
+                        .content.contentDetail
+                            c-form.transparent(style="display:block;") 
+                                fields.cols-5
+                                    field(class="riskContentFields" c-repeat="i in riskSurveyContent")
+                                        c-checkbox(post="chooseContent")
+                                        label(class="labelNormal" c-bind="i.value") 
+
+prepend scripts
+    script(src="./risksurvey/product/contractEntity.js")
+    script(src="controller/basecode/codeDetail/findCodeDetails?baseCodeIds=IsNo,AgreementBizStatus,SchoolCode,SchoolType,SchoolYearCode,travelDestination,AddressProvince,InsureMode,DUMMYFLAG,EndorseCategory,UnderwritingWay,UnderwritingResult,IdentityType,escapUwFlag,CurrencyCode,ShareholderType,PolicyType,GetWay,FundProjectBusinessFlag,CoinsCode,CoinsLinkCode,AgriType,JudicalCode,ArgueSolution,CustomerType,AccountType,Sex,Native,Nationality,Marriage,IndustryCategory,CompanyNature,OccupationCode,OccupationType,OccupationGrade,RiskLevel,Degree,LicenseType,InsuredIdentity,InsuredSort,BenefitType,ClauseType,ItemNumberUnit,ValueCode,LimitType,deductGrade,DeductType,PayType,FeePayObjectType,BusinessNature,PossessNature,OccupationCode,BuildType,ChannelType,BusinessFlag,PayMode,ShortRateWay,AmountDetermineWay,CostType,EmployeeType,ReprintReasonCode,BankCode,EndorseType,BusinessType,BusinessStatus,Language,ClassCode,ProductCode,RenewalType,CompanyCode,BranchCompany,TerminationReason,BusinessOwner,CustomerFlag,CustomerGrade,DisabilityDegree,OrganizationType,NationalEconomyType,OwnshipNature,DeductDecisionCode,PolicyCode,InsurerCompany,PayStatus,AgentCostTypeCode,HouseProptype,UseCode,CountryCode,IndustryBigClass,ScenicSpotType,TravelType,MainCustomerGrade,PolicySort,InsuranceGrade,travelWay,DistrictCode,isWithinForeign,StructureCode,OwnerKind,OwnerType,KeyInsurantBusinessType,AbnormalBehaviourCate,AbnormalBehaviourCode,NationalEconomyType,DisabilityClassify,DisabilityGrade,CarUseNature,CoinsIdentity,CoinsIncludeWay,DrivingVehicle,OriginalRegisteredCurrencyRate,coinsIdentity,CurrentPlcNoSelect,paymentReason,proportionFlag,AbatementWay,RenewalFlag,nature,AgreementType,ArbitraryBoard,OccupationCode1,policyDeclareTypeCode,OrgnizationType(FXQ),EnterpriseNature")
+
+append scripts
+    script(src="./risksurvey/risksurvey/js/riskSurveyTask.js")
+    script(src="risksurvey/base/js/custom.js")
+
+
+
+

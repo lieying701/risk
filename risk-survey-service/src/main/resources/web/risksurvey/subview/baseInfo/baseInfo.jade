@@ -1,0 +1,90 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                .contentInfo
+                    c-form.transparent
+                        fields.cols-2.riskFields
+                            field
+                                label 工程项目类型
+                                c-dropDown
+                                c-dropDown
+                            field
+                                label 工程项目名称
+                                c-input
+                        fields.cols-2.riskFields
+                            field
+                                label 工程途径区域/工程地址
+                                c-input
+                            field
+                                label 邮编
+                                c-input
+                        fields.cols-2.riskFields
+                            field(style="height:500px;")
+                                label 地图定位
+                                #container(style="width:80%;position:relative;")
+                        #location(c-repeat = "l in locations")
+                            .point
+                                label(c-bind="'定位点' + $index")
+                                label 经度
+                                c-input(c-bind="l.LngName" c-readOnly="true")
+                                c-input(c-bind="l.Lngdegree" c-readOnly="true")
+                                c-input(c-bind="l.Lngpoints" c-readOnly="true")
+                                c-input(c-bind="l.Lngseconds" c-readOnly="true")
+                                label ，纬度
+                                c-input(c-bind="l.LatName" c-readOnly="true")
+                                c-input(c-bind="l.Latdegree" c-readOnly="true")
+                                c-input(c-bind="l.Latpoints" c-readOnly="true")
+                                c-input(c-bind="l.Latseconds" c-readOnly="true")
+                        fields.cols-2.riskFields
+                            field
+                                label 地震
+                                c-radio-group(c-items="level")
+                            field
+                                label 台风暴
+                                c-radio-group(c-items="level")
+                        fields.cols-2.riskFields
+                            field
+                                label 洪水暴雨
+                                c-radio-group(c-items="level")
+                            field
+                                label 其他自然灾害
+                                c-radio-group(c-items="level")
+                        fields.cols-2.riskFields
+                            field
+                                label 工程总投资金额
+                                c-input
+                            field
+                                label 投保金额
+                                c-input
+                        fields.cols-2.riskFields
+                            field
+                                label 资金来源
+                                c-input
+                        fields.cols-2.riskFields
+                            field
+                                label 工程总长度/占地面积
+                                c-input
+                            field
+                                label 单位造价:每公里造价/每平方米造价/每千瓦造价
+                                c-input
+                        fields.cols-2.riskFields
+                            field
+                                label 工程起止时间
+                                c-datepicker(displayFormat="yyyy-MM-dd")
+                                c-datepicker(displayFormat="yyyy-MM-dd")
+                            field
+                                label 是否包含保证期
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field
+                                label 保证期长度
+                                c-input
+                            field
+                                label 计划投保工程保险期限长度
+                                c-input
+                        fields.riskFields
+                            field
+                                label 备注
+                                c-textarea
+                        

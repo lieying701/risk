@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.chinalife:integration:0.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/integration/0.1.0-SNAPSHOT/integration-0.1.0-20190305.034917-600.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/integration/0.1.0-SNAPSHOT/integration-0.1.0-20190305.034917-600-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/integration/0.1.0-SNAPSHOT/integration-0.1.0-20190305.034917-600-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

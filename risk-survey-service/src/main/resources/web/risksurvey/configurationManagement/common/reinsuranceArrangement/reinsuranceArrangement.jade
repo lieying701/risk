@@ -1,0 +1,248 @@
+.x-wrap.reinsuranceArrangementSub(style="width:100%")
+    .wrapcontent
+        .wrapArrangement(id="navMain")
+            .reinsuranceArrangement
+                .topmessage
+                    .topleftline
+                    span#arrangeId.block=ll.l("ReinsuranceArrangement")
+                    .reinsuranceArrangement.reinsuranceArrangementBtn
+                        c-button.greenBtn(c-onclick='insuranceTrail()' class="primary")=ll.l("ReinsuranceTrial")
+                        c-button(c-onclick='commitInquiry()' class="primary")=ll.l("PointsIntention")
+                        c-button(c-onclick='cumulativeQuery()' class="primary" tag="reinsuranceStatus")=ll.l("dangerousUnitTotalQuery")
+                        c-button(c-onclick='reset()' class="primary" tag="reinsuranceStatus")=ll.l("reset")
+                c-subview#riskTableSubview(url="policycenter/uw/common/reinsuranceArrangement/riskTable/riskTable.html")
+                //c-subview#riskTableGroupSubview(url="policycenter/uw/common/reinsuranceArrangement/riskTable/riskTableGroup.html" loadMode)
+                //.addSegregationOfExposure
+                    c-button.button.addSegregationOfExposureBten(caption="+添加危险单位" c-onclick="addSegregation()" class="primary" tag="reinsuranceStatus")
+            //.reinsuranceArrangement
+                .topmessage
+                    .topleftline
+                    span#viewId.scrollBlock 再保视图
+                c-panel.penel.scrollBlock(caption="标的投保单历史信息" id="historyId")
+                    .content
+                        .policycontent
+                            c-table.bordered(bind="riskPrompt")
+                                column(property="serialNo" caption="序号" align="center")
+                                    template
+                                        .row-index
+                                column(property="productId" caption="保单号" align="center")
+                                column(property="description" caption="分出比例" align="right")
+                                column(property="direction" caption="分出保额" align="right")
+                                column(property="opinion" caption="分出保费" align="right")
+
+            .reinsuranceArrangement
+                .topmessage
+                    .topleftline
+                    span#communicationId.scrollBlock=ll.l("ReinsuranceCommunication")
+                c-panel.penel.scrollBlock(caption=ll.l("CommunicationHistory") id="chId")
+                    .content
+                        .policycontent
+                            c-table(bind="enquiryVerifyList")
+                                column(property="serialNo" caption=ll.l("ConfirmationNumber") align="center")
+                                column(property="verifyText" caption=ll.l("ReinsuranceOpinion") align="center")
+                                column(property="updateDate" caption=ll.l("processingTime") align="center")
+                                    template
+                                        c-datepicker(c-bind="filterDate($default)" readonly="true" displayFormat="yyyy-MM-dd HH:mm:ss")
+        .rightcontent.scrollbar
+            .navRightCont.scrollbar
+                c-subview(url="policycenter/uw/rightNav/reinsuranceNav.html" jsUrl="$")
+            #navRight2
+        c-dialog.dialog#insuranceTrail(width="80%" closeable=false)
+            .content
+                c-panel(caption=ll.l("ReinsuranceTrialResults") collapsible=false)
+                    .content
+                        .block(c-repeat="reinsShareDto in reinsShareDtoList")
+                            .topmessage
+                                .topleftline
+                                span(c-bind="'危险单位'+reinsShareDto.dangerNo")
+                            c-table(bind="reinsShareDto.reinsTrialViewDtoList" c-display="uwEndorsementFlag<0?true:false")
+                                column(property="refNo" caption=ll.l("WhichWay") align="center")
+                                column(property="shareRate" caption=ll.l("proportion") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.000000" readonly="true")
+                                column(property="amount" caption=ll.l("foreheadLiabilityCoverage") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="premium" caption=ll.l("premium") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="noTaxPremium" caption=ll.l("netPremium") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="taxFee" caption=ll.l("taxAmount") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                            c-table(bind="reinsShareDto.reinsTrialViewDtoList" c-display="uwEndorsementFlag>0?true:false")
+                                column(property="refNo" caption=ll.l("WhichWay") align="center")
+                                column(property="shareRate" caption=ll.l("correctingProportion") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.000000" readonly="true")
+                                column(property="amount" caption=ll.l("correctingForeheadLiabilityCoverage") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="chgAmount" caption=ll.l("ChangeCoverageLiabilityLimit") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="premium" caption=ll.l("correctingPremium") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="chgPremium" caption=ll.l("ChangePremium") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="noTaxPremium" caption=ll.l("netPremium") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="taxFee" caption=ll.l("taxAmount") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="chgNoTaxPremium" caption=ll.l("NoTaxPremiumVariatio") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                column(property="chgTaxFee" caption=ll.l("AmountVariation") align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                //column(property="chgCommission" caption="变化手续费" align="center")
+                                    template
+                                        c-input.right(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+
+
+                .actions
+                    c-button(caption=ll.l("confirm") class="primary" c-onclick="hide('insuranceTrail')")
+                    c-button(caption=ll.l("NO") c-onclick="hide('insuranceTrail')" class="cl-btn-secondary")
+        c-dialog.dialog#commitInquiry(width="80%" closeable=false)
+            .content
+                c-panel(c-caption="FLAG=='success'?'临分意向结果查询':'临分意向发起'" collapsible=false)
+                    .content
+                        .box
+                            c-form(bind="enquiryInfo")
+                                fields.cols-3
+                                    field
+                                        label=ll.l("activeProduct")
+                                        c-input(c-bind="actuals.productCode+'-'+actuals.productName" readonly="true")
+                                    field
+                                        label=ll.l("workNo")
+                                        c-input(bind="businessNo" readonly="true")
+                                    field
+                                        label=ll.l("businessType")
+                                        c-dropdown(c-bind="enquiryInfo.businessType" c-items="businessTypeList" readonly="true")
+                                fields.cols-1
+                                    field
+                                        label=ll.l("PointsIntention")
+                                        c-textarea.textareaInquiry(bind="enquiryInfo.remarks" tag="input")
+                                fields.cols-2
+                                    field
+                                        label=ll.l("NeedSpecialPoints")
+                                        c-radio-group(items="{{dictionary('DUMMYFLAG')}}" c-bind="enquiryInfo.specialFacFlag" valueProperty="key" textProperty="value" tag="input")
+                                    field
+                                        label=ll.l("specialPoints")
+                                        c-input(bind="enquiryInfo.specialFacShare" tag="input")
+                                fields.cols-2
+                                    field
+                                        label=ll.l("NeedCommonPoints")
+                                        c-radio-group(items="{{dictionary('DUMMYFLAG')}}" c-bind="enquiryInfo.facFlag" valueProperty="key" textProperty="value" tag="input")
+                                    field
+                                        label=ll.l("commonPoints")
+                                        c-input(bind="enquiryInfo.facShare" tag="input")
+                            div.space
+                                c-button#add(caption=ll.l("add") c-onclick="commitInquiryAdd()" class="primary" c-display="FLAG!='success'")
+                            c-table#setReadonly(bind="enquiryInfo.enquiryReceiveList")
+                                column(property="reinsName" caption=ll.l("AcceptPeople"))
+                                    template
+                                        c-input(bind="$default" tag="input")
+                                column(property="reinsType" caption=ll.l("agent"))
+                                    template
+                                        c-checkbox(bind="$default" tag="input")
+                                column(property="finalReinsName" caption=ll.l("EventuallyAcceptPeople"))
+                                    template
+                                        c-input(bind="$default" tag="input")
+                                column(property="signedLine" caption="Signed Line")
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="signedComm" caption="Signed Comm")
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="offeredLine" caption="Offered Line")
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="offeredComm" caption="Offered Comm")
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="writtenLine" caption="Written Line")
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="writtenComm" caption="Written Comm")
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="taxRate" caption=ll.l("TaxRate"))
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="othRate" caption=ll.l("OtherExpensesProportion"))
+                                    template
+                                        c-input.right(bind="$default" tag="input" displayFormat="#,##0.00")
+                                column(property="facFlag" caption=ll.l("contributing"))
+                                    template
+                                        c-checkbox(bind="$default" tag="input")
+                                column(property="currencyFlag" caption=ll.l("PaymentCurrencyReinsurance"))
+                                    template
+                                        c-checkbox(bind="$default" tag="input")
+                                column(caption=ll.l("operation"))
+                                    template
+                                        .deleteRole(c-onclick="commitInquiryDelete(item)" c-display="FLAG!='success'")
+                                            span.de_letes
+                            //.content_box(c-display="FLAG=='success'")
+                            .content_box
+                                c-form.resetFormStyle
+                                    fields.cols-3
+                                        field
+                                            label=ll.l("ReinsuranceConfirmStatus")
+                                            c-dropdown(c-items="verifyFlagList" textProperty="value" valueProperty="key" bind="enquiryInfo.verifyFlag" readonly="true")
+                                .topmessage
+                                    .topleftline
+                                    span=ll.l("ReinsuranceFeedback")
+                                c-table(bind="enquiryVerifyList")
+                                    column(property="serialNo" caption=ll.l("ConfirmationNumber") align="center")
+                                        template
+                                            c-input(c-bind="$default" readonly="true")
+                                    column(property="verifyText" caption=ll.l("ReinsuranceOpinion") align="center")
+                                        template
+                                            c-input(c-bind="$default" readonly="true")
+                                    column(property="updateDate" caption=ll.l("processingTime") align="center")
+                                        template
+                                            c-datepicker(c-bind="filterDate($default)" readonly="true" displayFormat="yyyy-MM-dd HH:mm:ss")
+                                c-form.resetFormStyle
+                                    fields.cols-3
+                                        field
+                                            label=ll.l("automateInquiryNo")
+                                            c-input(bind="enquiryInfo.enquiryNo" readonly="true")
+                .actions
+                    c-button(c-caption="FLAG=='success'?'确认':'提交再保'" c-onclick="confirmCommitInquiry()" class="primary")
+                    c-button(caption=ll.l("NO") c-onclick="hide('commitInquiry')" class="cl-btn-secondary")
+        c-dialog.promptDialog(id="enquiryVerifyDialog" width="416px" closeable="false" style="display:none;")
+            .content
+                c-form
+                    .dialogMessageTop.dialogMessage
+                        i.checkCircle(class="check circle icon")
+                    .dialogMessagecenter.dialogMessage
+                        span=ll.l("SubmitReinsuranceSuccess")
+                    .actions.dialogMessage
+                        c-button.dialogMessageBtn(caption=ll.l("determine") click="closeEnquiryVerifyDialog" class="primary")
+        c-dialog.dialog#cumulativeQuery(width="80%" closeable=false)
+            .content
+                c-panel(caption=ll.l("dangerousUnitTotalQueryResults") collapsible=false)
+                    .content
+                        c-table(bind="cumulativeQueryList")
+                            column(property="seriseNo" caption=ll.l("no"))
+                                template
+                                    .row-index
+                            column(property="proposalNo" caption=ll.l("policyNo"))
+                            column(property="productCode" caption=ll.l("product"))
+                            column(property="plcInsurant" caption=ll.l("byInsurer"))
+                            column(property="currency" caption=ll.l("currency"))
+                            column(property="amount" caption=ll.l("ourPartFaceAmount"))
+                            column(property="startDate" caption=ll.l("theconfirmeddate"))
+                            column(property="endDate" caption=ll.l("finalconfirmeddate"))
+                            column(property="retentionValue" caption=ll.l("NetRetention"))
+                            column(property="dangerNo" caption=ll.l("DangerousUnitName"))
+                .actions
+                    c-button(caption=ll.l("confirm") class="primary" c-onclick="hide('cumulativeQuery')")
+                    c-button(caption=ll.l("NO") c-onclick="hide('cumulativeQuery')" class="cl-btn-secondary")

@@ -1,0 +1,18 @@
+{
+  "$data":
+  [
+    {
+      "productId":"0101011",
+      "description":"这里是描述描述描述描述",
+      "direction":"向左向右向上向下",
+      "opinion":"2017/8/5 15:52 XXX:因为XXX原因，忽略XXXX",
+      "currentOpinion":"同意XXX意见"
+    },
+    {
+      "productId":"0101011",
+      "description":"这里是描述描述描述描述",
+      "direction":"向左向右向上向下",
+      "opinion":"2017/8/5 15:52 XXX:因为XXX原因，忽略XXXX",
+      "currentOpinion":"同意XXX意见"
+    }
+  ],"$entityCount":1208}

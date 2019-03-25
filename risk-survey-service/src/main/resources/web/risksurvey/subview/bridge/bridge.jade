@@ -1,0 +1,173 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleBridge in surveyBridge")
+                .blockHeader
+                    label(c-bind="$index=='1'?'桥梁施工风险':'桥梁施工风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delBridge(singleBridge,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleBridge.buildAllConcostrate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singleBridge.buildCoverConcostrate")
+                                label 工程造价占计划投保金额
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.bridgeName")
+                                label 桥梁工程名称
+                                c-input
+                            field(property="singleBridge.bridgeStartNum")
+                                label 桥梁桩号起号
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.bridgeEndNum")
+                                label 桥梁桩号止号
+                                c-input
+                            field(property="singleBridge.bridgeTypeCode")
+                                label 桥梁类型代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.bridgeType")
+                                label 桥梁类型
+                                c-input()
+                            field(property="singleBridge.elseBridgeTypeRmk")
+                                label 其他桥梁类型说明
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.bridgeMaterialCode")
+                                label 桥梁材质代码
+                                c-input()
+                            field(property="singleBridge.bridgeMaterial")
+                                label 桥梁材质
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.elseBridgeMaterialRmk")
+                                label 其他桥梁材质说明
+                                c-input()
+                            field(property="singleBridge.buildConstructCost")
+                                label 工程造价
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.bridgeLen")
+                                label 桥梁长度
+                                c-input()
+                            field(property="singleBridge.bigBridgeSpan")
+                                label 桥梁最大跨度
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.crossRiverFlag")
+                                label 是否跨越河流
+                                c-radio-group(items="{{crossRiverFlagItems}}")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            field(property="singleBridge.crossRiverWidth")
+                                label 跨越河流的宽度
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.navigationFlag")
+                                label 江河是否通航
+                                c-input()
+                            field(property="singleBridge.designCo")
+                                label 设计单位
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.designAptitudeCode")
+                                label 设计资质代码
+                                c-input
+                            field(property="singleBridge.designAptitude")
+                                label 设计资质
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.superviseCo")
+                                label 监理单位
+                                c-input()
+                            field(property="singleBridge.supAptitudeCode")
+                                label 监理资质代码
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.supAptitude")
+                                label 监理资质
+                                c-input()
+                            field(property="singleBridge.constructCo")
+                                label 施工单位
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.constructAptitudeCode")
+                                label 施工单位资质代码
+                                c-input()
+                            field(property="singleBridge.constructAptitude")
+                                label 施工单位资质
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.floodPeriodStart")
+                                label 该河汛期起始月
+                                c-datepicker()
+                            field(property="singleBridge.floodPeriodEnd")
+                                label 该河汛期终止月
+                                c-datePicker()
+                        fields.cols-2
+                            field(property="singleBridge.wadingPeriodArrange")
+                                label 涉水工期安排
+                                c-input()
+                            field(property="singleBridge.bridgeAddrTypeCode")
+                                label 桥址地形代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.bridgeAddrType")
+                                label 桥址地形
+                                c-input()
+                            field(property="singleBridge.elseBridgeAddrRmk")
+                                label 其他桥址地形说明
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.pileDiameter")
+                                label 桥桩基直径
+                                c-input()
+                            field(property="singleBridge.pilelen")
+                                label 桩长
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.pileConMethodCode")
+                                label 施工方法代码
+                                c-input()
+                            field(property="singleBridge.pileConMethod")
+                                label 施工方法
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.elsePileConMethod")
+                                label 其他桥墩、台、柱施工方法
+                                c-input()
+                            field(property="singleBridge.bridgeConMethodCode")
+                                label 桥梁施工方法代码
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.bridgeConMethod")
+                                label 桥梁施工方法
+                                c-input()
+                            field(property="singleBridge.elseBridgeConMethod")
+                                label 其他桥梁施工方法
+                                c-input()
+                        fields.cols-2
+                            field(property="singleBridge.bridgeConRmk")
+                                label 桥梁施工备注
+                                c-input()
+                            field(property="singleBridge.createUserId")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleBridge.updateUserId")
+                                label 修改员代码
+                                c-input()
+                            field(property="singleBridge.createDate")
+                                label 创建时间
+                                c-datepicker()
+                        fields.cols-2
+                            field(property="singleBridge.updateDate")
+                                label 修改时间
+                                c-datepicker()
+        
+        .Xaddpolicy(c-onclick="addBridge('singleBridge')")
+            span.add_Block
+            span.addApplicant=ll.l("添加桥梁施工风险") 

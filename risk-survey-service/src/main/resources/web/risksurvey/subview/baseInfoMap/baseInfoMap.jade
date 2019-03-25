@@ -1,0 +1,99 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                .contentInfo
+                    c-form.transparent(bind="surveyConstructbasic")
+                        fields.cols-2.riskFields
+                            field
+                                label 工程项目类型
+                                c-dropDown(c-bind="constructTypeFstCode" assignment="constructTypeFstCode=key;constructTypeFstName=value;")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                                c-dropDown(c-bind="constructTypeSecCode" assignment="constructTypeSecCode=key;constructTypeSecName=value;")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                                c-dropDown(c-bind="constructTypeCode" assignment="constructTypeCode=key;constructTypeName=value;")
+                                    template(name="item-content")
+                                        li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                            field(property="constructName")
+                                label 工程项目名称
+                                c-input
+                        fields.cols-2.riskFields
+                            field(property="constructAddress")
+                                label 工程途径区域/工程地址
+                                c-input
+                            field(property="post")
+                                label 邮编
+                                c-input
+                        fields.cols-2.riskFields
+                            field(style="height:500px;")
+                                label 地图定位
+                                #container(style="width:80%;position:relative;")
+                                .actionBtn(style="position:absolute;top:117px;left:41%;")
+                                    c-button(caption=ll.l("绘制") c-onclick="drawPolyline()" style="width:50px;height:27px;line-height:9px;background-color:#8EA8E0;color:white;border-radius:7px;")
+                        #location(c-repeat = "l in locations")
+                            .point
+                                label(c-bind="'定位点' + $index")
+                                label 经度
+                                c-input(c-bind="l.LngName" c-readOnly="true")
+                                c-input(c-bind="l.Lngdegree" c-readOnly="true")
+                                c-input(c-bind="l.Lngpoints" c-readOnly="true")
+                                c-input(c-bind="l.Lngseconds" c-readOnly="true")
+                                label ，纬度
+                                c-input(c-bind="l.LatName" c-readOnly="true")
+                                c-input(c-bind="l.Latdegree" c-readOnly="true")
+                                c-input(c-bind="l.Latpoints" c-readOnly="true")
+                                c-input(c-bind="l.Latseconds" c-readOnly="true")
+                        fields.cols-2.riskFields
+                            field(property="earthquake")
+                                label 地震
+                                c-radio-group(c-items="level")
+                            field(property="typhoon")
+                                label 台风暴
+                                c-radio-group(c-items="level")
+                        fields.cols-2.riskFields
+                            field(property="flood")
+                                label 洪水暴雨
+                                c-radio-group(c-items="level")
+                            field(property="elseNatureCalamity")
+                                label 其他自然灾害
+                                c-radio-group(c-items="level")
+                        fields.cols-2.riskFields
+                            field(property="investAmount")
+                                label 工程总投资金额
+                                c-input
+                            field(property="coverAmount")
+                                label 投保金额
+                                c-input
+                        fields.cols-2.riskFields
+                            field(property="fundSource")
+                                label 资金来源
+                                c-input
+                        fields.cols-2.riskFields
+                            field(property="totalArea")
+                                label 工程总长度/占地面积
+                                c-input
+                            field(property="unitAmount")
+                                label 单位造价:每公里造价/每平方米造价/每千瓦造价
+                                c-input
+                        fields.cols-2.riskFields
+                            field
+                                label 工程起止时间
+                                c-datepicker(c-bind="startfixDate" displayFormat="yyyy-MM-dd")
+                                c-datepicker(c-bind="endfixDate" displayFormat="yyyy-MM-dd")
+                            field(property="containsPeriodFlag")
+                                label 是否包含保证期
+                                c-dropDown
+                        fields.cols-2.riskFields
+                            field(property="guaranteePeriod")
+                                label 保证期长度
+                                c-input
+                            field(property="planCoverPeriod")
+                                label 计划投保工程保险期限长度
+                                c-input
+                        fields.riskFields
+                            field(property="basicRmk")
+                                label 备注
+                                c-textarea
+                        

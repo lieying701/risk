@@ -1,0 +1,119 @@
+html.frame body{
+    padding: 0px !important;
+    width: 100%;
+    background: #e0e3e2;
+}
+/*.camsi .ui.button.primary{*/
+    /*margin-left: 118px !important;*/
+/*}*/
+textarea::-webkit-input-placeholder{
+    color: #D9D9D9;
+    /*font-weight: bold;*/
+    font-size: 12px;
+}
+textarea::-webkit-input-placeholder:valid{
+    color: #333;
+    /*font-weight: bold;*/
+    font-size: 12px;
+}
+.faultputin{
+    width:100%;
+    overflow: hidden;
+    background:#FFFFFF;
+    margin-top: 24px;
+    /*padding-bottom: 34px;*/
+}
+.faultputin_tb{
+    width: 100%;
+    border-bottom: 1px #ccc solid;
+    padding:16px 24px;
+    overflow: hidden;
+}
+.faultputin_tb>span{
+    font-size: 18px;
+    color: #000000;
+    line-height: 27px;
+}
+.faultputin_info{
+    width: 100%;
+    /*padding-right: 24px;*/
+    overflow: hidden;
+}
+/*.faultputin_info c-form fields{*/
+    /*padding-top: 16px !important;*/
+/*}*/
+.faultputin_info c-form fields:last-child{
+    padding-bottom: 16px !important;
+}
+.faultputin_submit{
+    width:100%;
+    height:52px;
+    overflow: hidden;
+    background: #ffffff;
+}
+.faultputin_submit c-button{
+    margin-left: 24px !important;
+    margin-top: 12px !important;
+}
+
+
+/*更改上传样式*/
+c-uploader{
+    height:101px !important;
+    width: 101px !important;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+}
+.file-picker{
+    background: red !important;
+    height:101px !important;
+    width: 101px !important;
+}
+.webuploader-pick{
+    height:101px !important;
+    width: 101px !important;
+}
+.web-upload {
+    width: 101px !important;
+    height: 101px !important;
+    background: #d21010;
+    padding: 0px !important;
+}
+
+/*.webuploader-container {*/
+    /*position: relative;*/
+    /*left: -35px !important;*/
+    /*top: -37px !important;*/
+/*}*/
+
+.addimg{
+    width:101px;
+    height:101px;
+    position: relative;
+    left: -101px;
+    top: 0px;
+    float: left;
+}
+
+.imgs{
+    width: 101px;
+    height:101px;
+    position: relative;
+    left: -101px;
+    margin-left: 8px;
+}
+i.icon.remove:before {
+    content: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+

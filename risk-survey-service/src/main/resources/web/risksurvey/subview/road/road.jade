@@ -1,0 +1,160 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleRoad in surveyRoad")
+                .blockHeader
+                    label(c-bind="$index=='1'?'道路施工风险':'道路施工风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delRoad(singleRoad,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleRoad.buildAllConCostRate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singleRoad.buildCoverConCostRate")
+                                label 工程造价占计划投保金额
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.roadName")
+                                label 路段名称
+                                c-input
+                            field(property="singleRoad.roadStartNum")
+                                label 路段桩号起号
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.roadEndNum")
+                                label 路段桩号止号
+                                c-input
+                            field(property="singleRoad.bridgeTunnelRate")
+                                label 桥隧占比
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.roadbedLen")
+                                label 路堤、路基
+                                c-input
+                            field(property="singleRoad.roadbedGrade")
+                                label 路基边坡度
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.averageGrade")
+                                label 平均坡高
+                                c-input
+                            field(property="singleRoad.bigGrade")
+                                label 最大坡度
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.gradeHigherTwenty")
+                                label 坡高大于20米
+                                c-input
+                            field(property="singleRoad.gradeHigherTwentyRate")
+                                label 坡高大于20米占比
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.gradeHigherTwelve")
+                                label 坡高大于12米
+                                c-input
+                            field(property="singleRoad.gradeHigherTwelveRate")
+                                label 坡高大于12米占比
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.cuttingRoadbedLen")
+                                label 路堑路基
+                                c-input
+                            field(property="singleRoad.highCutHeight")
+                                label 最高挖方高度
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.bigCuttingGrade")
+                                label 路堑最大坡高
+                                c-input
+                            field(property="singleRoad.cuttingHighwallPlate")
+                                label 路堑边坡平台
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.HighHighwall")
+                                label 最高边坡
+                                c-input
+                            field(property="singleRoad.halfDugHalfFillRoad")
+                                label 半挖半填道路
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.bigEmbackmentGrade")
+                                label 路堤最大坡高
+                                c-input
+                            field(property="singleRoad.bigHalfDugCuttingGrade")
+                                label 半挖路堑最大坡高
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.highwallNurseCode")
+                                label 边坡护理代码
+                                c-input
+                            field(property="singleRoad.highwallNurse")
+                                label 边坡护理
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.elseHighwallNurseRmk")
+                                label 其他边坡护理说明
+                                c-input
+                            field(property="singleRoad.highwallFastenCode")
+                                label 边坡加固代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.highwallFasten")
+                                label 边坡加固
+                                c-input
+                            field(property="singleRoad.elseHighwallFastenRmk")
+                                label 其他边坡加固说明
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.softsoilGeologyCode")
+                                label 软土地质成相代码
+                                c-input
+                            field(property="singleRoad.softsoilGeology")
+                                label 软土地质成相
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.lowThreeSoftsoilGrade")
+                                label 软土路坡高小于等于3米
+                                c-input
+                            field(property="singleRoad.highThreeSoftsoilGrade")
+                                label 软土路坡高大于等于3米
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.softsoilRoadbedFlag")
+                                label 有无软土路基
+                                c-input
+                            field(property="singleRoad.softsoilRoadbedCode")
+                                label 软土地基处理代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.softsoilRoadbed")
+                                label 软土地基处理
+                                c-input
+                            field(property="singleRoad.elseSoftsoilRoadbedRmk")
+                                label 其他软土地基处理说明
+                                c-input
+                        fields.cols-2
+                            field(property="singleRoad.roadRmk")
+                                label 道路施工备注
+                                c-input
+                            field(property="singleRoad.createUserID")
+                                label 创建员代码
+                                c-input()
+                        fields.cols-2
+                            field(property="singleRoad.updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="singleRoad.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleRoad.updateDate")
+                                label 修改时间
+                                c-datepicker
+
+        .Xaddpolicy(c-onclick="addRoad('singleRoad')")
+            span.add_Block
+            span.addApplicant=ll.l("添加道路施工风险")
+
+
+

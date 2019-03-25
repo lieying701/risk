@@ -1,0 +1,20 @@
+contents.tabContent
+    content.active(name='differentiationConfig' )
+        .riskPrompt
+            .topmessage
+                .topleftline
+                span=ll.l("差异化信息")
+.accessCheck
+    c-form
+        fields.cols-3
+            field
+                label 归属业务条线
+                c-dropdown(bind="businessLineSelected" valueProperty="name" textProperty="name" c-items="businessLine")
+            field
+                label 第三方合作类型
+                c-dropdown(bind="typeCooperationSelected" valueProperty="name" textProperty="name" c-items="typeCooperation")
+            field
+                c-button.primary( c-onclick="amend()" )=ll.l("确认")
+
+
+

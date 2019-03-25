@@ -1,0 +1,184 @@
+.panels(c-repeat="riskUnit in riskUnits")
+    c-panel.penel.scrollBlock(c-caption="'危险单位'+$index" c-id="'penelId'+$index")
+        .content
+            .reinsuranceArrangement
+                fields
+                    field
+                        label
+                        c-button.subheadingBtn(c-onclick='delRiskUnit(riskUnit)' class="primary" tag="reinsuranceStatus")=ll.l("delete")
+            .clear
+                .content_part1
+                    //plcClauseItem
+                    .forHistory.middleTitleParent
+                        i(class="circle icon")
+                        span.smallTitle 原始标的信息
+                    .policycontent.protect
+                        c-table#riskTable.protectTable.bordered(bind="item in riskUnit.dangerClauseEOList" selectedProperty="checked" )
+                            select-column(property="checked" itemChange="selectAddAmount")
+                            column(property="serialNo" caption=ll.l("objectNo") width="50px" align="center")
+                            column(property="clauseCode" caption="条款" align="center" width="169px")
+                                template
+                                    c-dropdown(c-items="mainClauseDropList" c-bind="$default" c-title="translate('mainClauseDropList',$default,'productCode','name')" textProperty="name" valueProperty="productCode" readonly="true")
+                            //column(property="coverageCode" caption="标的名称" align="center")
+                                template
+                                    c-dropdown(c-bind="$default" c-items="clauseDeductDropList" c-title="translate('clauseDeductDropList',$default,'productCode','name')"  textProperty="name" valueProperty="productCode" readonly="true")
+                            //column(property="postCode" caption="邮编" align="center" width="100px")
+                            //column(property="address" caption="标的地址" align="center" c-hide="true")
+                                template
+                                    c-input(c-bind="$default" c-title="$default" readonly="true")
+                            column(property="" caption="险种责任" align="center")
+                            column(property="" caption="人数" align="center")
+                            column(property="currency" caption=ll.l("currency") align="center" width="90px")
+                                template
+                                    c-dropdown(c-items="dictionary('CurrencyCode')" c-bind="$default" valueProperty="key" textProperty="value" readonly="true")
+                            column(property="amount" caption=ll.l("faceAmount") align="center" width="90px")
+                                template
+                                    c-input.right(c-bind="$default" displayFormat="#,##0.00" c-post="amountChange(riskUnit)" c-title="$default" beforeChange="beforeChange" tag="reinsuranceInput")
+                            column(property="premium" caption=ll.l("premium") align="center" width="90px")
+                                template
+                                    c-input.right(c-bind="$default" displayFormat="#,##0.00" c-post="amountChange(riskUnit)" c-title="$default" beforeChange="beforeChange" tag="reinsuranceInput")
+                            column(property="calculateFlag" caption="计算保额" width="50px" align="center")
+                                template
+                                    c-checkbox(c-bind="$default=='1'||$default=='Y'?true:false" readOnly="true")
+                    .forHistory.middleTitleParent
+                        i(class="circle icon")
+                        span.smallTitle 风险评估信息
+                    .policycontent.addEvaluating
+                        c-form(bind="riskUnit")
+                            fields.cols-3
+                                field
+                                    label=ll.l("activeProduct")
+                                    c-dropdown(c-items="productCodeList" textProperty="name" valueProperty="productCode" bind="productCode" readonly="true")
+                                field
+                                    label 描述
+                                    c-input(bind="riskUnit.description" tag="reinsuranceInput")
+                            fields.cols-3
+                                field.cols-2.productAddress
+                                    label=ll.l("address")
+                                    c-input(bind="address" maxLength="100" tag="reinsuranceInput")
+                                //field.productAddress
+                                field
+                                    label=ll.l("currency")
+                                    c-dropdown(c-bind="currency" valueProperty="key" textProperty="value" c-items="dictionary('CurrencyCode')" readonly="true")
+                            fields.cols-3
+                                field
+                                    label=ll.l("faceAmount")
+                                    c-input.right(bind="riskUnit.amount" displayFormat="#,##0.00" readonly="true" )
+                                field
+                                    label=ll.l("premium")
+                                    c-input.right(bind="riskUnit.premium" displayFormat="#,##0.00" readonly="true")
+                                field
+                                    label 占比%
+                                    c-input(c-bind="riskUnit.rate" displayFormat="#,##0.00" readonly="true")
+                            fields.cols-3(c-display="showPMLFlag")
+                                //field
+                                    label 意健险PML值
+                                    c-input()
+                                field
+                                    label 意健险PML币别
+                                    c-dropdown(bind="riskUnit.pmlCurrency" valueProperty="key" textProperty="value" c-items="dictionary('CurrencyCode')" tag="reinsuranceStatus" dropdownHeight="360px")
+                                field
+                                    label 意健险PML金额
+                                    c-input(bind="riskUnit.pmlAmount" c-post="checkPmlAmount(riskUnit)" displayFormat="#,##0.00" tag="reinsuranceInput")
+                            fields.cols-3
+                                field
+                                    label 风险类别
+                                    c-dropdown(bind="riskUnit.riskClass" valueProperty="riskTypeCode" textProperty="riskTypeCode" c-items="riskClassList" c-post="changeRiskClass(riskUnit)")
+                                field
+                                    label 风险名称
+                                    c-input(bind="riskUnit.riskClassDesc" readonly="true")
+                                field
+                                    label=ll.l("riskgrade")
+                                    c-dropdown(bind="riskUnit.riskLevel" valueProperty="riskLevel" textProperty="riskLevelName" c-items="riskLevelList" c-post="changeRiskLevel(riskUnit)" tag="riskLevel")
+                            fields.cols-3
+                                field(style="display:none")
+                                    label 多单累计自留
+                                    c-radio-group(items="{{dictionary('DUMMYFLAG')}}" bind="riskUnit.multRecordsRetention" tag="reinsuranceInput" )
+                                field
+                                    label 自留额币别
+                                    c-dropdown(c-bind="riskUnit.retCurrency" valueProperty="key" textProperty="value" c-items="dictionary('CurrencyCode')" tag="reinsuranceStatus" readonly="true")
+                                field
+                                    label 自留额
+                                    c-input.right(bind="riskUnit.retentionValue" displayFormat="#,##0.00" readonly="true")
+                            fields.cols-3
+                                field
+                                    label 中国利益海外业务
+                                    c-radio-group(items="{{dictionary('DUMMYFLAG')}}" bind="riskUnit.chinaBusiness" tag="reinsuranceInput")
+                                field
+                                    label 进预约合约
+                                    c-dropdown(bind="riskUnit.orderContractCode" assignment="orderContractCode=treatyNo;orderContractName=treatyName;" valueProperty="treatyNo" textProperty="treatyName" c-items="orderContractList" tag="reinsuranceStatus")
+                                //field
+                                    c-button.primary#specailBtn(caption="确定" tag="reinsuranceStatus")
+                            fields.cols-3
+                                field
+                                    label 组合产品标志
+                                    c-radio-group(items="{{dictionary('DUMMYFLAG')}}" bind="zhcpbz" readonly="true")
+                                field
+                                    label 分保产品代码
+                                    c-input(bind="" readonly="true")
+                    .reinsuranceArrangementAdd(c-class="cl-show:riskUnit.name=='其他非除外责任'" style="display:none")
+                        c-panel.penel(caption="风险等级评估")
+                            .topmessages
+                                .topleftline.reinsurance
+                                span 风险等级评估
+                            .policycontent
+                                table.reinsuranceTable(border='1')
+                                    tr
+                                        td 风险类型
+                                        td(colspan="3") 常规建安公险
+                                    tr
+                                        td
+                                        td.cols3
+                                            .span
+                                                .top
+                                                    i.green(class="circle icon")
+                                                    p Excellent
+                                            .span x>70
+                                        td.cols3
+                                            .span
+                                                .top
+                                                    i.blue(class="circle icon")
+                                                    p Good
+                                            .span 70>x>55
+                                        td.cols3
+                                            .span
+                                                .top
+                                                    i.red(class="circle icon")
+                                                    p Marginal
+                                            .span x<55
+
+                                    tr
+                                        td 道德风险/认为因素/管理水平
+                                        td(colspan="3") 70
+                                    tr
+                                        td 自然灾害及外部风险
+                                        td(colspan="3") 70
+                                    tr
+                                        td 消防设备
+                                        td(colspan="3") 70
+                                    tr
+                                        td 建筑物结构及布局
+                                        td(colspan="3") 70
+
+                            .policycontent.buttonBtn
+                                c-button.confirm.greenBtn 开始评估
+                                c-button=ll.l("reset")
+                            .topmessages
+                                .topleftline.reinsurance
+                                span 评估结果
+                            .policycontent
+                                c-table(bind="riskPrompts")
+                                    column(property="productId" caption=ll.l("riskgrade"))
+                                    column(property="description" caption="风险等级描述")
+                                    column(property="direction" caption="自留额币种")
+                                    column(property="opinion" caption="最大自留额")
+
+                    .forHistory.middleTitleParent
+                        i(class="circle icon")
+                        span.smallTitle 适用合约除外责任选择
+                    .policycontent
+                        c-table(bind="item in riskUnit.dangerExcludingItemEOList")
+                            column(property="treatyNo" caption="合约号" template="input-column" align="center")
+                            column(property="itemKind" caption="除外责任" align="center")
+                                template
+                                c-dropdown(showClearButton="false" c-bind="$default" valueProperty="itemKind" textProperty="itemKindDesc" assignment="itemKind=itemKind;itemKindDesc=itemKindDesc;" c-items="item.excludingItemOption" c-click="findTreatyInfoItemKind(item)")

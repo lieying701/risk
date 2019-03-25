@@ -1,0 +1,199 @@
+.panels(c-repeat="riskUnit in riskUnits")
+    c-panel.penel.scrollBlock(c-caption="'危险单位'+$index" c-id="'penelId'+$index")
+        .content
+            .reinsuranceArrangement
+                fields
+                    field
+                        label
+                        c-button.subheadingBtn(c-onclick='delRiskUnit(riskUnit)' class="primary" tag="reinsuranceStatus")=ll.l("delete")
+            .clear
+                .content_part1
+                    //plcClauseItem
+                    .forHistory.middleTitleParent
+                        i(class="circle icon")
+                        span.smallTitle=ll.l("originalTargetInformation")
+                    .policycontent.protect
+                        c-table#riskTable.protectTable.bordered(bind="item in riskUnit.dangerClauseEOList" selectedProperty="checked" )
+                            select-column(property="checked" itemChange="selectAddAmount" align="center")
+                            column(property="serialNo" caption=ll.l("objectNo") align="center")
+                            column(property="clauseCode" caption=ll.l("clause") align="center")
+                                template
+                                    c-dropdown(c-items="mainClauseDropList" c-bind="$default" c-title="translate('mainClauseDropList',$default,'productCode','name')" textProperty="name" valueProperty="productCode" readonly="true")
+                            column(property="coverageCode" caption=ll.l("insuranceObjectName") align="center")
+                                template
+                                    c-dropdown(c-bind="$default" c-items="clauseDeductDropList" c-title="translate('clauseDeductDropList',$default,'productCode','name')"  textProperty="name" valueProperty="productCode" readonly="true")
+                            //column(bind="'0'" caption="人数" align="center" visible="{{isUwEndorsement}}")
+                            column(property="postCode" caption=ll.l("postCode") align="center" visible="{{noChecked}}")
+                            column(property="address" caption=ll.l("targetAddress") align="center" visible="{{noChecked}}")
+                                template
+                                    c-input(c-bind="$default" c-title="$default" readonly="true")
+                            column(property="currency" caption=ll.l("currency") align="center")
+                                template
+                                    c-dropdown(c-items="dictionary('CurrencyCode')" c-bind="$default" valueProperty="key" textProperty="value" readonly="true")
+                            column(property="amount" caption=ll.l("faceAmount") align="center")
+                                template
+                                    c-input.right(c-bind="$default" displayFormat="#,##0.00" c-post="amountChange(riskUnit)" c-title="$default" beforeChange="beforeChange" tag="reinsuranceInput")
+                            column(property="premium" caption=ll.l("premium") align="center")
+                                template
+                                    c-input.right(c-bind="$default" displayFormat="#,##0.00" c-post="amountChange(riskUnit)" c-title="$default" beforeChange="beforeChange" tag="reinsuranceInput")
+                            //column(bind="'0'" caption="变化人数" align="center" visible="{{isUwEndorsement}}")
+                            column(property="excAmount" caption=ll.l("ChangeCoverage") align="center" visible="{{isUwEndorsement}}")
+                                template
+                                    c-input.right(c-bind="$default" displayFormat="#,##0.00" c-title="$default" readonly="true")
+                            column(property="excPremium" caption=ll.l("ChangePremium") align="center" visible="{{isUwEndorsement}}")
+                                template
+                                    c-input.right(c-bind="$default" displayFormat="#,##0.00" c-title="$default" readonly="true")
+                            column(property="calculateFlag" caption=ll.l("CalculateForehead") align="center")
+                                template
+                                    c-checkbox(c-bind="$default=='1'||$default=='Y'?true:false" readOnly="true")
+                    .forHistory.middleTitleParent
+                        i(class="circle icon")
+                        span.smallTitle=ll.l("riskAssessmentInformation")
+                    .policycontent.addEvaluating
+                        c-form(bind="riskUnit")
+                            fields.cols-3
+                                field
+                                    label=ll.l("activeProduct")
+                                    c-dropdown(c-items="productCodeList" textProperty="name" valueProperty="productCode" bind="productCode" readonly="true")
+                                field
+                                    label=ll.l("describe")
+                                    c-input(bind="riskUnit.description" tag="reinsuranceInput")
+                            fields.cols-3
+                                field.cols-2.productAddress
+                                    label=ll.l("address")
+                                    c-input(bind="address" maxLength="100" tag="reinsuranceInput")
+                                //field.productAddress
+                                field
+                                    label=ll.l("currency")
+                                    c-dropdown(c-bind="currency" valueProperty="key" textProperty="value" c-items="dictionary('CurrencyCode')" readonly="true")
+                            fields.cols-3
+                                field
+                                    label=ll.l("faceAmount")
+                                    c-input.right(bind="riskUnit.amount" displayFormat="#,##0.00" readonly="true" )
+                                field
+                                    label=ll.l("premium")
+                                    c-input.right(bind="riskUnit.premium" displayFormat="#,##0.00" readonly="true")
+                                field
+                                    label=ll.l("Accounted")
+                                    c-input(c-bind="riskUnit.rate" displayFormat="#,##0.00" readonly="true")
+                            fields.cols-3(c-display="isUwEndorsement")
+                                field
+                                    label=ll.l("ChangeCoverage")
+                                    c-input.right(bind="riskUnit.changeNumAmount" displayFormat="#,##0.00" readonly="true" )
+                                field
+                                    label=ll.l("ChangePremium")
+                                    c-input.right(bind="riskUnit.changeNumPremium" displayFormat="#,##0.00" readonly="true")
+                            fields.cols-3(c-display="showPMLFlag")
+                                //field
+                                    label 意健险PML值
+                                    c-input()
+                                field
+                                    label=ll.l("HealthRisksPMLCurrency")
+                                    c-dropdown(bind="riskUnit.pmlCurrency" valueProperty="key" textProperty="value" c-items="dictionary('CurrencyCode')" tag="reinsuranceInput" dropdownHeight="360px")
+                                field
+                                    label=ll.l("HealthInsuranceAmountPML")
+                                    c-input(bind="riskUnit.pmlAmount" displayFormat="#,##0.00" c-post="checkPmlAmount(riskUnit)" tag="reinsuranceInput")
+                            fields.cols-3
+                                field
+                                    label=ll.l("RiskCategories")
+                                    c-dropdown(bind="riskUnit.riskClass" valueProperty="riskTypeCode" textProperty="riskTypeCode" c-items="riskClassList" tag="reinsuranceInput" c-post="changeRiskClass(riskUnit)" readonly="true")
+                                field
+                                    label=ll.l("riskName")
+                                    c-input(bind="riskUnit.riskClassDesc" readonly="true")
+                                field
+                                    label=ll.l("riskgrade")
+                                    c-dropdown(c-bind="riskUnit.riskLevel" valueProperty="riskLevel" textProperty="riskLevelName" c-items="riskLevelList" c-post="changeRiskLevel(riskUnit)" tag="riskLevel reinsuranceInput" readonly="true")
+                            fields.cols-3
+                                field(style="display:none")
+                                    label=ll.l("ManyCumulativeRetention")
+                                    c-radio-group(items="{{dictionary('DUMMYFLAG')}}" bind="riskUnit.multRecordsRetention" tag="reinsuranceInput" )
+                                field
+                                    label=ll.l("RetentionMoney")
+                                    c-dropdown(c-bind="riskUnit.retCurrency" valueProperty="key" textProperty="value" c-items="dictionary('CurrencyCode')" tag="reinsuranceInput" readonly="true")
+                                field
+                                    label=ll.l("retention")
+                                    c-input.right(bind="riskUnit.retentionValue" displayFormat="#,##0.00" readonly="true")
+                            fields.cols-3
+                                field
+                                    label=ll.l("ChinaInterestsOverseasBusiness")
+                                    c-radio-group(items="{{dictionary('DUMMYFLAG')}}" bind="riskUnit.chinaBusiness" tag="reinsuranceInput")
+                                field
+                                    label=ll.l("IntoBookingContract")
+                                    c-dropdown(bind="riskUnit.orderContractCode" assignment="orderContractCode=treatyNo;orderContractName=treatyName;" valueProperty="treatyNo" textProperty="treatyName" c-items="orderContractList" tag="reinsuranceInput")
+                                //field
+                                    c-button.primary#specailBtn(caption="确定" tag="reinsuranceStatus")
+                            fields.cols-3
+                                field
+                                    label=ll.l("CombinationProductLogo")
+                                    c-radio-group(items="{{dictionary('DUMMYFLAG')}}" bind="zhcpbz" readonly="true")
+                                field
+                                    label=ll.l("ReinsuranceProductCode")
+                                    c-input(bind="" readonly="true")
+                    .reinsuranceArrangementAdd(c-class="cl-show:riskUnit.name=='其他非除外责任'" style="display:none")
+                        c-panel.penel(caption=ll.l("riskAssessmentLevel"))
+                            .topmessages
+                                .topleftline.reinsurance
+                                span=ll.l("riskAssessmentLevel")
+                            .policycontent
+                                table.reinsuranceTable(border='1')
+                                    tr
+                                        td=ll.l("RiskCategoriesType")
+                                        td(colspan="3")=ll.l("ConventionalSussingPublicRisks")
+                                    tr
+                                        td
+                                        td.cols3
+                                            .span
+                                                .top
+                                                    i.green(class="circle icon")
+                                                    p Excellent
+                                            .span x>70
+                                        td.cols3
+                                            .span
+                                                .top
+                                                    i.blue(class="circle icon")
+                                                    p Good
+                                            .span 70>x>55
+                                        td.cols3
+                                            .span
+                                                .top
+                                                    i.red(class="circle icon")
+                                                    p Marginal
+                                            .span x<55
+
+                                    tr
+                                        td=ll.l("hazardThinkManagementLevel")
+                                        td(colspan="3") 70
+                                    tr
+                                        td=ll.l("NaturalDisastersExternalRisks")
+                                        td(colspan="3") 70
+                                    tr
+                                        td=ll.l("fightingEquipment")
+                                        td(colspan="3") 70
+                                    tr
+                                        td=ll.l("structureLayout")
+                                        td(colspan="3") 70
+
+                            .policycontent.buttonBtn
+                                c-button.confirm.greenBtn=ll.l("BeginAssess")
+                                c-button=ll.l("reset")
+                            .topmessages
+                                .topleftline.reinsurance
+                                span=ll.l("EvaluateResults")
+                            .policycontent
+                                c-table(bind="riskPrompts")
+                                    column(property="productId" caption=ll.l("riskgrade"))
+                                    column(property="description" caption=ll.l("LevelRiskDescription"))
+                                    column(property="direction" caption=ll.l("RetentionCurrency"))
+                                    column(property="opinion" caption=ll.l("maximumRetention"))
+
+                    .forHistory.middleTitleParent
+                        i(class="circle icon")
+                        span.smallTitle=ll.l("ApplicableContractsExclusions")
+                    .policycontent
+                        c-table(bind="item in riskUnit.dangerExcludingItemEOList")
+                            column(property="treatyNo" caption=ll.l("ContractNo") align="center")
+                                template
+                                    c-input(c-bind="$default" tag="reinsuranceInput")
+                            column(property="itemKind" caption=ll.l("exclusions") align="center")
+                                template
+                                    c-dropdown(showClearButton="false" tag="reinsuranceInput" c-bind="$default" valueProperty="itemKind" textProperty="itemKindDesc" assignment="itemKind=itemKind;itemKindDesc=itemKindDesc;" c-items="item.excludingItemOption" c-click="findTreatyInfoItemKind(item)")

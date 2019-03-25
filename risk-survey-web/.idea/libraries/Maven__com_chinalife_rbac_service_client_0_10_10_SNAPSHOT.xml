@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.chinalife:rbac-service:client:0.10.10-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/rbac-service/0.10.10-SNAPSHOT/rbac-service-0.10.10-20190121.061007-39-client.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/rbac-service/0.10.10-SNAPSHOT/rbac-service-0.10.10-20190121.061007-39-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/rbac-service/0.10.10-SNAPSHOT/rbac-service-0.10.10-20190121.061007-39-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

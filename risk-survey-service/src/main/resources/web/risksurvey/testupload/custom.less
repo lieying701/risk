@@ -1,0 +1,622 @@
+@greenColor1: #00A05B;
+@greenColor2: #33B37B;
+@greenColor3: #008048;
+
+@greyColor1: #F5F5F5;
+@greyColor2: #EAEAEA;
+@greyColor3: #DCDCDC;
+
+@redColor1: #FA4E3E;
+@redColor2: #FB7164;
+@redColor3: #C83E31;
+
+@yellowColor1:#ffbf00;
+
+  /*基础样式重写*/
+html, body {
+  font-size: 12px;
+  width:100% !important;
+  padding: 0 !important;
+}
+
+/*常用样式开始*/
+/*清除浮动*/
+.cleanfix:after{
+  content:" ";
+  display:block;
+  clear:both;
+  visibility: hidden;
+  height:0;
+  font-size:0;
+}
+.cleanfix{
+  zoom:1;
+}
+/*位置*/
+.cl-text-center {
+  text-align: center;
+}
+
+.cl-text-left {
+  text-align: left;
+}
+
+.cl-text-right {
+  text-align: left;
+}
+
+.cl-fl {
+  float: left;
+}
+
+.cl-fr {
+  float: right;
+}
+
+/*位置*/
+/*字体*/
+.cl-font-12p {
+  font-size: 12px;
+}
+
+.cl-font-14p {
+  font-size: 14px;
+}
+
+.cl-font-16p {
+  font-size: 16px;
+}
+
+.cl-font-18p {
+  font-size: 18px;
+}
+
+.cl-font-20p {
+  font-size: 20px;
+}
+
+.cl-font-22p {
+  font-size: 22px;
+}
+
+.cl-font-24p {
+  font-size: 24px;
+}
+
+/*padding*/
+.cl-pad-top30 {
+  padding-top: 30px;
+}
+
+.cl-pad-bottom30 {
+  padding-bottom: 30px;
+}
+
+/*margin*/
+.cl-mar-top30 {
+  margin-top: 30px;
+}
+
+.cl-mar-bottom30 {
+  margin-bottom: 30px;
+}
+
+.cl-mar-left16 {
+  margin-left: 16px;
+}
+
+.cl-mar-right16 {
+  margin-right: 16px;
+}
+.cl-mar-top24 {
+  margin-top: 24px;
+}
+.cl-mar-bottom24 {
+  margin-bottom: 24px;
+}
+
+/*width*/
+.cl-width-33 {
+  width: 33%;
+}
+
+.cl-width-10 {
+  width: 10%;
+}
+.cl-width-5 {
+  width: 5%;
+}
+/*visible*/
+.cl-hide{
+  display:none !important;
+}
+.cl-show{
+  display: block !important;
+}
+.cl-flex-show{
+  display: flex !important;
+}
+/*常用样式结束*/
+/*button*/
+
+/*主按钮*/
+.ui.button {
+  padding: 8px 18px;
+  background: @greenColor1;
+  //color: #fff;
+  border: 1px solid @greyColor2;
+}
+
+.ui.button:hover {
+  background: @greenColor2;
+  //color: #fff;
+}
+
+.ui.button:active {
+  background: @greenColor3;
+  color: #fff;
+}
+
+.ui.button.primary {
+  padding: 8px 18px;
+  background: @greenColor1;
+  color: #fff;
+
+}
+
+.ui.button.primary:hover {
+  background: @greenColor2;
+  color: #fff;
+}
+
+.ui.button.primary:active {
+  background: @greenColor3;
+  color: #fff;
+}
+
+/*次按钮*/
+.ui.cl-btn-secondary {
+  background: @greyColor1;
+  border: 1px solid @greyColor2;
+  color: #333;
+}
+
+.ui.cl-btn-secondary:hover {
+  //background: @greyColor2 !important;
+  color: #333;
+}
+
+.ui.cl-btn-secondary:active {
+  background: @greyColor3 !important;
+}
+
+/*幽灵按钮*/
+.ui.cl-btn-ghost {
+  border: 1px solid @greyColor3;
+  background: #fff;
+  color: #333;
+}
+
+.ui.cl-btn-ghost:hover {
+  border: 1px solid @greenColor2;
+  background: #fff;
+  color: @greenColor1;
+}
+
+.ui.cl-btn-ghost:active {
+  border: 1px solid @greenColor3;
+  background: #fff;
+  color: @greenColor1;
+}
+
+.ui.button.base {
+  border: 1px solid @greyColor3;
+  background: #fff;
+  color: #333;
+}
+
+.ui.button.base:hover {
+  border: 1px solid @greenColor2;
+  background: #fff;
+  color: @greenColor1;
+}
+
+.ui.button.base:active {
+  border: 1px solid @greenColor3;
+  background: #fff;
+  color: @greenColor1;
+}
+
+/*危险按钮*/
+
+.ui.cl-btn-warn {
+  background: @redColor1;
+  color: #fff;
+}
+
+.ui.cl-btn-warn:hover {
+  background: @redColor2;
+  color: #fff;
+}
+
+.ui.cl-btn-warn:active {
+  background: @redColor3;
+  color: #fff;
+}
+//禁用按钮
+.ui.buttons .disabled.button, .ui.disabled.button, .ui.button:disabled, .ui.disabled.button:hover, .ui.disabled.active.button{
+  background: #F5F5F5 !important;
+  border: 1px solid #E1E1E1 !important;
+  color: #333 !important;
+}
+/*复选按钮*/
+.ui.checkbox input:checked ~ .box:before, .ui.checkbox input:checked ~ label:before {
+  background: @greenColor1 !important;
+}
+
+.ui.checkbox input:checked ~ .box:after, .ui.checkbox input:checked ~ label:after {
+  color: #fff !important;
+}
+
+/*单选框*/
+.ui.radio-group > item input:checked + label:before, .ui.radio-group > item:hover input:not(:checked) + label:before {
+  border-color: @greenColor1 !important;
+}
+
+.ui.radio-group > item input:checked + label:after {
+  background-color: @greenColor1 !important;
+}
+
+/*开关*/
+.ui.toggle.checkbox input:checked ~ .box:before, .ui.toggle.checkbox input:checked ~ label:before {
+  background-color: @greenColor1 !important;
+}
+
+.ui.toggle.checkbox input:focus:checked ~ .box:before, .ui.toggle.checkbox input:focus:checked ~ label:before {
+  background-color: @greenColor1 !important;
+}
+
+/*分段选择器*/
+.ui.cl-btn-list-base {
+
+}
+
+.ui.cl-btn-list-base .button {
+  background: #fff;
+  border: 1px solid @greyColor1;
+  color: #333;
+}
+
+.ui.cl-btn-list-base .button:hover {
+  border: 1px solid @greenColor1;
+
+}
+
+.ui.cl-btn-list-base .button:first-child {
+  border-left: 1px solid @greyColor1;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.ui.cl-btn-list-base .button:first-child:hover {
+  border-left: 1px solid @greenColor1;
+}
+
+.ui.cl-btn-list-base .button:last-child {
+
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.ui.cl-btn-list-secondary .button {
+  color: #333;
+  background: #fff;
+  border: 1px solid @greyColor1;
+}
+
+.ui.cl-btn-list-secondary .button:hover {
+  border-left: 1px solid @greenColor1;
+  background: @greenColor1;
+  color: #fff;
+
+}
+
+.ui.cl-btn-list-secondary .button:first-child {
+  border-left: 1px solid @greyColor1;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.ui.cl-btn-list-secondary .button:first-child:hover {
+  border-left: 1px solid @greenColor1;
+  background: @greenColor1;
+  color: #fff;
+}
+
+.ui.cl-btn-list-secondary .button:last-child {
+
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/*INPUT*/
+.ui.input input {
+  padding: 6px 1em;
+}
+
+.ui.input.small {
+  padding: 3px 1em;
+}
+.ui.input.hover input, .ui.input input:hover {
+  border-color: @greenColor1;
+}
+.ui.input.focus input, .ui.input input:focus {
+  border-color: @greenColor1;
+}
+
+.ui.input.cl-input-error input {
+  border-color: @redColor1;
+}
+.ui.input.error input {
+  border-color: @redColor1 !important;
+  background-color:#fff !important;color:#333 !important;
+
+}
+.camsi .ui.widget-table table tbody td>div .error input{
+  margin: 0;
+  border-width: 1px;
+}
+.ui.input.cl-input-wait input {
+  border-color: @yellowColor1;
+}
+
+.ui.cl-input-btn.input > .button {
+  margin-left: 8px;
+  border-radius: 2px !important;
+
+}
+.ui.input input:read-only{
+  //background-color: #fbfbfb !important;
+  //border: 1px solid rgba(34, 36, 38, 0.15) !important;
+}
+.ui.input.disabled input{
+  background-color: #fbfbfb !important;
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+}
+.ui.cl-input-btn.input input.cl-input-btn-input {
+  border-radius: 4px !important;
+  border-right-color: rgba(34, 36, 38, 0.15) !important;
+
+}
+input[type=number]::-webkit-inner-spin-button{
+ // margin-right: -13px;padding-top: 10px;
+ // -webkit-appearance:none;
+  //background-color: #eee;
+}
+input[type=number]::-webkit-outer-spin-button{
+ // -webkit-appearance:none;
+  //background-color: #000;
+}
+input[type=number]::-webkit-textfield-decoration-container{
+
+}
+/*下拉框*/
+.cl-dropdown-base {
+
+}
+
+.ui.list-view .list.item.current {
+  background: #f2f2f2 !important;
+}
+.ui.list-view .list:hover {
+  background: #f2f2f2 !important;
+}
+/*日历*/
+.calendar .header .button {
+  color: #333;
+}
+
+.calendar .date-table-wrapper .date-table td.selected div.label {
+  background: @greenColor1;
+  border-radius: 6px;
+}
+
+.ui.calendar.mild .date-table-wrapper .date-table td.selected div.label {
+  background: @greenColor1;
+}
+
+.ui.year-month-grid .table-wrapper table td.selected > div {
+  background: @greenColor1;
+}
+
+/*提示*/
+
+/*通知*/
+
+/*对话框*/
+.ui.dialog > .content {
+  padding: 16px !important;
+  border-bottom: 1px solid rgba(34, 36, 38, .15);
+
+}
+
+.ui.dialog > .header {
+  padding: 1rem;
+  background: #F7F9F9;
+}
+
+.ui.dialog > .header:not(.ui) {
+  font-size: 12px;
+}
+
+.ui.dialog .actions {
+  background: #fff;
+  border-top: none;
+}
+
+.ui.dialog .close-btn {
+  background: none;
+  color: #999;
+  top: 10px;
+  right: -0.25rem;
+  font-size: 14px;
+}
+#c-notify-tip-container {
+  right: 36px;
+}
+/*notify_tip
+
+/*
+
+message.attached, message, messages.attached, messages {
+  box-shadow: 0 0 0 1px #eee inset, 0 0 0 0 transparent !important;
+}
+field message.attached,field message,field messages.attached,field messages {
+  box-shadow: none !important;
+}
+message .header, messages .header {
+  color: #333 !important;
+}
+
+message, messages {
+  background: #fff !important;
+
+}
+
+message .header + p, messages .header + p {
+  color: #333 !important;
+}
+*/
+
+/*notify_toast*/
+message.cl-toast .header + p, messages.cl-toast .header + p {
+  padding-left: 16px;
+  text-align: center;
+}
+
+message.cl-toast > .close.icon, messages.cl-toast > .close.icon {
+  display: none;
+}
+
+.cl-toast-wrap {
+  top: 0;
+  width: 100%;
+  padding: 0;
+  position: fixed;
+  z-index: 10000000;
+  right: 0;
+  height: auto;
+}
+.cl-toast-wrap message:before,.cl-toast-wrap messages:before{
+  display: none !important;
+}
+.cl-toast-wrap message,.cl-toast-wrap messages{
+  padding: 1em 1.5em;;
+}
+message.cl-toast.attached.warning, message.cl-toast.warning, messages.cl-toast.attached.warning, messages.cl-toast.warning {
+  box-shadow: 0 0 0 1px #eee inset, 0 0 0 0 transparent;
+}
+
+message.cl-toast, messages.cl-toast {
+  background: @yellowColor1 !important;
+  border-radius: 0;
+
+}
+
+/*table*/
+.camsi .ui.widget-table:not(.basic) .table.item:nth-child(2n):not(.current) {
+  background: none;
+}
+.camsi .ui.widget-table table tbody tr:last-child td{
+  border-bottom-color: #edf0f3;
+}
+.item:hover {
+  background: #f9f9f9 !important;
+}
+
+.ui.widget-table table .ui.checkbox.in-cell{
+  margin-top: 0;
+}
+
+/*滚动条*/
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.scrollbar::-webkit-scrollbar{
+  width: 7px;
+  height: 7px;
+  background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+/*定义滑块，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-thumb{
+  /*width: 10px;*/
+  height: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #777;
+}
+/*CheckBox下拉框*/
+.multiselect .tag{
+  background-color: #EEF3F3 !important;
+}
+.multiTable .table-wrapper table .items .item {
+  height: 32px;
+}
+
+//放大镜效果
+.input-tip {
+  position: absolute;
+  font-size: 250%;
+  background: RGBA(0,0,0,0.66);
+  color: #fff;
+  padding: 0.2em 0.5em;
+  min-height: 1.5em;
+  max-width: 475px;
+  line-height: 1.2em;
+  margin-top: -0.18em;
+  transform: translate(0%, -100%);
+}
+
+
+
+field.warn message.warn{
+  display:none;
+}
+.camsi .ui.input.warn>input{
+  border-color: #ffff22 !important;
+  background-color: #ffff22 !important;
+}
+.ui.widget-table table tbody td.warn{
+  border-color: #ffff22 !important;
+  background-color: #ffff22 !important;
+}
+.ui.widget-table table tbody td.warn:after{
+  display: none;
+}
+
+.ui.segment{
+  padding: 0;
+  box-shadow:none;
+  -webkit-box-shadow:none;
+}
+
+.knowledgeWrap{
+  position: relative;
+}
+.custompopup{
+  max-width: none !important;
+}
+/*序号显示*/
+.ui.items-view.widget-table .table-body > .items {
+  list-style-type: none;
+  counter-reset: sectioncounter;
+}
+.ui.items-view.widget-table .table-body > .items .row-index{width:100%;text-align:center;}
+.ui.items-view.widget-table .table-body > .items .row-index:before {
+  content: counter(sectioncounter);
+  counter-increment: sectioncounter;
+}

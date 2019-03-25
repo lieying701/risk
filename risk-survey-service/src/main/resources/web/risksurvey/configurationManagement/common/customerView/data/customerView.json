@@ -1,0 +1,46 @@
+[
+  {
+    "policyNo":"110",
+    "classCode":"一级",
+    "riskCode":"财险",
+    "appliCode":"袁纵",
+    "insuredCode":"秦耀",
+    "rmbvalueAMT": "999999",
+    "rmbpremiumAMT": "100000",
+    "startTime": "2017-9-14",
+    "memo": "柴鸡蛋"
+  },
+  {
+    "policyNo":"111",
+    "classCode":"二级",
+    "riskCode":"受险",
+    "appliCode":"袁纵",
+    "insuredCode":"秦耀",
+    "rmbvalueAMT": "88888",
+    "rmbpremiumAMT": "9000",
+    "startTime": "2017-9-14",
+    "memo": "柴鸡蛋"
+  },
+  {
+    "policyNo":"112",
+    "classCode":"三级",
+    "riskCode":"一险",
+    "appliCode":"袁纵",
+    "insuredCode":"秦耀",
+    "rmbvalueAMT": "999",
+    "rmbpremiumAMT": "000",
+    "startTime": "2017-9-14",
+    "memo": "柴鸡蛋"
+  },
+  {
+    "policyNo":"113",
+    "classCode":"零级",
+    "riskCode":"财险",
+    "appliCode":"袁纵",
+    "insuredCode":"秦耀",
+    "rmbvalueAMT": "999999",
+    "rmbpremiumAMT": "100000",
+    "startTime": "2017-9-14",
+    "memo": "柴鸡蛋"
+  }
+]

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="risk-survey-service">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../risk-survey-service/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../risk-survey-service/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

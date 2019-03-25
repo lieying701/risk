@@ -1,0 +1,14 @@
+#navRight.XrightNav
+    ul
+        li.currentNav(c-onclick="selectBlock('insureId',$dom)")
+            a.activeL.fontWeight 投保人
+        li(c-onclick="selectBlock('insureIdHistory',$dom)")
+            a 投保历史
+        li(c-onclick="selectBlock('claimsHistory',$dom)")
+            a 理赔历史
+        li(c-onclick="selectBlock('recognizeeId',$dom)")
+            a.fontWeight 被保人
+        li(c-onclick="selectBlock('recognizeeHistory',$dom)")
+            a 投保历史
+        li(c-onclick="selectBlock('recognizeeHistory',$dom)")
+            a 理赔历史

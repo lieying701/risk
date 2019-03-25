@@ -1,0 +1,138 @@
+extends /_page
+append head
+    title 标签管理
+    link(rel="stylesheet", type="text/css", href="thirdparty/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/configurationManagement/common/allUwCommon.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/basicInformation/css/basicInformation.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/configurationManagement/css/configurationManagement.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/basicInformation/css/basic.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/configurationManagement/css/policyInquiry.less")  
+    
+block body
+    .xy_uwDetail.show-on-ready
+        .topstep
+        .header
+            .title
+                p(c-bind="thirdName")
+            .titleButton
+                ul
+                    li(c-onclick="save()")
+                        button=ll.l("保存")
+                    li(c-onclick="cancel()")
+                        button=ll.l("取消")
+                        
+        c-tab#tabUwDetail
+            contents.tabContent(c-repeat="department in departments")
+                content.active(name=' ' )
+                    .riskPrompt
+                        .topmessage
+                            .cl-fl
+                                .topleftline
+                                span(c-bind="department.departmentname")  
+                            .cl-fr
+                                c-button(caption=ll.l("删除") style="right" c-onclick="delDepartment(department)" tag="uwTaskTag_dropdown")  
+                    .firstCommonBlock.differentInfo
+                        contents
+                            .upLoaderBox
+                                .commonTopTxtLineInp(c-repeat="assessmentContext in department.assessmentContexts")
+                                    .labelName
+                                        label(c-bind="assessmentContext.labelVarietyName")
+                                    .labelcontext 
+                                        div(c-repeat="labelselect in assessmentContext.labelselects") 
+                                            label(c-bind="labelselect.labelselectName")
+                                        c-button(c-onclick="editLable(assessmentContext,department)" caption=ll.l("添加"))
+                                        c-button(c-onclick="deleteLabelType(assessmentContext,department)" caption=ll.l("删除此分类"))
+                                    .Lines
+                        c-form.transparent()
+                            .addFieldlabel
+                                div(c-onclick="addFieldss(department)") + 添加                            
+                                                        
+         .addDifferentedInformation.addButton(c-onclick="addDepartment()")
+             p + 添加部门
+             
+             
+         c-dialog.submitToSuperior.addSuggest.class1(id="adddepartment" width="470px" height="300px" beforeHide="departmentdialogbeforehide")
+            c-split-pane(position="100%" direction="left")
+                .pane
+                    v-box
+                        box
+                            .header=ll.l("添加部门")
+                            .content
+                                c-form(width="100%" height="250px" bind="departmentform")
+                                    field()
+                                        label 部门名称
+                                        c-dropdown( valueProperty="key" textProperty="name" c-items="bsLineList" bind="departmentnamedropdown")  
+                                    .footerthirdlabelmanage
+                                        c-button.primary( c-onclick="adddepartmentdialog($dom)" )=ll.l("确定")
+                                        c-button.primary( c-onclick="canceladddepartmentdialog()" )=ll.l("取消")  
+                           
+         c-dialog.submitToSuperior.addSuggest(id="addlabelvariety" width="470px" height="300px" beforeHide="labelvarietydialogbeforehide")
+            c-split-pane(position="100%" direction="left")
+                .pane
+                    v-box
+                        box
+                            .header=ll.l("请选择标签分类")
+                            .content
+                                c-form(width="100%" height="250px" bind="labelvarietyform")
+                                    field()
+                                        label 标签分类
+                                        c-dropdown(bind="addlabelvarietydropdown" valueProperty="key" textProperty="name" c-items="addlabelvarietydropdownlist" beforeOpen = "labelvarietyOpen")  
+                                    .footerthirdlabelmanage
+                                        c-button.primary( c-onclick="addlabelvarietydialog()" )=ll.l("确定")
+                                        c-button.primary( c-onclick="canceladdlabelvarietydialog()" )=ll.l("取消") 
+                                        span(c-bind=departmentid).display-none    
+        c-dialog.submitToSuperior.addSuggest(id="addlabel" width="470px" height="300px" beforeHide="labeldialogbeforehide")
+            c-split-pane(position="100%" direction="left")
+                .pane
+                    v-box
+                        box
+                            .header=ll.l("请选择标签")
+                            .content
+                                c-form.addlabelsdropdown(width="100%" height="250px")
+                                    field
+                                        label 标签
+                                        c-dropdown(bind="addlabeldropdown" valueProperty="key" textProperty="name" c-items="addlabeldropdownlist" beforeOpen = "labelOpen")  
+                                    .footerthirdlabelmanage
+                                        c-button.primary( c-onclick="addlabeldialog()" )=ll.l("确定")
+                                        c-button.primary( c-onclick="canceladdlabeldialog()" )=ll.l("取消")    
+                                    .footerthirdlabelmanageright
+                                        c-button.primary( c-onclick="addnewlabeldialog()" )=ll.l("添加新标签")  
+        c-dialog.submitToSuperior.addSuggest(id="addnewLabel" width="470px" height="338px" beforeHide="addnewlabeldialogbeforehide")
+            c-split-pane(position="100%" direction="left")
+                .pane
+                    v-box
+                        box(style="overflow-y:auto")
+                            .header=ll.l("添加自定义标签")
+                            .content
+                                c-form(width="100%")
+                                    field.display-none
+                                        c-input(bind="labelVarietyId" readonly="true")
+                                    field
+                                        label 标签分类
+                                        c-input(bind="modifylabelTtype" readonly="true")
+                                c-table(c-bind="modifyLabel in modifyLabels"  height="100%")
+                                    column(caption=ll.l("标签名称") align="center")
+                                        template
+                                            c-input(c-bind="modifyLabel.text")
+                                    column(caption=ll.l("操作") align="center")
+                                        template
+                                            c-button(caption=ll.l("x") c-onclick="modifyDeleteLabel(modifyLabel)")         
+                                div#tabUwDetail
+                                    .addFieldlabels
+                                        div(c-onclick="modifyAddLabels(modifyLabel)") + 点击添加自定义标签名字输入框     
+                            .addnewLabelfooters(style="margin:10px")
+                                c-button.primary( c-onclick="modifyConfirm(modifyLabel)" )=ll.l("确定")
+                                c-button( c-onclick="modifyCancel()" )=ll.l("取消")
+                                span(c-bind="labelvarietynamedialog").display-none   
+                                span(c-bind="addnewlabeldepartmentid").display-none
+    .waittingRenderBox
+        .waitting
+            div.spinner
+                div.bounce1
+                div.bounce2
+                div.bounce3
+            p 正在处理中, 请稍候 . . .                                                                                  
+append scripts
+    script(src="thirdparty/labelmanage/js/labelmanage.js")  
+    script(src="uploader/widget-lite.js")
+    script(src="thirdparty/faultputin/custom.js")          

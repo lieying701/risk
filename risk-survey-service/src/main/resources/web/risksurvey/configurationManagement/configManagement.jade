@@ -1,0 +1,194 @@
+extends /_page
+append head
+    title 第三方资源配置管理
+    link(rel="stylesheet", type="text/css", href="thirdparty/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/configurationManagement/common/allUwCommon.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/basicInformation/css/basicInformation.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/configurationManagement/css/configurationManagement.less")
+block body
+    .xy_uwDetail.show-on-ready
+        .topstep
+        .header
+            .title
+                p 第三方资源配置管理
+        c-tab#tabUwDetail
+            nav
+                tabs#navEdit
+                    tab.active(name='differentiationConfig', caption=ll.l("第三方类型信息配置"))
+                    tab(name='labelConfig', caption=ll.l("标签管理")  c-onclick="tabClick('labelConfig')")
+                    tab(name='assessmentConfig', caption=ll.l("评价信息管理")  c-onclick="tabClick('assessmentConfig')")
+            contents.tabContent
+                content.active(name='differentiationConfig')
+                    .riskPrompt
+                        .topmessage
+                            .topleftline
+                            span=ll.l("第三方类型信息配置")
+                        .riskContent
+                            c-form(bind='thirdDifferenInfo')
+                                fields.cols-3
+                                   field
+                                       label 第三方分类
+                                       c-dropdown(bind="thirdType" valueProperty="key" textProperty="name" c-items="typeCooperations" c-onpost="thirdTypeChange()")    
+                                   field
+                                       label 归属业务条线(部门)
+                                       c-dropdown(bind="department" valueProperty="key" textProperty="name" c-items="attributionBusinesss" c-onpost="BusinesssChange()"  tag="uwTaskTag" c-readOnly="fixedFlag")
+                                   field
+                                       c-button.primary( c-onclick="differenQuery()" )=ll.l("查询")
+                    .taskContent
+                        
+                        .showTable
+                            c-table(selectedProperty="$selected" bind="taskInfo" currentPageOnly="true" sortMode="remote" )
+                                template(name="date")
+                                    .date(c-bind="formatDate($default,'yyyy-MM-dd hh:mm:ss')")
+                                select-column
+                                column(property="columnName"  caption=ll.l("名称") )
+                                column(property="columnLabel" caption=ll.l("标识"))
+                                column(property="defaultValue"  caption=ll.l("默认值") width="80px")
+                                column(property="dataType"   caption=ll.l("数据类型") width="80px" align="center")
+                                column(property="note"   caption=ll.l("说明") visible="false")
+                                column(property="columnNo" caption=ll.l("序号") width="40px" align="center")
+                                column(property="displayFlag"   caption=ll.l("可见") width="40px" align="center")
+                                column(property="aliasName"   caption=ll.l("别名") )
+                                column(property="columnRule"   caption=ll.l("字段校验规则") visible="false")
+                                column(property="requiredFlag"   caption=ll.l("必填") width="40px")
+                                column(property="pageType"   caption=ll.l("界面类型"))
+                                column(property="baseCodeId"   caption=ll.l("基础代码值") visible="false")
+                                column(property="listValues"   caption=ll.l("下拉列表值") visible="false")
+                                column(property="" caption=ll.l("操作") template="link" width="100px" align="center")
+                                    template(name="link")
+                                        .group
+                                            a(c-onclick="revise(item)" c-class="cl-hide:item.cancelFlag=='0'?false:true")=ll.l("修改") 
+                                            label(c-class="cl-hide:item.cancelFlag=='0'?false:true")  | 
+                                            a(c-onclick="recallTask(item)" c-class="cl-hide:item.cancelFlag=='0'?false:true")=ll.l("注销") 
+                                            a(c-onclick="unCancel(item)" c-class="cl-hide:item.cancelFlag=='1'?false:true")=ll.l("恢复")
+                        .pageList
+                            c-pager(bind='taskInfo' class="pagerItem")
+                        footer.newAdd.display-none
+                            .addFields
+                                div(c-onclick="insertField()") + 新增字段
+                            .cancle
+                                div(c-onclick="recallTasks(taskInfo)") + 注销
+                    c-dialog.submitToSuperior.addSuggest(id="addFields" width="1000px" height="461px")
+                        .header=ll.l("新增字段")
+                        .content
+                            c-form(width="100%" bind="differenceInfoAdd")
+                                fields.cols-3
+                                    field(property="columnLabels")
+                                        label 标识
+                                        c-input()
+                                    field(property="columnNames")
+                                        label=ll.l("名称")
+                                        c-input()
+                                    field
+                                        label 默认值
+                                        c-input(bind="defaultValues")
+                                fields.cols-3 
+                                    field(property="dataTypes")
+                                        label 数据类型
+                                        c-dropdown( valueProperty="key" textProperty="name" c-items="newDataTypes")
+                                    field
+                                        label 字段别名
+                                        c-input(bind="aliasNames")
+                                    field(property="pagetypes")
+                                        label 界面类型
+                                        c-dropdown( valueProperty="key" textProperty="name" c-items="listpagetypes")
+                                fields.cols-3    
+                                    field
+                                        label 基础代码值
+                                        c-input(bind="basecodeIds")
+                                    field
+                                        label 字符排序
+                                        c-input(bind="differenceInfoAdd.columnNos")
+                                    field
+                                        label 是否可见
+                                        c-radio-group(c-items="groupItems" c-bind="displayFlags" )
+                                fields.cols-2    
+                                    field
+                                        label 字段校验规则
+                                        c-textarea(c-bind="columnRule" placeholder="输入正则表达式...")
+                                    field
+                                        label 是否必填
+                                        c-radio-group(c-items="requiredFlaggroupItems" c-bind="requiredFlag" )
+                                fields   
+                                    field
+                                        label 下拉列表值
+                                        c-textarea(c-bind="listValuess" placeholder="列表值用逗号(“,”)隔开...")
+                                fields 
+                                    field
+                                        label 说明
+                                        c-textarea(c-bind="notes")        
+                                
+                        .footer
+                            c-button.primary( c-onclick="cofirmInsertField()" )=ll.l("确定")
+                            c-button.primary( c-onclick="reset()" )=ll.l("重置")
+                            
+                    c-dialog.submitToSuperior.addSuggest(id="updateFields" width="1000px" height="461px")
+                        .header=ll.l("修改字段")
+                        .content
+                            c-form(width="100%" bind="differenceInfoModify")
+                                field.display-none
+                                    label id
+                                    c-input(bind="columnLabelsupdateid")
+                                fields.cols-3
+                                    field(property="columnLabelsupdate")
+                                        label 标识
+                                        c-input()
+                                    field(property="columnNamesupdate")
+                                        label 名称
+                                        c-input()
+                                    field
+                                        label 默认值
+                                        c-input(bind="defaultValuesupdate")
+                                fields.cols-3 
+                                    field(property="dataTypesupdate")
+                                        label 数据类型
+                                        c-dropdown(valueProperty="key" textProperty="name" c-items="dataTypess")
+                                    field
+                                        label 字段别名
+                                        c-input(bind="aliasNameModify")
+                                    field(property="pagetypeModify")
+                                        label 界面类型
+                                        c-dropdown(valueProperty="key" textProperty="name" c-items="pagetypeModifys")
+                                fields.cols-3    
+                                    field
+                                        label 基础代码值
+                                        c-input(bind="basecodeIdModify")
+                                    field
+                                        label 字符排序
+                                        c-input(bind="differenceInfoModify.columnNosupdate")
+                                    field
+                                        label 是否可见
+                                        c-radio-group(c-items="groupItems"  valueProperty="key" textProperty="value" c-bind="displayFlagsupdate" )
+                                fields.cols-2    
+                                    field
+                                        label 字段校验规则
+                                        c-textarea(c-bind="columnRuleModify" placeholder="输入正则表达式...")
+                                    field
+                                        label 是否必填
+                                        c-radio-group(c-items="requiredFlaggroupItems" c-bind="requiredFlagModify" )
+                                fields   
+                                    field
+                                        label 下拉列表值
+                                        c-textarea(c-bind="listValuesModify" placeholder="列表值用逗号(“,”)隔开...")
+                                fields        
+                                    field
+                                        label 说明
+                                        c-textarea(c-bind="notesupdate")
+                        .footer
+                            c-button.primary( c-onclick="cofirmInsertFieldupdate()" )=ll.l("确定")
+                            c-button.primary( c-onclick="resetupdate()" )=ll.l("重置")    
+                                
+                content.detailIframe(name='assessmentConfig')
+                    c-subview(id="assessmentConfig" loadMode url="thirdparty/configurationManagement/assessmentConfig.html" jsUrl="thirdparty/configurationManagement/js/assessmentConfig.js")            
+                content(name='labelConfig')
+                    c-subview(id="labelConfig" loadMode url="thirdparty/configurationManagement/labelConfig.html" jsUrl="thirdparty/configurationManagement/js/labelConfig.js")            
+prepend scripts
+    //script(src="controller/basecode/codeDetail/findCodeDetails?baseCodeIds=travelDestination,InsureMode,CoinsLinkCode,CurrencyCode,ShareholderType,CoinsCode,PolicyType,GetWay,isWithinForeign,AccountType,IdentityType,DUMMYFLAG,UnderwritingWay,PayType,FeePayObjectType,RiskLevel,ClauseType,ValueCode,LimitType,deductGrade,DeductType,ItemNumberUnit,Degree,InsuredIdentity,PayMode,DisabilityDegree,PolicyCode,OwnshipNature,OrganizationType,CustomerGrade,ClassCode,CustomerFlag,BusinessOwner,InsurerCompany,BranchCompany,DeductDecisionCode,TerminationReason,CompanyCode,RenewalType,ProductCode,BusinessStatus,BusinessType,EndorseType,ReprintReasonCode,EmployeeType,CostType,AmountDetermineWay,BuildType,PossessNature,BenefitType,InsuredSort,PayStatus,AgentCostTypeCode,HouseProptype,ScenicSpotType,TravelType,MainCustomerGrade,PolicySort,InsuranceGrade,travelWay,DistrictCode,StructureCode,OwnerKind,OwnerType,KeyInsurantBusinessType,AbnormalBehaviourCate,AbnormalBehaviourCode,NationalEconomyType,DisabilityClassify,DisabilityGrade,CarUseNature,CoinsIncludeWay,DrivingVehicle,OriginalRegisteredCurrencyRate,CurrentPlcNoSelect,paymentReason,proportionFlag,LicenseType,CompanyNature,OccupationCode,OccupationType,OccupationGrade,ShortRateWay,Marriage,UnderwritingResult,Nationality,EndorseCategory,IdentifyType,Sex,Native,SexCode,CountryCode,BankCode,Language,BusinessFlag,ShareHolderName,AgriType,TransrenewFlag,CoinsFlag,CoinsLinkFlag,ContractArgue,ChannelType,BusinessNature,AddressCode1,currency,CoinsOrLink,CoinsOrLink,CustomerType,JudicalCode,ArgueSolution,StructureType,UseCode,CoinsIdentity,AddressProvince,FundProjectBusinessFlag,ServiceProvider,entDigProductCode,entDigProduct,RenewalFlag,AbatementWay,BankHeadQuarter")
+    //script(src="contractcenter/product/js/contractEntity.js")
+append scripts
+    //script(src="thirdparty/base/js/custom.js")
+    script(src="thirdparty/configurationManagement/js/configManagement.js")
+    script(src="uploader/widget-lite.js")
+    script(src="thirdparty/faultputin/custom.js")
+    script(src="thirdparty/approve/js/contractEntity.js")
+

@@ -1,0 +1,30 @@
+extends /_page
+append head
+    title 风勘处理
+    link(rel="stylesheet", type="text/css", href="risksurvey/risksurvey/css/riskSurvey.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/custom.less")
+    link(rel="stylesheet", type="text/css", href="risksurvey/base/css/basic.less")
+
+block body
+    .commonProductInfo.disposeTask
+        .title.disposeTitle
+            span=ll.l("风勘处理")
+        .ui.panel.disposePanel
+            .content.assignTask
+                c-tab
+                    nav
+                        tabs.disposeTabs
+                            tab.disposeTabs.active(name='unassignedTask', c-onclick="tabClick('unassignedTask')") 未分派任务
+                            tab.disposeTabs(name='assignedTask', c-onclick="tabClick('assignedTask')") 我的待办任务
+                    contents(style="height:100%;")
+                        content.active(name='unassignedTask')
+                            c-subview(id="unassignedTask" url="risksurvey/subview/plcUnassignedTask/plcUnassignedTask.html" loadMode="auto" jsUrl="$")
+                        content(name='assignedTask')
+                            c-subview(id="assignedTask" loadMode="lazy" url="risksurvey/subview/plcAssignedTask/plcAssignedTask.html" jsUrl="$")                    
+
+prepend scripts
+    script(src="./risksurvey/product/contractEntity.js")
+    
+append scripts
+    script(src="risksurvey/risksurvey/js/risksurveyDispose.js")
+    script(src="risksurvey/base/js/custom.js")

@@ -1,0 +1,84 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form.transparent.formBlock(bind="surveyGeology")
+                    fields.cols-2
+                        field(property="terrain" class="required")
+                            label() 地形
+                            .terrain(c-repeat="i in terrainItems")
+                                c-checkbox(onValue="1" offValue="0" c-label="i.value")
+                        field(property="fold" class="required")
+                            label 褶皱
+                            .groupCheckbox(c-repeat="i in drapeItems")
+                                c-checkbox(onValue="1" offValue="0" c-label="i.value")
+                    fields.cols-2
+                        field(property="cleftiness")
+                            label 节理
+                            c-dropdown(c-items="jointItems")
+                        field(property="fault" class="required")
+                            label 断层
+                            .groupCheckbox(c-repeat="i in faultItems")
+                                c-checkbox(onValue="1" offValue="0" c-label="i.value")
+                    fields.cols-2
+                        field(property="constructAfterFault")
+                            label 工程经过断层
+                            c-input()
+                        field(property="biggestFaultZone")
+                            label 最大断裂带为
+                            c-input()
+                    fields.cols-2
+                        field(property="siteGroundLayer")
+                            label 工程场地岩土分层
+                            c-input()
+                        field(property="lithologyDesc")
+                            label 地层岩性描述
+                            c-input()
+                    fields.cols-2
+                        field(property="hisRecordTms" class="required")
+                            label 地震
+                            label 历史记录次数
+                            c-input()
+                            span 次
+                    fields.cols-2
+                        field(property="latestEarthquk")
+                            label
+                            label 最近一次有震感地震
+                            c-input()
+                            span 年
+                    fields.cols-2
+                        field(property="zoneEarthqukIntensity")
+                            label
+                            label 区域地震烈度
+                            c-input()
+                            span 度
+                    fields.cols-2
+                        field(property="badGeology" class="required")
+                            label 不良地质
+                            .specialRock(c-repeat="i in specialRockItems")
+                                c-checkbox(onValue="1" offValue="0" c-label="i.value")
+                    fields.cols-2
+                        field(property="landsideFlag")
+                            label 该地区是否发生过滑坡,泥石流等地质灾害
+                            c-dropdown(c-items="occurItems")
+                    fields.cols-2
+                        field(property="softbaseFlag")
+                            label 有无软基路段
+                            c-dropdown()
+                        field(property="softbaseLen")
+                            label 若有,长度为
+                            c-input() 
+                            span 公里
+                    fields.cols-2
+                        field(property="highsoilFlag")
+                            label 有无高填土工程
+                            c-dropdown()
+                        field(property="highsoilLen")
+                            label 若有,长度为
+                            c-input() 
+                            span 公里
+                    fields.cols-2
+                        field(property="geologyRmk")
+                            label 备注
+                            c-textarea()
+                    

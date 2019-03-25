@@ -1,0 +1,16 @@
+{
+  "$data":
+  [
+    {
+      "productId":"1",
+      "description":"朝阳区有情怀大厦A栋103室",
+      "direction":"CNY",
+      "opinion":"10000,00"
+    },
+    {
+      "productId":"2",
+      "description":"朝阳区有情怀大厦A栋103室",
+      "direction":"CNY",
+      "opinion":"10000,00"
+    }
+  ],"$entityCount":1208}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/unic-postgres" auth="Container"
+		type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5433/postgres" username="postgres"
+		password="postgres" maxActive="20" maxIdle="10" maxWait="10000" />
+	<Resource name="jdbc/unic-unic" auth="Container"
+		type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5433/postgres" username="postgres"
+		password="postgres" maxActive="20" maxIdle="10" maxWait="10000" />	
+	<Resource name="jdbc/unic-oracle" auth="Container"
+		type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521/ora11" username="policy"
+		password="123456" maxActive="50" maxIdle="20" maxWait="10000" />
+</Context>

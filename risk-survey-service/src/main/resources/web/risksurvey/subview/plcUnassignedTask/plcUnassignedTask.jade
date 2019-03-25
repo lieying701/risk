@@ -1,0 +1,74 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form(bind="queryCondition")
+                    fields.cols-3
+                        field(property="surveyId")
+                            label 任务编号
+                            c-input()
+                        field(property="businessNo")
+                            label 业务号
+                            c-input()
+                        field(property="product")
+                            label 产品
+                            c-dropdown()
+                    fields.cols-3
+                        field(property="productCode")
+                            label 可售产品
+                            c-dropdown()
+                        field(property="customerName")
+                            label 被保险人
+                            c-input()
+                        field(property="makeCom")
+                            label 出单机构
+                            c-dropdown(c-bind="makeCom" assignment="makeCom=key;makeComName=value;")
+                                template(name="item-content")
+                                    li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                    fields.cols-3
+                        field(property="taskStarter")
+                            label 任务发起人
+                            c-input
+                        field
+                            label 任务申请机构
+                            c-dropdown(c-bind="applyDept" assignment="applyDept=key;applyDeptName=value;")
+                                template(name="item-content")
+                                    li(c-bind="item.key?(item.key+'-'+item.value):item.value")
+                        field(property="plateNo")
+                            label 车牌号
+                            c-input
+                    fields.cols-3
+                        field(property="taskStarterDate")
+                            label 任务发起时间
+                            c-datepicker()
+                    fields
+                        field
+                            c-button(caption=ll.l("查询") c-onclick="queryUnassignedTask()" class="actionBtns actionSeachBtn")
+                            c-button(caption=ll.l("重置") c-onclick="reset()" class="actionBtns")
+                c-table(bind="unassignedTaskList" class="taskTable tabResult" style="width:100%;")
+                    //column(property="")
+                        template
+                            c-checkbox()
+                    column(align="center" caption=ll.l("no") sortable="true" width="50")
+                        template
+                            .row-index
+                    column(property="surveyId" align="center" caption=ll.l("任务编号"))
+                    column(property="applicant" align="center" caption=ll.l("投保人"))
+                    column(property="product" align="center" caption=ll.l("可售产品"))
+                    column(property="businessNo" align="center" caption=ll.l("业务号"))
+                    column(property="surveyStatus" align="center" caption=ll.l("业务状态") width="50")
+                    column(property="taskOwner" align="center" caption=ll.l("任务发起人"))
+                    column(property="taskInstitution" align="center" caption="任务申请机构")
+                    column(property="licensePlate" align="center" caption=ll.l("车牌号"))
+                    column(property="createDate" align="center" caption=ll.l("任务发起时间"))
+                        template
+                            c-datepicker(showClearButton="false" displayFormat="yyyy-MM-dd HH:mm:ss" disabled="true" c-bind="displayFormateDate(item.createDate)" readOnly="true" )
+                    column(caption=ll.l("操作") width="200px")
+                        template
+                            .record
+                                span(class="actionspan" c-onclick="getTask(unassignedTask)")=ll.l("领取任务")
+                                span(class="actionspan" c-onclick="assignTask(unassignedTask)")=ll.l("指派任务")
+                                span(class="actionspan" c-onclick="reAssignTask(unassignedTask)")=ll.l("转派任务")
+                    
+                c-pager(bind="unassignedTaskList")
+                

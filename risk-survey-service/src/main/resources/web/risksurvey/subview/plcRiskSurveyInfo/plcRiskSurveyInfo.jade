@@ -1,0 +1,42 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                .contentInfo
+                    c-form.transparent(class="surveyInfoForm" style="width:96%;margin-left:3%;") 
+                        fields.cols-2
+                            field(class="required")
+                                label 风勘申请机构
+                                c-dropdown(c-items="deptSecItems"  c-bind="applyDeptSec" assignment="applyDeptSec=key;applyDeptSecName=value;")
+                                c-dropdown(c-items="deptThrItems"  c-bind="applyDeptThr" assignment="applyDeptThr=key;applyDeptThrName=value;")
+                                c-dropdown(c-items="deptItems"  c-bind="applyDept" assignment="applyDept=key;applyDeptName=value;")
+                        fields.cols-2
+                            field(class="required")
+                                label 风勘报告归属机构
+                                c-dropdown(c-items="deptSecItems"  c-bind="reportDeptSec" assignment="reportDeptSec=key;reportDeptNameSec=value;")
+                                c-dropdown(c-items="deptThrItems"  c-bind="reportDeptThr" assignment="reportDeptThr=key;reportDeptNameThr=value;")
+                                c-dropdown(c-items="deptItems"  c-bind="reportDept" assignment="reportDept=key;reportDeptName=value;")
+                            field(class="required" property="surveyerDate")
+                                label 风险查勘日期
+                                c-datepicker()
+                        fields.cols-2
+                            field(class="required" property="surveyer")
+                                label 风险查勘员
+                                c-input()
+                            field(class="required" property="surveyerType")
+                                label 风险查勘类型
+                                c-input()
+                        fields.cols-2
+                            field(class="required" property="surveyerDivision")
+                                label 风险查勘部门
+                                c-dropdown()
+                            field(class="required" property="reportProducer")
+                                label 报告制作人
+                                c-input()
+                        fields.cols-2
+                            field(class="required" property="surveyTimes")
+                                label 查勘次数
+                                c-dropdown()
+                            field(class="required" property="reportProduceDate")
+                                label 报告制作日期
+                                c-datepicker()

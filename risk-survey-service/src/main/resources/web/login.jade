@@ -1,0 +1,26 @@
+extends /_page
+
+append head
+	link(rel="stylesheet", type="text/css", href="login.less")
+
+block body
+	form#loginDialog.transition.hidden
+		#subject 登录CAMSI平台
+		c-form#formLogin.ui.form
+			field
+				c-input(placeholder="用户名" bind="username_" icon="user" postOnInput="true")
+			field
+				c-input(inputType="password" placeholder="密码" icon="lock" bind="password_" postOnInput="true")
+			field#captchaContainer
+				c-input#captchaEditor(c-bind="kaptcha_" placeholder="验证码")
+				#captchaImage(c-onclick="refreshImage()")
+					img(c-src="'controller/rbac/login/generateCaptcha?sendTime='+sendTime")
+			field
+				c-checkbox(label="记住我" bind="remember_me")#checkboxMemberMe
+			field
+				c-button.primary.fluid(caption="登录" click="login")
+			messages
+
+append scripts
+	script(src="resources/jquery/jquery.cookie.js")
+	script(src="login.js")

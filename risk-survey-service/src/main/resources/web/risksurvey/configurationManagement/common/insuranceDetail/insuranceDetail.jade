@@ -1,0 +1,45 @@
+c-subview(url="policycenter/product/productView2.html" jsUrl="policycenter/product/js/productView.js")
+//.x-wrap(style="width:100%")
+    #bar2
+    .wrapcontent
+        .leftcontent(id="navMain")
+            //.topenter
+                .entercontent
+                    .entertxt
+                        span 投保录入
+                    .buttonlist
+                        ul
+                            li.menus
+                                img(src="resources/images/menu.png" c-onclick="showRightNav()")
+            .subviewcont2
+                c-subview(id="applicantSub" url="contractcenter/subview/plcApplicant/plcApplicant.html" jsUrl="$")
+            .subviewcont2(style="margin-top:24px")
+                c-subview(id="basInfoSub" url="contractcenter/subview/basicInformation/basicInformation.html" jsUrl="$")
+            .subviewcont(c-repeat="subview in subviews")
+                    .subviewcont( c-repeat="subview in subviews" )
+                        .commonProductInfo.cpInfoBlock
+                            .commonProductInfo
+                                .topmessage
+                                    .productCap-topleft
+                                        .topleftline
+                                        span.topspantxt=ll.l("product")
+                                    .productCap-right
+                                        c-button.basic(caption=ll.l("delete") click="delProduct"  tag="uwTaskTag_dropdown")
+                                .producttopinp
+                                    .topleftinp
+                                        label=ll.l('riskType')
+                                        c-dropdown(c-items="productClassList" textProperty="name" valueProperty="classCode" change="changeCode" c-bind="subview.classCode" dropdownHeight="360px" tag="uwTaskTag_dropdown")
+                                    .rightleftinp
+                                        label=ll.l('activeProduct')
+                                        c-dropdown(c-items="productCodeList" textProperty="name" valueProperty="productCode"  selectData="changeProduct" c-bind="subview.productCode" dropdownHeight="360px" tag="uwTaskTag_dropdown")
+                        c-subview(c-id="'subviewProduct'+ $index" loadModel="manual" create="productSubviewCreate" c-userdata="subview.specId+','+subview.actualId+','+subview.productCode+','+subview.isNew")
+        .rightcontent.scrollbar
+            .navRightCont.scrollbar
+                c-subview(url="policycenter/rightNav/rightNav.html" jsUrl="$")
+            #navRight2
+
+
+
+
+
+

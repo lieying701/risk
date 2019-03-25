@@ -1,0 +1,699 @@
+
+#navMain{
+    flex:1;
+    overflow: hidden;
+}
+
+.x-wrap{
+    width:100%;
+    height:100%;
+    //margin: 10px auto;
+}
+
+.x-wrap .desctxt {
+    float: left;
+    position: relative;
+    padding-left: 20px;
+    top: 10px;
+}
+
+.x-wrap .entertxt {
+    float: left;
+}
+
+.x-wrap .buttonlist{
+    float: right;
+    position: relative;
+    >ul{
+        >li{
+            float: left;
+            width: 76px;
+            text-align: center;
+            box-shadow: inset 1px 0 0 0 #F2F4F5;
+            cursor: pointer;
+            height: 50px;
+        }
+    }
+}
+
+.buttonlist ul li:hover {
+    background: #009966;
+    color: white;
+    #spanD{
+        border-top: 4px solid #fff;
+        border-bottom: 2px solid #33B37B;
+        border-left: 4px solid #33B37B;
+        border-right: 4px solid #33B37B;
+    }
+}
+.buttonlist ul li:active {
+    background: #008559 !important;
+}
+
+.buttonlist button {
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+.buttonlist button:hover {
+    color: white;
+}
+
+.currentbtn{
+    background: #009966;
+    color: white;
+}
+
+.currentbtn button{
+    color:white;
+}
+
+.fieldText {
+	margin-left: 100px;
+}
+.fieldText span {
+	padding-right: 5px;
+}
+
+@media all and (max-width: 1024px){
+    .x-wrap .topenter{
+        height: 52px;
+        line-height: 52px;
+        background: #fff;
+        border:1px solid #F2F4F5;
+        box-shadow:none;
+        width: 100%;
+    }
+    .rightcontent{
+        display:none;
+    }
+    .menus{
+        float: left;
+    }
+}
+@media all and (min-width: 1024px) and (max-width: 1440px) {
+    .wrapcontent{
+        position: relative;
+    }
+    .buttonlist ul{
+        float: left;
+    }
+    .menus{
+        float: left;
+    }
+    .leftcontent{
+        float:left;
+        width:100%;
+    }
+    .rightcontent{
+        width: 200px;
+        position: absolute;
+        z-index:1000;
+        top:47px;
+        right:0;
+        display:none;
+    }
+    .x-wrap .topenter{
+        height: 52px;
+        line-height: 52px;
+        background: #fff;
+        border:1px solid #F2F4F5;
+        box-shadow:none;
+        width: 100%;
+    }
+    .butlist{
+        position: absolute;
+        right: 20px;
+        top: -33px;
+        width: 300px;
+        font-size: 12px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        >.addBtn{
+            float: left;
+            width: 80px;
+            >span{
+                margin-left:5px;
+            }
+        }
+        >.agreedBtn{
+            float: left;
+            width: 90px;
+            margin:0 5px;
+            >span{
+                margin-left:5px;
+            }
+            >img{
+                margin-bottom: -3px;
+            }
+        }
+        >.deleBtn{
+            float: left;
+            width: 90px;
+            >span{
+                margin-left:5px;
+            }
+            >img{
+                margin-bottom: -3px;
+            }
+        }
+    }
+}
+
+@media all and (min-width:1440px){
+    .wrapcontent{
+        display: flex;
+        flex-flow: row;
+    }
+    .menus{
+        display:none;
+    }
+    .x-wrap .topenter{
+        height: 52px;
+        line-height: 52px;
+        background: #fff;
+        border:1px solid #F2F4F5;
+        box-shadow:none;
+        width: 100%;
+    }
+    .leftcontent{
+        //margin-right: 24px
+    }
+    .rightcontent{
+        width:200px;
+        display: block;
+    }
+    .butlist{
+        position: absolute;
+        right: 20px;
+        top: -33px;
+        width: 300px;
+        font-size: 12px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        >.addBtn{
+            float: left;
+            width: 80px;
+            >span{
+                margin-left:5px;
+            }
+        }
+        >.agreedBtn{
+            float: left;
+            width: 90px;
+            margin:0 5px;
+            >span{
+                margin-left:5px;
+            }
+            >img{
+                margin-bottom: -3px;
+            }
+        }
+        >.deleBtn{
+            float: left;
+            width: 90px;
+            >span{
+                margin-left:5px;
+            }
+            >img{
+                margin-bottom: -3px;
+            }
+        }
+    }
+}
+@media all and (max-width:1007px){
+    body{
+        overflow-x: scroll!important;
+    }
+}
+@media all and (min-width:1024px) and (max-width: 1280px){
+    .wrapcontent{
+        position: relative;
+    }
+    #moremenu{
+        width: 24% !important;
+        right: 14%!important;
+    }
+    .x-wrap{
+        width: 98%!important;
+    }
+    .x-wrap .topenter{
+        height: 52px;
+        line-height: 52px;
+        background: #fff;
+        border:1px solid #F2F4F5;
+        box-shadow:none;
+        width: 100%;
+    }
+    .menus{
+        float: left;
+        position: relative;
+    }
+    .rightcontent{
+        width:16%;
+        position: absolute;
+        z-index:1000;
+        top:47px;
+        right:0;
+        display:none;
+    }
+}
+@media all and (min-width:1280px) and (max-width: 1366px){
+    .x-wrap{
+        width: 95%!important;
+    }
+    #moremenu{
+        width: 24% !important;
+        right: 14%!important;
+    }
+}
+
+.x-wrap .topenter .entercontent .entertxt{
+    font-weight: 700;
+    font-size: 1.6rem;color:#333;
+    margin-left: 24px;
+}
+.x-wrap .wrapcontent{
+    //overflow: hidden;
+    position:relative;
+    //margin-top: 24px;
+}
+
+.dragContent .leftContent{
+    margin-right: 10px;
+    height: 100%;
+}
+
+.patternConfigurationContent .leftContent .title{
+    >span:nth-child(1){
+        width: 20%;
+    }
+    >span:nth-child(2){
+        width: 40%;
+    }
+    >span:nth-child(3){
+        width: 40%;
+    }
+}
+.patternConfigurationContent .rightContent .title{
+    >span:nth-child(1){
+        width: 22%;
+        text-align: center;
+    }
+    >span:nth-child(2){
+        width: 78%;
+    }
+}
+
+
+.commonProductInfo{
+    background:white;
+    margin-top:10px;
+    //height:100%;
+}
+//.commonProductInfo .ui.panel,
+.commonProductInfo .ui.c-tab,
+.commonProductInfo .ui.panel > .content{
+	height:100%;
+}
+.transparent{
+    display:block;
+    height:100%;
+    border:1px solid #E7E7E7;
+}
+.productFields{
+    width:60%;
+    margin-left:15% !important;
+}
+.productField{
+    width:30%;
+    margin-left:15% !important;
+}
+.productInput{
+    width:15%;
+    height:25px;
+    margin-left:5px;
+}
+/*.inline{
+    margin-top:-1%;
+}*/
+.riskcircle{
+    border:1px solid #E7E7E7;
+}
+.blockHeader{
+    line-height:40px;
+    height:40px;
+    background:#F7F9F9;
+}
+.blockHeader label{
+    margin-left:20px;
+    margin-top:5px;
+}
+.productDropdown{
+    width:15%;
+    height:27px;
+}
+.queryInfoFields{
+    margin-left:21.3% !important;
+}
+.queryInfoBtn{
+    background-color:#009966 !important;
+    color:white !important;
+}
+.Xaddpolicy{
+    line-height:38px;
+    height:38px;
+    background:#F7F9F9;
+    text-align:center;
+    margin-top:5px;
+    margin-left:12px;
+    margin-right:12px;
+}
+.add_Block{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../../../resources/images/addBlock.png) no-repeat;
+    background-size: 100% 100%;
+    margin-right: 4px; 
+    margin-bottom: -2px; cursor: pointer;
+}
+.addApplicant{
+    font-size:14px;
+    color:#569EF1;
+}
+.contentDetail{
+    margin-top:1%;
+    margin-left:10px;
+    margin-right:10px;
+}
+.contentDetail hr{
+    border:1px dashed #cccccc;
+    margin-left:15px;
+    margin-right:15px;
+}
+.riskFields{
+    width:80%;
+    margin-left:10% !important;
+}
+.topmessage{
+    height: 60px;
+    line-height: 60px;
+    padding: 0 24px;
+    font-size: 18px;
+    box-shadow: inset 0 -1px 0 0 #E6E6E6;
+}
+.topleftline{
+    width: 4px;
+    height: 18px;
+    display: inline-block;
+    margin-right: 8px;
+    background-color: #009966;
+    margin-top: 22px;
+}
+.riskContentFields{
+    width:10% !important;
+    margin-left:5% !important;
+}
+.labelNormal{
+   text-align: left !important;
+}
+.card{
+    margin-left:5px;
+}
+.deleteBlue {
+    //display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../../../resources/images/deleteBlue.png") no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    float:right;
+    margin-right:1%;
+  }
+  .detailInfoTab{
+    max-height: 80%;
+    overflow-y: scroll !important;
+}
+/*综合查询条件样式 */
+.paddingLine{width:12px;}
+.queryDate{width:44% !important;}
+.datepickerField{width:44%!important; margin-right:7px!important;}
+
+/* 组织机构 */
+.mailAddress{
+    width:66% !important;
+}
+.mailAddPost{
+    width:34% !important;
+}
+
+/*风险查勘基本信息 begin*/
+.surveyInfoForm{
+    display:block;
+    width:90%;
+    margin-left:5%;
+}
+.rangeField{
+    width:6% !important;
+}
+.insurerRange{
+    width:3% !important;
+    margin-left:2% !important;
+}
+/* form basic info */
+
+.form-title {
+    font-size: 18px;
+    color:#000000;
+    margin: 30px 0 5px 10px;
+}
+
+.form-line {
+    width: 98%;
+    margin: 20px 0 0 10px;
+    border-top: 1px solid #D9D9D9;
+}
+.formBlock{
+    width:80%;
+    margin-left:10%;
+}
+/*地质地貌 begin */
+.terrain{
+    width:8% !important;
+    margin-left:2% !important;
+}
+.groupCheckbox{
+    width:10% !important;
+    margin-left:2% !important;
+}
+.drapeField{
+    width:6% !important;
+    margin-left:16%;
+}
+.specialRock{
+    width:11% !important;
+    margin-left:2% !important;
+}
+
+/* 第三方责任风险*/
+.buildType{
+    width:55% !important;
+}
+.buildTypes{
+    width:11% !important;
+}
+.checkboxLabel{
+    line-height:25px;
+    vertical-align:top !important;
+}
+.pipeline{
+    width:100%;
+}
+.pipeLabel{
+    margin-left:40px;
+}
+.pipeInput{
+    width:350px !important;
+    margin-left:5px;
+}
+.powerCheckbox{
+    margin-left:60px;
+}
+.powerInput{
+    width:350px !important;
+    margin-left:20px;
+    margin-right:5px;
+}
+.gasLabel{
+    margin-left:55px;
+}
+.gasInput{
+    width:350px !important;
+    margin-left:5px;
+}
+.tapInput{
+    width:360px !important;
+    margin-left:10px;
+    margin-right:5px;
+}
+.telCheckbox{
+    margin-left:36%;
+}
+
+/*风险评价 */
+.titleField{
+    width:10% !important;
+}
+.tableField{
+    width:80% !important;
+}
+.riskTable{
+    width:100%;
+}
+.commentText{
+    width:92% !important;
+}
+
+/* 分派风勘任务*/
+.title{
+    font-size:18px;
+    padding-top:1%;
+    background-color: #F7F9F9;
+    height:50px;
+}
+.title span{
+    margin-left:1.5%;
+}
+.assignTask{
+    .confirmBtn{
+        margin-left:75.5%;
+        width:100px !important;
+    }
+    .cancelBtn{
+        width:100px !important;
+    }
+}
+
+/* 风勘处理 */
+.disposeTask, .disposePanel{
+    height:100%;
+}
+.actionBtns{
+    margin-left:2% !important;
+    width:80px !important;
+}
+.actionSeachBtn{
+    background-color: #009966 !important;
+    color: #F7F9F9 !important;
+}
+.actionspan{
+    color:#519BF0;
+    margin-left:10px;
+}
+.disposeTitle{
+    background-color: white;
+}
+.disposeTabs{
+    background-color: white;
+}
+.taskTable{
+    margin-top:2%;
+}
+
+/** 工程基本信息 */
+.amap-marker-label {
+    border: 0px !important
+}
+
+#location {
+    text-align: center;
+    width: 75%;
+}
+#location>.point label {
+    padding-right: 10px
+}
+#location>.point>.input {
+    padding-right: 10px;
+    width: 100px;
+}
+/*分派风勘任务 */
+
+/*转派风勘任务 */
+.reassignTask{
+    .reassignForm{
+        display:block;
+        width:90%;
+        margin-left:5%;
+    }
+    hr{
+        border:1px dashed #cccccc;
+        margin-left:15px;
+        margin-right:15px;
+    }
+    .confirmAssignBtn{
+        width:100px;
+        margin-left:73%;
+        background-color:#009966 !important;
+        color:white;
+    }
+    .confirmAssignBtn:hover, .confirmAssignBtn:active, .confirmAssignBtn:focus{
+        background-color:#009966 !important;
+    	color: white !important;
+    }
+    .cancelAssignBtn{
+        width:100px;
+    }
+}
+
+/*桥梁施工风险 */
+.addMultipleBtn{
+    .addBtn{
+        margin-left:90%;
+        width:130px;
+        background:#00A05B !important;
+        color:white !important;
+        border-radius:3px;
+    }
+    .addBtn :hover, .addBtn :active{
+        background:#00A05B !important;
+        color:white !important;
+    }
+}
+.blockHeader .delButton{
+    cursor:pointer;
+    margin-top:10px
+}
+
+//-增加表格序号
+.ui.items-view.widget-table .table-body > .items {
+  list-style-type: none;
+  counter-reset: sectioncounter;
+}
+.ui.items-view.widget-table .table-body > .items .row-index {
+  width: 100%;
+  text-align: center;
+}
+.ui.items-view.widget-table .table-body > .items .row-index:before {
+    content:counter(sectioncounter);
+    counter-increment:sectioncounter;
+}
+.ui.input input{border-radius: 0}
+
+.ui.items-view.widget-table.h-scroll > .inner-table.left{
+    width: 342px;
+    box-shadow: none;
+}
+.ui.items-view.widget-table > .inner-table.left .cell:last-child,
+.ui.items-view.widget-table > .inner-table.left .header-cell:last-child{
+    border-right-width: 1px;
+}
+
+.tabResult c-datepicker.ui.input.icon input{ background: none !important;border:none !important; padding-right: 0 !important; font-size: 1rem !important;color:rgba(0, 0, 0, 0.87) !important; text-align:center!important;}
+.tabResult .content{ padding: 0 !important}
+

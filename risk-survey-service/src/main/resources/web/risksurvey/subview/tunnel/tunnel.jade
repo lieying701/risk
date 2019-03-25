@@ -1,0 +1,173 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleTunnel in surveyTunnel")
+                .blockHeader
+                    label(c-bind="$index=='1'?'隧道施工风险':'隧道施工风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delTunnel(singleTunnel,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleTunnel.buildAllConCostRate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singleTunnel.buildCoverConCostRate")
+                                label 工程造价占计划投保金额
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeName")
+                                label 桥梁工程名称
+                                c-input
+                            field(property="singleTunnel.bridgeStartNum")
+                                label 桥梁桩号起号
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeEndNum")
+                                label 桥梁桩号止号
+                                c-input
+                            field(property="singleTunnel.bridgeTypeCode")
+                                label 桥梁类型代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeType")
+                                label 桥梁类型
+                                c-input
+                            field(property="singleTunnel.elseBridgeTypeRmk")
+                                label 其他桥梁类型说明
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeMaterailCode")
+                                label 桥梁材质代码
+                                c-input
+                            field(property="singleTunnel.bridgeMaterail")
+                                label 桥梁材质
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.elseBridgeMaterailRmk")
+                                label 其他桥梁材质说明
+                                c-input
+                            field(property="singleTunnel.buildConstructCost")
+                                label 工程造价
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeLen")
+                                label 桥梁长度
+                                c-input
+                            field(property="singleTunnel.bigBridgeSpan")
+                                label 桥梁最大跨度
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.crossRiverFlag")
+                                label 是否跨越河流
+                                c-input
+                            field(property="singleTunnel.crossRiverWidth")
+                                label 跨越河流的宽度
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.navigationFlag")
+                                label 江河是否通航
+                                c-input
+                            field(property="singleTunnel.designCo")
+                                label 设计单位
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.designAptitudeCode")
+                                label 设计资质代码
+                                c-input
+                            field(property="singleTunnel.designAptitude")
+                                label 设计资质
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.superviseCo")
+                                label 监理单位
+                                c-input
+                            field(property="singleTunnel.supAptitudeCode")
+                                label 监理资质代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.supAptitude")
+                                label 监理资质
+                                c-input
+                            field(property="singleTunnel.constructCo")
+                                label 施工单位
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.constructAptitudeCode")
+                                label 施工单位资质代码
+                                c-input
+                            field(property="singleTunnel.constructAptitude")
+                                label 施工单位资质
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.floodPeriodStrat")
+                                label 该河汛期起始月
+                                c-input
+                            field(property="singleTunnel.floodPeriodEnd")
+                                label 该河汛期终止月
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.wadingPeriodArrange")
+                                label 涉水工期安排
+                                c-input
+                            field(property="singleTunnel.bridgeAddrTypeCode")
+                                label 桥址地形代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeAddrType")
+                                label 桥址地形
+                                c-input
+                            field(property="singleTunnel.elseBridgeAddrRmk")
+                                label 其他桥址地形说明
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.pileDiameter")
+                                label 桥桩基直径
+                                c-input
+                            field(property="singleTunnel.pileLen")
+                                label 桩长
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.pileConMethodCode")
+                                label 施工方法代码
+                                c-input
+                            field(property="singleTunnel.pileConMethod")
+                                label 施工方法
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.elsePileConMethod")
+                                label 其他桥墩、台、柱施工方法
+                                c-input
+                            field(property="singleTunnel.bridgeConMethodCode")
+                                label 桥梁施工方法代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeConMethod")
+                                label 桥梁施工方法
+                                c-input
+                            field(property="singleTunnel.elseBridgeConMethod")
+                                label 其他桥梁施工方法
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.bridgeConRmk")
+                                label 桥梁施工备注
+                                c-input
+                            field(property="singleTunnel.createUserID")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="singleTunnel.updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="singleTunnel.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleTunnel.updateDate")
+                                label 修改时间
+                                c-datepicker
+
+        .Xaddpolicy(c-onclick="addTunnel('singleTunnel')")
+            span.add_Block
+            span.addApplicant=ll.l("添加隧道施工风险") 
+
+ 

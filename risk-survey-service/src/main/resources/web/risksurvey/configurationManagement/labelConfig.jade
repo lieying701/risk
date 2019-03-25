@@ -1,0 +1,68 @@
+.riskPrompt
+    .topmessage.knowledgeWrap
+        .topleftline
+        span.riskWaringShow=ll.l("标签配置")
+    .riskContent
+        c-form
+             fields.cols-3
+                 field
+                     label 归属业务条线
+                     c-dropdown(bind="attributionBusiness1" valueProperty="key" textProperty="name" c-items="attributionBusinesss1" c-onpost="attributionBusinesssChange()")
+                 field
+                     c-button.primary( c-onclick="labelQuery()" )=ll.l("查询")
+        contents
+            .upLoaderBox
+                 .commonTopTxtLineInp(c-repeat="labelContext in labelContexts")
+                      .labelName
+                          label(c-bind="labelContext.labelType")
+                      .labelcontext  
+                          div(c-repeat="a in labelContext.labelValue") 
+                             label(c-bind="a.labelName")
+                          c-button(c-onclick="editLable(labelContext)" caption=ll.l("修改"))
+                          c-button(c-onclick="deleteLabelType(labelContext)" caption=ll.l("删除此分类"))
+                      .Lines
+                 
+                 footer.addToSorH.display-none
+                     .addFieldss
+                          div(c-onclick="addFields(labels)") + 添加
+                 
+                 c-dialog.submitToSuperior.addSuggest(id="addFields1" width="470px" height="338px")
+                        .header=ll.l("添加标签分类")
+                        .content
+                            c-form(width="100%")
+                                field
+                                    label 标签分类
+                                    c-input(bind="labelType")
+                            c-table(c-bind="label in labels"  height="100%")
+                                column(caption=ll.l("标签名称") align="center")
+                                     template
+                                         c-input(c-bind="label.title")
+                                column(caption=ll.l("操作") align="center")
+                                     template
+                                         c-button(caption=ll.l("x") c-onclick="delete(label)")
+                            .addFieldlabel
+                                div(c-onclick="addFieldss()") + 添加                     
+                        .footer
+                            c-button.primary( c-onclick="confirm2()" )=ll.l("确定")
+                            c-button( c-onclick="cancel()" )=ll.l("取消")
+                 c-dialog.submitToSuperior.addSuggest(id="addLabels" width="470px" height="338px")
+                        .header=ll.l("修改标签")
+                        .content
+                            c-form(width="100%")
+                                field.display-none
+                                    c-input(bind="labelVarietyId" readonly="true")
+                                field
+                                    label 标签分类
+                                    c-input(bind="modifylabelTtype" readonly="true")
+                            c-table(c-bind="modifyLabel in modifyLabels"  height="100%")
+                                column(caption=ll.l("标签名称") align="center")
+                                     template
+                                         c-input(c-bind="modifyLabel.text")
+                                column(caption=ll.l("操作") align="center")
+                                     template
+                                         c-button(caption=ll.l("x") c-onclick="modifyDeleteLabel(modifyLabel)")
+                            .addFieldlabel
+                                div(c-onclick="modifyAddLabels(modifyLabel)") + 添加                     
+                        .footers
+                            c-button.primary( c-onclick="modifyConfirm(modifyLabel)" )=ll.l("确定")
+                            c-button( c-onclick="modifyCancel()" )=ll.l("取消")           

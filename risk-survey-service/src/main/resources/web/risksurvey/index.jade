@@ -1,0 +1,15 @@
+extends /_page
+append head
+    link(rel="stylesheet", type="text/css", href="risksurvey/index.less")
+block body
+    v-box.xy-wrap(style="width:100%")
+        flex-box
+            h-box.content(style="width: 90%")
+                box(style="width: 200px").xy-left.cont_left
+                    v-box
+                        flex-box.treeBox
+                            c-tree#homemenuTree
+                flex-box.conten_ritht
+                    c-iframe(id="changeIframe" )
+append scripts
+    script(src="risksurvey/index.js")

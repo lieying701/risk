@@ -1,0 +1,87 @@
+extends /_page
+append head
+    title 协议子保单批量申报录入
+    link(rel="stylesheet", type="text/css", href="thirdparty/testupload/basic.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/testupload/policyInquiry.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/testupload/group.less")
+    link(rel="stylesheet", type="text/css", href="thirdparty/testupload/custom.less")
+
+block body
+    .policyInquiry
+        .titleName=ll.l("协议子保单批量申报录入")
+    .policyInquiry
+        .titleName=ll.l("basicInfo")
+        .bottomline
+        .content.secondCommonBlock(style="margin:20px 0")
+            c-form.show-on-ready(bind="agreementBatchApply" dataType="AgreementBatchApplyVO")
+                fields
+                    field
+                        label=ll.l("agreementNo")
+                        c-input.inputid(bind="agreementBatchApply.policyNo"  style="width:150px;")
+                        c-button.buttonid.primary(caption=ll.l("YES")  c-onclick="createAgreementChildPolicy()")
+                    field
+                        label=ll.l("agreementName")
+                        c-input(bind="agreementBatchApply.agreementName" readonly="true")
+                    field
+                        label=ll.l("批量申报批次号")
+                        c-input(bind="agreementBatchApply.batchNo" readonly="true")
+                    field
+                        label.widthRight=ll.l("insuranceValueDate")
+                        c-datepicker#agrStartTime(bind="agreementBatchApply.startTime" class="timeWidth" displayFormat="yyyy-MM-dd 00:00:00")
+                    field
+                        label.widthRight=ll.l("insuranceCheckPeriod")
+                        c-datepicker#agrEndTime(bind="agreementBatchApply.endTime" class="timeWidth" displayFormat="yyyy-MM-dd 24:00:00" )
+                    field
+                        label.widthRight=ll.l("申报时间")
+                        c-datepicker(bind="agreementBatchApply.applyTime" class="timeWidth" displayFormat="yyyy-MM-dd hh:mm:ss" readonly="true")
+                    field
+                        label=ll.l("typer")
+                        c-input(bind="agreementBatchApply.recordClerkName" readonly="true")
+    .upLoaderBox(style="background-color:  #FFFFFF;margin: 1em auto 1em;width: 90%;")
+        .uploader
+            c-input.disabled(placeholder="请上传清单，支持xls文件" c-bind="fileName" onchange="upfile.value=this.value")
+            c-button#uploadBtn.primary(c-onclick="showAllUploadSideBar()" caption="上传文件" tag="uwTaskTag_dropdown allUpload")
+            c-uploader-sidebar#uploadSideBar
+                c-uploader(fileProcessor="agreementTemplateController" name="upfile" id="upfile" beforeUpload="beforeSend" uploadSuccess="uploadSuccess" tag="addUpload")
+            c-button.base(click="downLoadTemplate" caption="下载模板" tag="uwTaskTag_dropdown")
+            c-button.base(c-onclick="flushInfo()" caption="刷新")
+            .posRight#posRight
+                c-button.base(c-onclick="cancel()" style="float:right" caption="放弃")
+                c-button.primary(click="submitUW" style="float:right" caption="提交" tag="uwTaskTag_dropdown")
+        .showUpLoad
+            c-panel
+                .content
+                    .showHead
+                        span.mar_1 上传结果
+                        span.mar_2 成功
+                        span.green(c-bind="batchCompelete")
+                        span 条， 校验失败
+                        span.red(c-bind="batchFailure")
+                        span 条
+                        span(style="padding-left:20px;color:red;") 失败清单，仅用于查看错误信息的描述。请勿用失败清单进行导入数据，否则将会出现数据错误。
+
+    .recordBox(style="background-color:#FFFFFF;margin: 1em auto 1em;width: 90%;")
+        c-panel.inline(caption="文件校验失败记录")
+            c-table#failureRecord
+            c-pager
+     
+    .recordBox(style="background-color:#FFFFFF;margin: 1em auto 1em;width: 90%;")
+        c-panel.inline(caption="文件校验提醒记录")
+            c-table#remindRecord
+            c-pager
+               
+    //等待动画
+    .groupWaitBox
+        .waitting
+            img(src="resources/images/group_icon1.png")
+            span.tit_1 清单正在上传中...
+            span.tit_2 请耐心等待  
+               
+prepend scripts
+    script(src="controller/basecode/codeDetail/findCodeDetails?baseCodeIds=DUMMYFLAG,PolicySort")
+    script(src="thirdparty/testupload/contractEntity.js")
+
+append scripts
+    script(src="thirdparty/testupload/agreementDeclarationEntry.js")
+    script(src="thirdparty/testupload/custom.js")
+    script(src="uploader/widget-lite.js")

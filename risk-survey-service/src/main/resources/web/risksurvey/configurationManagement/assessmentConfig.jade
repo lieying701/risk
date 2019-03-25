@@ -1,0 +1,48 @@
+.riskPrompt
+    .topmessage.knowledgeWrap
+        .topleftline
+        span.riskWaringShow=ll.l("展示要素")
+    .riskContent
+        c-form
+            fields.cols-3
+                field
+                    label 第三方分类
+                    c-dropdown(bind="thirdType1" valueProperty="key" textProperty="name" c-items="typeCooperations1" c-onpost="thirdsTypeChange()")    
+                field
+                    c-button.primary( c-onclick="assessmentQuery()" )=ll.l("查询")
+        //.searchContexnt
+        .contents
+             .commonTopTxtLineInp(c-repeat="assessmentContext in assessmentContexts")
+                      .labelAssessment
+                          label(c-bind="assessmentContext.feildName")
+                      .labelAssessmentcontext 
+                          a(c-onclick="assessmentEdit(assessmentContext)"  c-class="cl-hide :assessmentContext.state=='0'?true:false")编辑   |   
+                          a(c-onclick="assessmentHide(assessmentContext)"  c-class="cl-hide:assessmentContext.state=='0'?true:false")  隐藏 
+                          a(c-onclick="assessmentShow(assessmentContext)" c-class="cl-hide:assessmentContext.state!='0'?true:false")=ll.l("  显示")
+                      .Lines
+        
+        
+             footer.showOrHideAdd.display-none
+                 .addFieldss
+                       div(c-onclick="addFields()") + 添加
+           
+        c-dialog.submitToSuperior.addSuggest(id="addElement" width="470px" height="338px")
+              .header=ll.l("添加要素")
+              .content
+                   c-form(width="100%")
+                       field
+                           label 要素名称
+                           c-input(bind="feildName")
+              .footer
+                   c-button.primary( c-onclick="confirm()" )=ll.l("确定")
+                   c-button( c-onclick="cancel()" )=ll.l("取消")
+        c-dialog.submitToSuperior.addSuggest(id="addEdit" width="470px" height="338px")
+              .header=ll.l("修改要素")
+              .content
+                   c-form(width="100%")
+                       field
+                           label 要素名称
+                           c-input(bind="feildName1")
+              .footer
+                   c-button.primary( c-onclick="confirm1()" )=ll.l("确定")
+                   c-button( c-onclick="cancel()" )=ll.l("取消")

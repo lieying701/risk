@@ -1,0 +1,179 @@
+.x-wrap#import(style="width:100%")
+    .wrapcontent
+        .wrap(id="navMain")
+            .customerView(c-repeat="obj in policyHolder")
+                .topmessage
+                    .topleftline
+                    span#insureId(c-bind="'投保人'+$index")
+                .policycontent
+                    c-form.policycontentForm
+                        fields.cols-3
+                            field
+                                label=ll.l("customerName")
+                                c-input(readonly="true" bind="obj.customerName")
+                            field
+                                label=ll.l("customerType")
+                                c-dropdown.customerType(readonly="true" c-bind="obj.customerType=='1'?'个人':'组织'" c-items="dictionary('CustomerType')")
+                            field
+                                label=ll.l("CustomerRiskLevel")
+                                c-input(readonly="true" bind="obj.customerLevel")
+                        fields.cols-3
+                            field
+                                label=ll.l("CustomerRiskAccumulated")
+                                c-input(readonly="true" bind="obj.sum")
+                c-panel(caption=ll.l("ApplicantHistory") id="insureIdHistory")
+                    .content
+                        c-segment
+                            .policycontent
+                                .riskContent.insureIdContent
+                                    c-table.bordered.changeInput(bind="obj.historyPolicy" align="left")
+                                        column(property="seq_No" caption=ll.l("no") width="30px" align="center")
+                                            template
+                                                .row-index
+                                        column(property="policyNo" caption=ll.l("policyNo") align="center")
+                                            template
+                                                c-input(c-bind="$default" c-title="$default" readonly="true")
+                                        //column(property="classCode" caption="险类" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="classCodeList" readonly="true")
+                                        //column(property="riskCode" caption="险种" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" readonly="true")
+                                        column(property="riskCode" caption=ll.l("availableproducts") align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" readonly="true")
+                                        column(property="appliName" caption=ll.l("applicantName") align="center")
+                                        column(property="insuredName" caption=ll.l("insured") align="center")
+                                        column(property="rmbvalueAMT" caption=ll.l("faceAmount") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true" )
+                                        column(property="rmbpremiumAMT" caption=ll.l("premium") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true" )
+                                        column(property="startTime" caption=ll.l("theconfirmeddate") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="endTime" caption=ll.l("finalconfirmeddate") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true" align="center")
+                                        //column(property="memo" caption=ll.l("policyNote") align="center")
+                c-panel(caption=ll.l("ClaimsHistory") id="claimsHistory")
+                    .content
+                        .policycontent
+                            .riskContent.claimsContent
+                                c-table.bordered.changeInput(bind="obj.historyClaims")
+                                    column(property="seq_No" caption=ll.l("no") width="30px" )
+                                        template
+                                            .row-index
+                                    column(property="accidentNo" caption=ll.l("theaccident") align="center")
+                                        template
+                                            c-input(c-bind="$default" c-title="$default" readonly="true")
+                                    column(property="registNo" caption=ll.l("reportno") align="center")
+                                        template
+                                            c-input(c-bind="$default" c-title="$default" readonly="true")
+                                    column(property="polciyNo" caption=ll.l("policyNo") align="center")
+                                        template
+                                            c-input(c-bind="$default" c-title="$default" readonly="true")
+                                    column(property="demageTime" caption=ll.l("outoftime") align="center")
+                                        template
+                                            c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                    column(property="claimRptTime" caption=ll.l("reportacaseoftime") align="center")
+                                        template
+                                            c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                    column(property="claimStatusCode" caption=ll.l("claimStatus") align="center")
+                                        template
+                                            c-dropdown(c-bind="$default" c-items="claimStatusList" readonly="true")
+                                    column(property="claimEndTime" caption=ll.l("ClosingTime") align="center")
+                                        template
+                                            c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                    column(property="rmbCoverClaimAMT" caption=ll.l("totalAmountPay") align="center")
+            .customerView(c-repeat="obj in byTheApplicant")
+                .topmessage
+                    .topleftline
+                    span(c-bind="'被保人'+$index" id="recognizeeId")
+                .policycontent
+                    c-form.policycontentForm
+                        fields.cols-3
+                            field
+                                label=ll.l("customerName")
+                                c-input(readonly="true" bind="obj.customerName")
+                            field
+                                label=ll.l("customerType")
+                                c-dropdown.customerType(readonly="true" c-bind="obj.customerType=='1'?'个人':'组织'" c-items="dictionary('customerType')")
+                            field
+                                label=ll.l("CustomerRiskLevel")
+                                c-input(readonly="true" bind="obj.customerLevel")
+                        fields.cols-3
+                            field
+                                label=ll.l("CustomerRiskAccumulated")
+                                c-input(readonly="true" bind="obj.sum")
+                c-panel(caption=ll.l("ApplicantHistory") id="recognizeeHistory")
+                    .content
+                        c-segment
+                            .policycontent
+                                .riskContent.insureIdContent
+                                    c-table.bordered.changeInput(bind="obj.historyPolicy")
+                                        column(property="seq_No" caption=ll.l("no") width="30px" align="center")
+                                            template
+                                                .row-index
+                                        column(property="policyNo" caption=ll.l("policyNo") align="center")
+                                            template
+                                                c-input(c-bind="$default" c-title="$default" readonly="true")
+                                        //column(property="classCode" caption="险类" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="classCodeList" readonly="true")
+                                        //column(property="riskCode" caption="险种" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" readonly="true")
+                                        column(property="riskCode" caption=ll.l("availableproducts") align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" readonly="true")
+                                        column(property="appliName" caption=ll.l("applicantName") align="center")
+                                        column(property="insuredName" caption=ll.l("insured") align="center")
+                                        column(property="rmbvalueAMT" caption=ll.l("faceAmount") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                        column(property="rmbpremiumAMT" caption=ll.l("premium") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                        column(property="startTime" caption=ll.l("theconfirmeddate") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="endTime" caption=ll.l("finalconfirmeddate") align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        //column(property="memo" caption=ll.l("policyNote") align="center")
+                c-panel(caption=ll.l("ClaimsHistory") id="recognizeeHistory")
+                    .content
+                        .policycontent
+                            .riskContent.claimsContent
+                                c-table.bordered.changeInput(bind="obj.historyClaims")
+                                    column(property="seq_No" caption=ll.l("no") width="30px" align="center")
+                                        template
+                                            .row-index
+                                    column(property="accidentNo" caption=ll.l("theaccident") align="center")
+                                        template
+                                            c-input(c-bind="$default" c-title="$default" readonly="true")
+                                    column(property="registNo" caption=ll.l("reportno") align="center")
+                                        template
+                                            c-input(c-bind="$default" c-title="$default" readonly="true")
+                                    column(property="polciyNo" caption=ll.l("policyNo") align="center")
+                                        template
+                                            c-input(c-bind="$default" c-title="$default" readonly="true")
+                                    column(property="demageTime" caption=ll.l("outoftime") align="center")
+                                        template
+                                            c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                    column(property="claimRptTime" caption=ll.l("reportacaseoftime") align="center")
+                                        template
+                                            c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                    column(property="claimStatusCode" caption=ll.l("claimStatus") align="center")
+                                        template
+                                            c-dropdown(c-bind="$default" c-items="claimStatusList" readonly="true")
+                                    column(property="claimEndTime" caption=ll.l("ClosingTime") align="center")
+                                        template
+                                            c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                    column(property="rmbCoverClaimAMT" caption=ll.l("totalAmountPay") align="center")
+        .rightcontent.scrollbar
+            .navRightCont.scrollbar
+                c-subview(url="policycenter/uw/rightNav/customerNav.html" jsUrl="$")
+            #navRight2

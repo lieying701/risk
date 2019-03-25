@@ -1,0 +1,17 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form.transparent
+                    fields.cols-2(class="productFields")
+                        field(class="required")
+                            label 产品
+                            c-dropdown(class="productInput" c-bind="product" c-items="classCodeParentList" post="changeCode")
+                        field(class="required")
+                            label 保险金额
+                            c-input(class="productInput" c-bind="amount")
+                            span 万元
+                    fields.col-2(class="productField")
+                        field(class="required")
+                            label 可售产品
+                            c-dropdown(class="productInput" c-bind="productCode" c-items="classCodeListTwo")  

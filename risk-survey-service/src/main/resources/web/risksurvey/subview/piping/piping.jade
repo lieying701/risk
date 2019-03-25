@@ -1,0 +1,106 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singlePiping in surveyPiping")
+                .blockHeader
+                    label(c-bind="$index=='1'?'管道施工风险':'管道施工风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delPiping(singlePiping,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singlePiping.buildAllConCostRate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singlePiping.buildCoverConCostRate")
+                                label 工程造价占计划投保金额
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.pipingStartNum")
+                                label 管道桩号起号
+                                c-input
+                            field(property="singlePiping.pipingEndNum")
+                                label 管道桩号止号
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.buildConstructCost")
+                                label 工程造价
+                                c-input()
+                            field(property="singlePiping.pipingType")
+                                label 管道类型
+                                c-dropdown(assignment="pipingTypeCode=key;pipingType=value;")
+                                    template(name="value-content")
+                                        li(c-bind="singlePiping.pipingTypeCode?(singlePiping.pipingType):''")
+                        fields.cols-2
+                            field(property="singlePiping.pipingLinkType")   
+                                label 管道对接方式
+                                c-dropdown(assignment="pipingLinkTypeCode=key;pipingLinkType=value;")
+                                    template(name="value-content")
+                                        li(c-bind="singlePiping.pipingLinkTypeCode?(singlePiping.pipingLinkType):''")
+                            field(property="singlePiping.elsePipingLinkType")
+                                label 其他管道对接方式
+                                c-input()
+                        fields.cols-2
+                            field(property="singlePiping.constructMethod")
+                                label 施工方法
+                                c-input
+                            field(property="singlePiping.blastingOperateFlag")
+                                label 有无爆破作业
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.pipingBuryDepth")
+                                label 管道深埋
+                                c-input
+                            field(property="singlePiping.crossRiverFlag")
+                                label 是否要穿越河流
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.crossRiverWidth")
+                                label 所穿越河流的宽度
+                                c-input
+                            field(property="singlePiping.crossRiverConMethod")
+                                label 穿越河流施工方法
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.floodPeriodMonth")
+                                label 该河汛期分布在几月
+                                c-input
+                            field(property="singlePiping.wadingPeriodArrange")
+                                label 涉水工期安排
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.passSpecGeologyArea")
+                                label 有无经过特殊地质地段
+                                c-input
+                            field(property="singlePiping.specGeologyTypeCode")
+                                label 特殊地质地段类型
+                                c-dropdown(assignment="specGeologyTypeCode=key;specGeologyType=value;")
+                                    template(name="value-content")
+                                        li(c-bind="singlePiping.specGeologyTypeCode?(singlePiping.specGeologyType):''")
+                        fields.cols-2
+                            field(property="singlePiping.elseSpecGeologyType")
+                                label 其他特殊地质地段类型
+                                c-input
+                            field(property="singlePiping.protectThirdPartyMethod")
+                                label 第三者免受伤害方法
+                                c-input
+                        fields.cols-2
+                            field(property="singlePiping.pipingRmk")
+                                label 管道施工风险备注
+                                c-input
+                            field(property="singlePiping.createUserID")
+                                label 创建员代码
+                                c-input()
+                        fields.cols-2
+                            field(property="singlePiping.updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="singlePiping.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singlePiping.updateDate")
+                                label 修改时间
+                                c-datepicker
+        .Xaddpolicy(c-onclick="addPiping('singlePiping')")
+            span.add_Block
+            span.addApplicant=ll.l("添加管道施工风险") 

@@ -1,0 +1,87 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="singleInstall in surveyInstall")
+                .blockHeader
+                    label(c-bind="$index=='1'?'安装试车风险':'安装试车风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delInstall(singleInstall,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field(property="singleInstall.buildAllConCostRate")
+                                label 工程造价占整体工程造价
+                                c-input
+                            field(property="singleInstall.buildCoverConCostRate")
+                                label 工程造价占计划投保金额
+                                c-input()
+                        fields.cols-2
+                            field(property="singleInstall.mainMaterial")
+                                label 主要原料
+                                c-input
+                            field(property="singleInstall.mainProduct")
+                                label 主要产品
+                                c-input()
+                        fields.cols-2
+                            field(property="singleInstall.yield")
+                                label 产量
+                                c-input()
+                            field(property="singleInstall.suddenPowerCutLoss")
+                                label 突然停电造成的损失
+                                c-input()
+                        fields.cols-2
+                            field(property="singleInstall.powerSupplyReliability")
+                                label 供电可靠性
+                                c-input()
+                            field(property="singleInstall.haveGeneratorsFlag")
+                                label 有无自备发电机
+                                c-input
+                        fields.cols-2
+                            field(property="singleInstall.aboveFiveSameTradeRate")
+                                label 5年以上同业经验比例
+                                c-input
+                            field(property="singleInstall.twoFiveSameTradeRate")
+                                label 2至5年同业经验比例
+                                c-input()
+                        fields.cols-2
+                            field(property="singleInstall.belowTwoSameTradeRate")
+                                label 2年以下同业经验比例
+                                c-input
+                            field(property="singleInstall.sameProjectExperience")
+                                label 人员同类项目经验
+                                c-input
+                        fields.cols-2
+                            field(property="singleInstall.testStartTime")
+                                label 试车起期
+                                c-datepicker()
+                            field(property="singleInstall.guaranteeStartTime")
+                                label 保证起期
+                                c-datepicker()
+                        fields.cols-2
+                            field(property="singleInstall.testEndTime")
+                                label 试车止期
+                                c-datepicker()
+                            field(property="singleInstall.guaranteeEndTime")
+                                label 保证止期
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleInstall.installRmk")
+                                label 安装试车风险备注
+                                c-input
+                            field(property="singleInstall.createUserID")
+                                label 创建员代码
+                                c-input()
+                        fields.cols-2
+                            field(property="singleInstall.updateUserID")
+                                label 修改员代码
+                                c-input()
+                            field(property="singleInstall.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="singleInstall.updateDate")
+                                label 修改时间
+                                c-datepicker
+
+        .Xaddpolicy(c-onclick="addInstall('singleInstall')")
+            span.add_Block
+            span.addApplicant=ll.l("添加安装试车风险 ") 

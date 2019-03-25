@@ -1,0 +1,116 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle(c-repeat="thirdLiaRisk in surveyThirdduty")
+                .blockHeader
+                    label(c-bind="$index=='1'?'第三者责任风险':'第三者责任风险'+$index")
+                    span.delButton.deleteBlue(c-onclick="delThirdLiaRisk(thirdLiaRisk,$index)")
+                .contentInfo
+                    c-form.transparent.formBlock
+                        fields.cols-2
+                            field.buildType(property="thirdLiaRisk.surroundBuildType")
+                                label 周围建筑类型
+                                .buildTypes(c-repeat="i in buildTypeItems")
+                                    c-checkbox(onValue="1" offValue="0" c-label="i.value")
+                        fields.cols-2
+                            field(property="thirdLiaRisk.structureTypeAndHeight")
+                                label 周边建筑的结构类型和高度
+                                c-input
+                        fields.cols-2
+                            field(property="thirdLiaRisk.trafficDensity")
+                                label 周边建筑的人流车流密集程度
+                                c-input
+                        fields.cols-2
+                            field(property="thirdLiaRisk.nearestBuildDistance")
+                                label 距离最近建筑/道路的距离
+                                c-input
+                        fields.cols-1
+                            field(property="thirdLiaRisk.ugPipelinesType")
+                                label 周围地下管线
+                                .pipeline
+                                    c-checkbox
+                                    label(class="checkboxLabel") 污/雨水管线
+                                    label(class="pipeLabel") 管径
+                                    c-input(placeholder="输入内容" class="pipeInput")
+                                    c-checkbox(class="powerCheckbox")
+                                    label(class="checkboxLabel") 电力电缆
+                                    c-input(class="powerInput")
+                                    span KV                            
+                        fields.cols-1
+                            field
+                                label 
+                                .pipeline
+                                    c-checkbox
+                                    label(class="checkboxLabel") 燃气管道
+                                    label(class="gasLabel") 管径
+                                    c-input(placeholder="输入内容" class="gasInput")
+                                    c-checkbox(class="powerCheckbox")
+                                    label(class="checkboxLabel") 自来水管道
+                                    c-input(class="tapInput")
+                        fields.cols-1
+                            field
+                                label 
+                                .pipeline
+                                    c-checkbox
+                                    label(class="checkboxLabel") 通信光缆
+                                    c-checkbox(class="telCheckbox")
+                                    label(class="checkboxLabel") 电话电缆
+                        fields.cols-1
+                            field(property="thirdLiaRisk.elseugPipelinesType")
+                                label 
+                                .pipeline
+                                    c-checkbox
+                                    label(class="checkboxLabel") 其他管线
+                        fields.cols-2
+                            field(property="thirdLiaRisk.distanceFromProject")
+                                label 管线与工程之间的最近距离
+                                c-input
+                                span 米
+                            field(property="thirdLiaRisk.pipelineBuryDepth")
+                                label 管线深埋
+                                c-input
+                                span 米
+                        fields.cols-2
+                            field(property="thirdLiaRisk.relativePositionCode")
+                                label 管线与工程的相对位置
+                                c-dropdown()
+                            field(property="thirdLiaRisk.blastingOperateFlag")
+                                label 是否有爆破作业
+                                c-dropdown()
+                        fields.cols-1 
+                            field(property="thirdLiaRisk.thirdMinitorMethod")
+                                label 针对施工过程中三者责任的监控措施
+                                c-textarea()
+                        fields.cols-1 
+                            field(property="thirdLiaRisk.thirdDisasterPrevention")
+                                label 针对三者责任的防灾防损措施预案(如:"危险"/"小心掉物"/"禁止通行"等)
+                                c-textarea()
+                        fields.cols-2
+                            field(property="thirdLiaRisk.hangWarnFlag")
+                                label 是否设置警告标志
+                                c-input
+                            field(property="thirdLiaRisk.affectThirdPropFlag")
+                                label 是否会影响第三者财产
+                                c-inut
+                        fields.cols-2
+                            field(property="thirdLiaRisk.thirddutyRmk")
+                                label 备注
+                                c-textarea()
+                            field(property="thirdLiaRisk.createUserID")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="thirdLiaRisk.updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="thirdLiaRisk.createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="thirdLiaRisk.updateDate")
+                                label 修改时间
+                                c-datepicker
+        .Xaddpolicy(c-onclick="addThirdLiaRisk('thirdLiaRisk')")
+            span.add_Block
+            span.addApplicant=ll.l("添加第三者责任风险") 
+                    

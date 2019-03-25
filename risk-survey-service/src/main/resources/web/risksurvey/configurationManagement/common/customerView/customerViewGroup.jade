@@ -1,0 +1,169 @@
+.x-wrap#import(style="width:100%")
+    .wrapcontent
+        .wrap(id="navMain")
+            .customerView
+                .topmessage
+                    .topleftline
+                    span#insureId(c-bind="'投保人'")
+                .policycontent(style="padding:20px")
+                    c-table(bind="item in policyHolder")
+                        column(property="seq_No" caption="序号" width="30px" align="center")
+                            template
+                                .row-index
+                        column(property="customerName" caption="客户名称" align="center")
+                        column(property="customerType" caption="客户类型" align="center")
+                            template
+                                c-input(c-bind="$default=='1'?'个人':'组织'" readonly="true")
+                        column(property="customerLevel" caption="客户风险等级" align="center")
+                        column(property="sum" caption="客户风险累计" align="center")
+                        column(caption="操作" align="center")
+                            template
+                                .btns
+                                    c-button(caption="查看" c-onclick="setPlcApplicantHistory(item)")
+                    //.pageheard
+                        c-pager(bind="searchCode")
+                            item 跳转至
+                            item(page-code="goto" class="item")
+                            item 页
+                c-panel(caption="投保历史" class="insureIdHistory")
+                    .content
+                        c-segment
+                            .policycontent
+                                .riskContent.insureIdContent
+                                    c-table.bordered.changeInput(bind="historyPolicyApplicant" align="left")
+                                        column(property="seq_No" caption="序号" width="30px" align="center")
+                                            template
+                                                .row-index
+                                        column(property="policyNo" caption="保单号"  title="policyNo" align="center")
+                                        //column(property="classCode" caption="险类" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="classCodeList" disabled="true")
+                                        //column(property="riskCode" caption="险种" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" disabled="true")
+                                        column(property="riskCode" caption="可售产品" )
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" readonly="true")
+                                        column(property="appliName" caption="投保人" align="center")
+                                        column(property="insuredName" caption="被保人" align="center")
+                                        column(property="rmbvalueAMT" caption="保额"  align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true" )
+                                        column(property="rmbpremiumAMT" caption="保费" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true" )
+                                        column(property="startTime" caption="起保日期" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="endTime" caption="终保日期" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true" align="center")
+                                        column(property="memo" caption="保单备注" align="center")
+                c-panel(caption="理赔历史" class="claimsHistory")
+                    .content
+                        c-segment
+                            .policycontent
+                                .riskContent.claimsContent
+                                    c-table.bordered.changeInput(bind="historyClaimsApplicant")
+                                        column(property="seq_No" caption="序号" width="30px" )
+                                            template
+                                                .row-index
+                                        column(property="accidentNo" caption="事故号" align="center")
+                                        column(property="registNo" caption="报案号" align="center")
+                                        column(property="polciyNo" caption="保单号" align="center")
+                                        column(property="demageTime" caption="出险时间" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="claimRptTime" caption="报案时间" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="claimStatusCode" caption="案件状态" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="claimStatusList" disabled="true")
+                                        column(property="claimEndTime" caption="结案时间" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="rmbCoverClaimAMT" caption="总赔付金额" align="center")
+            .customerView
+                .topmessage
+                    .topleftline
+                    span#recognizeeId 被保人
+                .policycontent(style="padding:20px")
+                    c-table(bind="item in plcInsurantList")
+                        column(property="seq_No" caption="序号" width="30px" align="center")
+                            template
+                                .row-index
+                        column(property="customerName" caption="客户名称" align="center")
+                        column(property="customerType" caption="客户类型" align="center")
+                            template
+                                c-input(c-bind="$default=='1'?'个人':'组织'" readonly="true")
+                        column(property="customerLevel" caption="客户风险等级" align="center")
+                        column(property="sum" caption="客户风险累计" align="center")
+                        column(caption="操作" align="center")
+                            template
+                                .btns
+                                    c-button(caption="查看" c-onclick="setPlcIansurantHistory(item)")
+                    .pageheard
+                        c-pager(bind="searchCode")
+                            item 跳转至
+                            item(page-code="goto" class="item")
+                            item 页
+                c-panel(caption="投保历史" class="insureIdHistory")
+                    .content
+                        c-segment
+                            .policycontent
+                                .riskContent.insureIdContent
+                                    c-table.bordered.changeInput(bind="historyPolicyInsurant")
+                                        column(property="seq_No" caption="序号" width="30px" align="center")
+                                            template
+                                                .row-index
+                                        column(property="policyNo" caption="保单号" align="center")
+                                        //column(property="classCode" caption="险类" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="classCodeList" disabled="true")
+                                        //column(property="riskCode" caption="险种" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" disabled="true")
+                                        column(property="riskCode" caption="可售产品" )
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="riskCodeList" readonly="true")
+                                        column(property="appliName" caption="投保人" align="center")
+                                        column(property="insuredName" caption="被保人" align="center")
+                                        column(property="rmbvalueAMT" caption="保额" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                        column(property="rmbpremiumAMT" caption="保费" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="#,##0.00" readonly="true")
+                                        column(property="startTime" caption="起保日期" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="endTime" caption="终保日期" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="memo" caption="保单备注" align="center")
+                c-panel(caption="理赔历史" class="claimsHistory")
+                    .content
+                        c-segment
+                            .policycontent
+                                .riskContent.insureIdContent
+                                    c-table.bordered.changeInput(bind="historyClaimsInsurant")
+                                        column(property="seq_No" caption="序号" width="30px" align="center")
+                                            template
+                                                .row-index
+                                        column(property="accidentNo" caption="事故号" align="center")
+                                        column(property="registNo" caption="报案号" align="center")
+                                        column(property="polciyNo" caption="保单号" align="center")
+                                        column(property="demageTime" caption="出险时间" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="claimRptTime" caption="报案时间" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="claimStatusCode" caption="案件状态" align="center")
+                                            template
+                                                c-dropdown(c-bind="$default" c-items="claimStatusList" disabled="true")
+                                        column(property="claimEndTime" caption="结案时间" align="center")
+                                            template
+                                                c-input(c-bind="$default" displayFormat="yyyy-MM-dd" readonly="true")
+                                        column(property="rmbCoverClaimAMT" caption="总赔付金额" align="center")

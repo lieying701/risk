@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/cache    http://www.springframework.org/schema/cache/spring-cache.xsd
+			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+          destroy-method="close">
+        <property name="driverClassName"
+                  value="${spring.datasource.hikari.driver-class-name}"/> <!-- 无需指定，除非系统无法自动识别 -->
+        <property name="jdbcUrl" value="${spring.datasource.hikari.jdbc-url}"/>
+        <property name="username" value="${spring.datasource.hikari.username}"/>
+        <property name="password" value="${spring.datasource.hikari.password}"/>
+        <!-- 连接只读数据库时配置为true， 保证安全 -->
+        <property name="readOnly" value="${spring.datasource.hikari.read-only}"/>
+        <!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+        <property name="connectionTimeout"
+                  value="${spring.datasource.hikari.connection-timeout}"/>
+        <!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+        <property name="idleTimeout" value="${spring.datasource.hikari.idle-timeout}"/>
+        <!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL 
+            wait_timeout参数（show variables like '%timeout%';） -->
+        <property name="maxLifetime" value="${spring.datasource.hikari.max-lifetime}"/>
+        <!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+        <property name="maximumPoolSize"
+                  value="${spring.datasource.hikari.maximum-pool-size}"/>
+    </bean>
+    
+    <!-- none security url -->
+<!--  	<security:http pattern="/controller/payment/payWiredlessPos/packagedConsumerQuery" security="none"/>
+	<security:http pattern="/controller/payment/payWiredPos/wiredPosDisposalCard" security="none"/>
+	<security:http pattern="/controller/payment/payWiredPos/encapsulateWiredPosParam" security="none"/>
+	<security:http pattern="/controller/payment/payToClp/clpReturn" security="none"/>
+	<security:http pattern="/controller/payment/payToClp/PaytoCLPPAY" security="none"/>
+	<security:http pattern="/policycenter/payment/paymentDeal/paymentSuccessInfo.html" security="none"/>
+	<security:http pattern="/controller/quotation/returnToInsurance/cloneQuoteNo" security="none"/>
+	<security:http pattern="/controller/quotation/returnToInsurance/findBusinessEntityByActualId" security="none"/>
+	<security:http pattern="/controller/solution/solutionBaseInfo/findSolutionInfo" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/saveQuotationToProposql" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/cloneProposalNoToQuote" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/clonePolicyNoToQuote" security="none"/>
+	<security:http pattern="/controller/policycenter/print/printForClaim" security="none"/>
+	<security:http pattern="/policycenter/claimTo.html" security="none"/>
+	<security:http pattern="/policycenter/clauseinterface/clause.html" security="none"/>
+	<security:http pattern="/policycenter/indexTo.html" security="none"/>
+	<security:http pattern="/controller/contract/plcMainController/getClaimPlcMain" security="none"/>
+	<security:http pattern="/policycenter/product/productView.html" security="none"/>
+	<security:http pattern="/controller/basecode/codeDetail/findCodeDetails" security="none"/>
+	<security:http pattern="/ui/src" security="none"/>
+	<security:http pattern="/controller/config/BusinessConfig/getBusinessConfigEo" security="none"/>
+	<security:http pattern="/controller/uw/blockRole/getPageBlocks" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/getCachedProductContractEntity" security="none"/>
+	<security:http pattern="/controller/contract/querylimitrlship/getCachedProductLimitRlships" security="none"/>
+	<security:http pattern="/controller/solution/solutionBaseInfo/findListSolution" security="none"/>
+	<security:http pattern="/controller/contract/salesmanagement/findByPartyId" security="none"/>
+	<security:http pattern="/controller/uw/SuggesTion/findUWSuggesTionByActualId" security="none"/>
+	<security:http pattern="/controller/basecode/areaCode/findCachedAreaCode" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/getProductSpecial" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/getMainProductClause" security="none"/>
+	<security:http pattern="/controller/insurance/businessEntity/getAdditonProductClause" security="none"/>
+	<security:http pattern="/controller/contract/plcMainController/findLastEffectivePolicy" security="none"/>
+	<security:http pattern="/controller/policycenter/print/clausesPrint" security="none"/>
+	<security:http pattern="/controller/contract/plcMainController/getPolicyMainByBusinessNoAndBusinessType" security="none"/> -->
+	
+	<!-- web应用的spring启动配置文件，由web.xml DispatchServlet装载 -->
+	<import resource="classpath*:kafka.xml" />
+	<import resource="classpath*:config/service-*-context.xml" />	
+	<import resource="classpath*:config/service-rbac-security.xml" />
+
+	
+</beans>

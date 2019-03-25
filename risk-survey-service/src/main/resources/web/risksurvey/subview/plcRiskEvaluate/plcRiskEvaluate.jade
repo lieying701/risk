@@ -1,0 +1,34 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                c-form.transparent.formBlock(bind="plcRiskEvaluate")
+                    fields.cols-2
+                        field(class="titleField")
+                            label 风险类别
+                        field(class="tableField")
+                            c-table(bind="riskType in riskTypes" class="riskTable")
+                                column(caption=ll.l(""))
+                                    template
+                                        span(c-bind="riskType.name")
+                                column(caption=ll.l("频度"))
+                                    template
+                                        c-dropdown(c-bind="riskType.frequency")
+                                column(caption=ll.l("烈度"))
+                                    template
+                                        c-dropdown(c-bind="riskType.intensity")
+                                column(caption=ll.l("风险等级"))
+                                    template
+                                        c-input(placeholder="请输入" c-bind="riskType.level")
+                    fields
+                        field(property="overallDesc" class="required commentText")
+                            label 总体风险描述及综合评价
+                            c-textarea
+                    fields
+                        field(property="disasterPrevSug" class="required commentText")
+                            label 防灾防损建议
+                            c-textarea
+                    fields.cols-2
+                        field(property="coverRecognize" class="required")
+                            label 承保建议
+                            c-textarea()

@@ -1,0 +1,37 @@
+[
+  {
+    "originatingTaskCommitVo":[
+        "surveyMain,single",
+        "plcApplicant,multiple",
+        "plcInsurant,multiple"
+    ],
+    "riskSurveyVo":[
+        "riskPolicy,single",
+        "plcRiskEvaluate,single",
+        "surveyBuildconstruct,multiple",
+        "surveyThirdduty,multiple"
+    ],
+    "riskSurveyContentVo":[
+        "surveyConstructbasic,single",
+        "surveyConstructparty,single",
+        "surveyGeology,single",
+        "surveyWorksite,single"
+    ],
+    "surveyBridgeVo": [
+        "surveyBridge,multiple",
+        "surveyClimate,multiple",
+        "surveyInstall,multiple",
+        "surveyInstallequip,multiple",
+        "surveyInstalllift,multiple",
+        "surveyInstalltech,multiple",
+        "surveyPiping,multiple"
+    ],
+    "surveyRailwayVo": [
+        "surveyRailway,multiple",
+        "surveyRoad,multiple",
+        "surveySecurity,single",
+        "surveyStation,multiple",
+        "surveyTunnel,multiple"
+    ]
+  }
+]

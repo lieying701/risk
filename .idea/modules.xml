@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/risk-survey.iml" filepath="$PROJECT_DIR$/risk-survey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/risk-survey-service/risk-survey-service.iml" filepath="$PROJECT_DIR$/risk-survey-service/risk-survey-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/risk-survey-web/risk-survey-web.iml" filepath="$PROJECT_DIR$/risk-survey-web/risk-survey-web.iml" />
+    </modules>
+  </component>
+</project>

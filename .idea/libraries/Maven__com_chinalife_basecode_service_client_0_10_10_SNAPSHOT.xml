@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.chinalife:basecode-service:client:0.10.10-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/basecode-service/0.10.10-SNAPSHOT/basecode-service-0.10.10-20181129.105027-8-client.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/basecode-service/0.10.10-SNAPSHOT/basecode-service-0.10.10-20181129.105027-8-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/chinalife/basecode-service/0.10.10-SNAPSHOT/basecode-service-0.10.10-20181129.105027-8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

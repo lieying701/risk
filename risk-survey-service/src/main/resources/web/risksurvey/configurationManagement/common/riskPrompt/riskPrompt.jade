@@ -1,0 +1,25 @@
+.riskPrompt
+    .topmessage
+        .topleftline
+        span=ll.l("intelligentRiskWarning")
+    .riskContent
+        c-table.bordered(bind="riskInfo")
+            column(property="ruleNo" caption=ll.l("rulesName") align="center")
+            column(property="ruleDescription" caption=ll.l("RuleViolationInformation") align="center")
+            column(property="authorityLevel" caption=ll.l("AuthorityLevels") align="center")
+            //column(property="previousSuggestion" caption="历史核保意见")
+            //column(property="suggestion" caption="本次核保意见")
+                template
+                    c-input(c-bind="$default" c-class="disabled:flag")
+            //column(caption="操作" align="center" width="10%")
+                template
+                    c-button.primary(caption="保存" click="saveSug" c-class="disabled:flag")
+        c-form
+            fields.cols-3
+                field
+                    label=ll.l("currentLevelUnderwriting")
+                    c-input(readonly="true" c-bind="uwLevel")
+                field
+                field
+                    label=ll.l("finalLevelUnderwriting")
+                    c-input(readonly="true" c-bind="finalUwLevel")

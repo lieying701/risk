@@ -1,0 +1,38 @@
+.content.contentDetail
+    .commonTopTxtLineInp
+        .topLeft
+            .riskcircle
+                .contentInfo
+                    c-form.transparent.formBlock(bind="surveySecurity")
+                        fields.cols-2
+                            field(property="enoughSecurityFlag")
+                                label 是否有足够执勤保安
+                                c-input
+                            field(property="hour24DutyFlag")
+                                label 是否24小时值班
+                                c-input
+                        fields.cols-2
+                            field(property="enoughDutyRecordFlag")
+                                label 是否有健全的值班记录
+                                c-input
+                            field(property="miniorEquipmentFlag")
+                                label 是否有围墙及监控设备
+                                c-input
+                        fields.cols-2
+                            field(property="securityRmk")
+                                label 保安状况备注
+                                c-input
+                            field(property="createUserID")
+                                label 创建员代码
+                                c-input
+                        fields.cols-2
+                            field(property="updateUserID")
+                                label 修改员代码
+                                c-input
+                            field(property="createDate")
+                                label 创建时间
+                                c-datepicker
+                        fields.cols-2
+                            field(property="updateDate")
+                                label 修改时间
+                                c-datepicker

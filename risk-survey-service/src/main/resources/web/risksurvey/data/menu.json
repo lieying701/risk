@@ -1,0 +1,27 @@
+[
+  {
+    "label": "风险查勘管理系统",
+    "homemenus": [
+      {
+        "label": "创建风勘",
+        "path": "risksurvey/risksurvey/riskSurveyTask.html"
+      },
+      {
+        "label": "分派任务",
+        "path":"risksurvey/risksurvey/risksurveyDispose.html"
+      },
+      {
+        "label": "录入风勘报告",
+        "path":"risksurvey/risksurvey/riskSurvey.html"
+      },
+      {
+        "label": "转派风勘任务",
+        "path":"risksurvey/risksurvey/riskSurveyReAssign.html"
+      },
+      {
+        "label": "综合查询",
+        "path":"risksurvey/risksurvey/riskSurveyQuery.html"
+      }
+    ]
+  }
+]
